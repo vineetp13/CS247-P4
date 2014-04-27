@@ -66,7 +66,7 @@ function showParticipants() {
     if (!participant.person) {
       retVal += '<li>A participant not running this app</li>';
     }
-    retVal += '<li onclick="gapi.hangout.av.setParticipantAudible(' + participant.id + ', false)">' + participant.person.displayName + '</li>';
+    retVal += '<li onclick="gapi.hangout.av.setParticipantAudible(' + participant.id + ', false);">' + participant.person.displayName + '</li>';
   }
 
   retVal += '</ul>';
