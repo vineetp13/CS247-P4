@@ -20,6 +20,7 @@
         <Content type="html"><![CDATA[     
 
 <html>
+
 <style type="text/css">
 <!--
 .button {
@@ -39,56 +40,146 @@
 <body>
 
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-<h3>Simple Hangout App</h3>
+<div id="container">
+  <!-- AGENDA PANEL-->
+  <div id="show_agenda">
+    <span id="show_agenda_label" style="font-size: 10pt;">Show Participant  &#9660;</span>
+  </div>
+  <div id="agenda_container" style="overflow:scroll; position:relative;">
+    <a id="hide_agenda" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;">&times;</a>
+    <div id="agenda-header">
+      <span id="agenda-label">Agenda</span>
+      <div id="agenda_details" style="padding-right:20px;"> 
+        &nbsp;
+      </div>
+    </div>
+    <div class="legend"></div>
+    <div id="agenda_content">
+        <p>
+        <input class="button" type="button" value="Show participants!" id="showParticipants" 
+            style="visibility:hidden;"
+            onClick="showParticipants()"/>
+        </p>
 
-<p>
-<input class="button" type="button" value="Show participants!" id="showParticipants" 
-    style="visibility:hidden;"
-    onClick="showParticipants()"/>
-</p>
+        <div id="participantsDiv"></div>
+    </div>
+  </div>
 
-<div id="participantsDiv"></div>
-
-<hr>
-
-<p><a href="http://developers.google.com/+/hangouts/getting-started">Read the docs</a> to learn more about developing hangouts!</a></p>
+</div>
 
 <script>
-function showParticipants() {
-  var participants = gapi.hangout.getParticipants();
+  var CANVAS_WIDTH;
+  var CANVAS_HEIGHT = 450;
+  var MIN_WIDTH = 300;
 
-  var retVal = '<p>Participants: </p><ul>';
+  // Wait for gadget to load.
+  gadgets.util.registerOnLoadHandler(init);
 
-  for (var index in participants) {
-    var participant = participants[index];
-
-    if (!participant.person) {
-      retVal += '<li>A participant not running this app</li>';
-    }
-    retVal += '<li onclick="gapi.hangout.av.setParticipantVisible(\'' + participant.id + '\', false)">' + participant.person.displayName + '</li>';
-  }
-
-  retVal += '</ul>';
-
-  var div = document.getElementById('participantsDiv');
-
-  div.innerHTML = retVal;
-}
-
-function init() {
-  // When API is ready...                                                         
-  gapi.hangout.onApiReady.add(
+  function init() {
+    // When API is ready...                                                         
+    gapi.hangout.onApiReady.add(
       function(eventObj) {
         if (eventObj.isApiReady) {
-          document.getElementById('showParticipants')
-            .style.visibility = 'visible';
+            gapi.hangout.layout.setChatPaneVisible(false);
+            setCanvas();
         }
-      });
-}
+        initAgenda(appData);
 
-// Wait for gadget to load.                                                       
-gadgets.util.registerOnLoadHandler(init);
+        $(window).resize(function () {
+            recenterCanvas();
+        });
+
+        //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
+        gapi.hangout.onEnabledParticipantsChanged.add(
+          function(eventObj) {
+            
+          }
+        );
+
+      }
+    );
+  };
+
+  $('#hide_agenda').click(function() {
+    $("#agenda_container").hide();
+    $("#show_agenda").show();
+    recenterCanvas();
+  });
+
+  $('#show_agenda').click(function() {
+    $("#agenda_container").show();
+    $("#show_agenda").hide();
+    recenterCanvas();
+  });
+
+  //LAYOUT AND VIDEO FEED CONTROLS:
+  function setCanvas() {
+    var feed = gapi.hangout.layout.getDefaultVideoFeed();
+    var canvas = gapi.hangout.layout.getVideoCanvas();
+    var newSize = canvas.setHeight(CANVAS_HEIGHT);
+    CANVAS_WIDTH = newSize.width
+    canvas.setVideoFeed(feed);
+    canvas.setVisible(true);
+    var leftOffset = 40;
+    if ($("#agenda_container").is(":visible")) {
+      leftOffset += $("#agenda_container").width();
+    }
+    canvas.setPosition(leftOffset, 45);
+    recenterCanvas();
+  };
+
+  function recenterCanvas() {
+    var canvas = gapi.hangout.layout.getVideoCanvas();
+    canvas.setVisible(false);
+    var effectiveWidth = 0;
+    if ($("#agenda_container").is(":visible") || $(".misconduct").is(":visible")) {
+      effectiveWidth += 380;
+    }
+    CANVAS_WIDTH = Math.max($("#container").width() - effectiveWidth - 40, MIN_WIDTH);
+    var newSize = canvas.setWidth(CANVAS_WIDTH);
+    CANVAS_HEIGHT = newSize.height;
+    var maxheight = $(window).height()-30;
+    if (CANVAS_HEIGHT > maxheight) {
+      CANVAS_HEIGHT -= 30;
+      newSize = canvas.setHeight(maxheight);
+      CANVAS_WIDTH = newSize.width;
+    }
+    var leftOffset = 40;
+    if ($("#agenda_container").is(":visible") || $(".misconduct").is(":visible")) {
+      leftOffset += 380;
+    } else {
+      leftOffset = ($(window).width() - CANVAS_WIDTH)/2;
+    }
+    canvas.setPosition(leftOffset, 0);
+    canvas.setVisible(true);
+    $("#agenda_container").height(CANVAS_HEIGHT);
+  };
+
+  function showParticipants() {
+    var participants = gapi.hangout.getParticipants();
+
+    var retVal = '<p>Participants: </p><ul>';
+
+    for (var index in participants) {
+      var participant = participants[index];
+
+      if (!participant.person) {
+        retVal += '<li>A participant not running this app</li>';
+      }
+      retVal += '<li onclick="gapi.hangout.av.setParticipantVisible(\'' + participant.id + '\', false)">' + participant.person.displayName + '</li>';
+    }
+
+    retVal += '</ul>';
+
+    var div = document.getElementById('participantsDiv');
+
+    div.innerHTML = retVal;
+  }
+
 </script>
 </body>
 ]]>
