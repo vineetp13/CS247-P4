@@ -25,6 +25,12 @@
 <!--
 .participant-item {
   cursor: pointer;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+li.participant-item + li.participant-item {
+    border-top: 1px solid #eee;
 }
 
 .text-muted {
@@ -201,7 +207,7 @@
   };
 
   function initiatePrivateChannel(intended_partner, participant_label) {
-    $(participant_label).append('<span class="label label-warning">Requested... Waiting for response</span>');
+    $(participant_label).append('<span class="label label-warning">Requested...</span>');
     var participants = gapi.hangout.getParticipants();
     for (var index in participants) {
       var participant = participants[index];
