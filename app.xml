@@ -31,13 +31,13 @@
   cursor: default;
 }
 
-#agenda_container {
+#sidebar_container {
   float: left;
   width: 380px;
   padding: 20px;
 }
 
-#show_agenda {
+#show_sidebar {
   /* Safari */
   -webkit-transform: rotate(-90deg);
 
@@ -77,20 +77,13 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <div id="container">
-  <!-- AGENDA PANEL-->
-  <div id="show_agenda">
-    <span id="show_agenda_label" style="font-size: 10pt;">Show Participants  &#9660;</span>
+  <div id="show_sidebar">
+    <span id="show_sidebar_label" style="font-size: 10pt;">Show Participants  &#9660;</span>
   </div>
-  <div id="agenda_container" style="overflow:scroll; position:relative;">
-    <!-- <a id="hide_agenda" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;">&times;</a> -->
-    <div id="agenda-header">
-      <span id="agenda-label">Agenda</span>
-      <div id="agenda_details" style="padding-right:20px;"> 
-        &nbsp;
-      </div>
-    </div>
+  <div id="sidebar_container" style="overflow:scroll; position:relative;">
+    <!-- <a id="hide_sidebar" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;">&times;</a> -->
     <div class="legend"></div>
-    <div id="agenda_content">
+    <div id="sidebar_content">
         <div id="participantsDiv"></div>
     </div>
   </div>
@@ -130,15 +123,15 @@
     );
   };
 
-  $('#hide_agenda').click(function() {
-    $("#agenda_container").hide();
-    $("#show_agenda").show();
+  $('#hide_sidebar').click(function() {
+    $("#sidebar_container").hide();
+    $("#show_sidebar").show();
     recenterCanvas();
   });
 
-  $('#show_agenda').click(function() {
-    $("#agenda_container").show();
-    $("#show_agenda").hide();
+  $('#show_sidebar').click(function() {
+    $("#sidebar_container").show();
+    $("#show_sidebar").hide();
     recenterCanvas();
   });
 
@@ -151,8 +144,8 @@
     canvas.setVideoFeed(feed);
     canvas.setVisible(true);
     var leftOffset = 40;
-    if ($("#agenda_container").is(":visible")) {
-      leftOffset += $("#agenda_container").width();
+    if ($("#sidebar_container").is(":visible")) {
+      leftOffset += $("#sidebar_container").width();
     }
     canvas.setPosition(leftOffset, 45);
     recenterCanvas();
@@ -162,7 +155,7 @@
     var canvas = gapi.hangout.layout.getVideoCanvas();
     canvas.setVisible(false);
     var effectiveWidth = 0;
-    if ($("#agenda_container").is(":visible")) {
+    if ($("#sidebar_container").is(":visible")) {
       effectiveWidth += 380;
     }
     CANVAS_WIDTH = Math.max($("#container").width() - effectiveWidth - 40, MIN_WIDTH);
@@ -175,14 +168,14 @@
       CANVAS_WIDTH = newSize.width;
     }
     var leftOffset = 40;
-    if ($("#agenda_container").is(":visible")) {
+    if ($("#sidebar_container").is(":visible")) {
       leftOffset += 380;
     } else {
       leftOffset = ($(window).width() - CANVAS_WIDTH)/2;
     }
     canvas.setPosition(leftOffset, 0);
     canvas.setVisible(true);
-    $("#agenda_container").height(CANVAS_HEIGHT);
+    $("#sidebar_container").height(CANVAS_HEIGHT);
   };
 
   function showParticipants() {
@@ -197,7 +190,7 @@
       if (!participant.hasAppEnabled) {
         isDisabled += " text-muted";
       }
-      retVal += '<li class="' + isDisabled + '" onclick="gapi.hangout.av.setParticipantVisible(\'' + participant.id + '\', false)">' + participant.person.displayName + '</li>';
+      retVal += '<li class="' + isDisabled + '" onclick="initiatePrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
     }
 
     retVal += '</ul>';
@@ -205,6 +198,19 @@
     var div = document.getElementById('participantsDiv');
 
     div.innerHTML = retVal;
+  };
+
+  function initiatePrivateChannel(intended_partner, participant_label) {
+    $(participant_label).append('<span class="label label-warning">Requested... Waiting for response</span>');
+    var participants = gapi.hangout.getParticipants();
+    for (var index in participants) {
+      var participant = participants[index];
+      // MUTE and DISABLE EVERYONE EXCEPT THE INTENDED CONVERSATION PARTNER
+      if (participant.id != intended_partner) {
+        gapi.hangout.av.setParticipantVisible(participant, false);
+        gapi.hangout.av.setParticipantAudible(participant, false);
+      }
+    }
   };
 
 </script>
