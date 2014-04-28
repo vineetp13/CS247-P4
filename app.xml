@@ -163,7 +163,7 @@
     var canvas = gapi.hangout.layout.getVideoCanvas();
     canvas.setVisible(false);
     var effectiveWidth = 0;
-    if ($("#agenda_container").is(":visible") || $(".misconduct").is(":visible")) {
+    if ($("#agenda_container").is(":visible")) {
       effectiveWidth += 380;
     }
     CANVAS_WIDTH = Math.max($("#container").width() - effectiveWidth - 40, MIN_WIDTH);
@@ -176,7 +176,7 @@
       CANVAS_WIDTH = newSize.width;
     }
     var leftOffset = 40;
-    if ($("#agenda_container").is(":visible") || $(".misconduct").is(":visible")) {
+    if ($("#agenda_container").is(":visible")) {
       leftOffset += 380;
     } else {
       leftOffset = ($(window).width() - CANVAS_WIDTH)/2;
