@@ -193,10 +193,12 @@ li.participant-item + li.participant-item {
       var participant = participants[index];
 
       var isDisabled = "participant-item";
+      // It's only possible to chat with a participant who actually has the app enabled, because if they don't they're not able to respond to the private conversation request
       if (!participant.hasAppEnabled) {
-        isDisabled += " text-muted";
+        retVal += '<li class="text-muted">' + participant.person.displayName + '</li>';
+      } else {
+        retVal += '<li onclick="initiatePrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
       }
-      retVal += '<li class="' + isDisabled + '" onclick="initiatePrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
     }
 
     retVal += '</ul>';
@@ -213,8 +215,8 @@ li.participant-item + li.participant-item {
       var participant = participants[index];
       // MUTE and DISABLE EVERYONE EXCEPT THE INTENDED CONVERSATION PARTNER
       if (participant.id != intended_partner) {
-        gapi.hangout.av.setParticipantVisible(participant, false);
-        gapi.hangout.av.setParticipantAudible(participant, false);
+        gapi.hangout.av.setParticipantVisible(participant.id, false);
+        gapi.hangout.av.setParticipantAudible(participant.id, false);
       }
     }
   };
