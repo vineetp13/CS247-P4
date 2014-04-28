@@ -77,10 +77,10 @@
 <div id="container">
   <!-- AGENDA PANEL-->
   <div id="show_agenda">
-    <span id="show_agenda_label" style="font-size: 10pt;">Show Participant  &#9660;</span>
+    <span id="show_agenda_label" style="font-size: 10pt;">Show Participants  &#9660;</span>
   </div>
   <div id="agenda_container" style="overflow:scroll; position:relative;">
-    <a id="hide_agenda" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;">&times;</a>
+    <!-- <a id="hide_agenda" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;">&times;</a> -->
     <div id="agenda-header">
       <span id="agenda-label">Agenda</span>
       <div id="agenda_details" style="padding-right:20px;"> 
@@ -89,10 +89,6 @@
     </div>
     <div class="legend"></div>
     <div id="agenda_content">
-        <p>
-        <input class="button" type="button" value="Show participants!" id="showParticipants" onClick="showParticipants()"/>
-        </p>
-
         <div id="participantsDiv"></div>
     </div>
   </div>
@@ -114,6 +110,7 @@
         if (eventObj.isApiReady) {
             gapi.hangout.layout.setChatPaneVisible(false);
             setCanvas();
+            showParticipants();
         }
 
         $(window).resize(function () {
@@ -121,9 +118,9 @@
         });
 
         //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
-        gapi.hangout.onEnabledParticipantsChanged.add(
+        gapi.hangout.onParticipantsChanged.add(
           function(eventObj) {
-            return true;
+            showParticipants();
           }
         );
 
