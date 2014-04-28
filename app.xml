@@ -35,6 +35,14 @@
         background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333)); 
         background: -moz-linear-gradient(bottom, #ddd, #aaa); }
 
+.participant-item {
+  cursor: pointer;
+}
+
+.text-muted {
+  cursor: default;
+}
+
 #agenda_container {
   float: left;
   width: 380px;
@@ -191,10 +199,11 @@
     for (var index in participants) {
       var participant = participants[index];
 
-      if (!participant.person) {
-        retVal += '<li>A participant not running this app</li>';
+      var isDisabled = "participant-item";
+      if (!participant.hasAppEnabled) {
+        isDisabled += " text-muted";
       }
-      retVal += '<li onclick="gapi.hangout.av.setParticipantVisible(\'' + participant.id + '\', false)">' + participant.person.displayName + '</li>';
+      retVal += '<li class="' + isDisabled + '" onclick="gapi.hangout.av.setParticipantVisible(\'' + participant.id + '\', false)">' + participant.person.displayName + '</li>';
     }
 
     retVal += '</ul>';
