@@ -90,9 +90,7 @@
     <div class="legend"></div>
     <div id="agenda_content">
         <p>
-        <input class="button" type="button" value="Show participants!" id="showParticipants" 
-            style="visibility:hidden;"
-            onClick="showParticipants()"/>
+        <input class="button" type="button" value="Show participants!" id="showParticipants" onClick="showParticipants()"/>
         </p>
 
         <div id="participantsDiv"></div>
@@ -125,7 +123,7 @@
         //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
         gapi.hangout.onEnabledParticipantsChanged.add(
           function(eventObj) {
-            
+            return true;
           }
         );
 
@@ -207,7 +205,7 @@
     var div = document.getElementById('participantsDiv');
 
     div.innerHTML = retVal;
-  }
+  };
 
 </script>
 </body>
