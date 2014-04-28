@@ -35,6 +35,36 @@
         background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333)); 
         background: -moz-linear-gradient(bottom, #ddd, #aaa); }
 
+#agenda_container {
+  float: left;
+  width: 380px;
+  padding: 20px;
+}
+
+#show_agenda {
+  /* Safari */
+  -webkit-transform: rotate(-90deg);
+
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+
+  /* IE */
+  -ms-transform: rotate(-90deg);
+
+  /* Opera */
+  -o-transform: rotate(-90deg);
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+  position: absolute;
+  top: 100px;
+  margin: -25px;
+  left: 0;
+  cursor: pointer;
+  display: none;
+}
+
 -->
 </style>
 <body>
@@ -87,7 +117,6 @@
             gapi.hangout.layout.setChatPaneVisible(false);
             setCanvas();
         }
-        initAgenda(appData);
 
         $(window).resize(function () {
             recenterCanvas();
