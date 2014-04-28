@@ -23,18 +23,6 @@
 
 <style type="text/css">
 <!--
-.button {
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-  background: -moz-linear-gradient(top, #fff, #ddd);  
-  border: 1px solid #bbb;
-}
-
-.button:active {
-        background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333)); 
-        background: -moz-linear-gradient(bottom, #ddd, #aaa); }
-
 .participant-item {
   cursor: pointer;
 }
@@ -78,9 +66,15 @@
 <body>
 
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <div id="container">
   <!-- AGENDA PANEL-->
