@@ -197,7 +197,7 @@ li.participant-item + li.participant-item {
       if (!participant.hasAppEnabled) {
         retVal += '<li class="participant-item text-muted">' + participant.person.displayName + '</li>';
       } else {
-        retVal += '<li class="participant-item" onclick="triggerPrivateChannel(' + participant + ', this)">' + participant.person.displayName + '</li>';
+        retVal += '<li class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
       }
     }
 
@@ -215,14 +215,16 @@ li.participant-item + li.participant-item {
       
       for (var index in participants) {
         var participant = participants[index];
-        var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner.id, participant_label);
+        var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner, participant_label);
       }
       current_conversant = intended_partner;
     } else {
       // Currently already speaking with someone
-      participant_label.innerHTML = intended_partner.person.displayName;
       for (var index in participants) {
         var participant = participants[index];
+        if (participant.id == intended_partner) {
+          participant_label.innerHTML = participant.person.displayName;
+        }
         gapi.hangout.av.setParticipantVisible(participant.id, true);
         gapi.hangout.av.setParticipantAudible(participant.id, true);
       }
