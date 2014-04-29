@@ -100,7 +100,7 @@ li.participant-item + li.participant-item {
   var CANVAS_WIDTH;
   var CANVAS_HEIGHT = 450;
   var MIN_WIDTH = 300;
-  var current_conversant;
+  var current_conversant = null;
 
   // Wait for gadget to load.
   gadgets.util.registerOnLoadHandler(init);
@@ -225,6 +225,7 @@ li.participant-item + li.participant-item {
         gapi.hangout.av.setParticipantVisible(participant.id, false);
         gapi.hangout.av.setParticipantAudible(participant.id, false);
       }
+      current_conversant = null;
     }
   };
 
