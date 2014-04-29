@@ -100,7 +100,7 @@ li.participant-item + li.participant-item {
   var CANVAS_WIDTH;
   var CANVAS_HEIGHT = 450;
   var MIN_WIDTH = 300;
-  var current_conversant = null;
+  var current_conversant;
 
   // Wait for gadget to load.
   gadgets.util.registerOnLoadHandler(init);
@@ -210,7 +210,7 @@ li.participant-item + li.participant-item {
 
   function triggerPrivateChannel(intended_partner, participant_label) {
     var participants = gapi.hangout.getParticipants();
-    if (current_conversant == null) {
+    if (current_conversant == undefined) {
       $(participant_label).append('<span class="label label-warning pull-right">Requested...</span>');
       
       for (var index in participants) {
@@ -223,10 +223,10 @@ li.participant-item + li.participant-item {
       // participant_label.innerHTML = current_conversant.person.displayName;
       for (var index in participants) {
         var participant = participants[index];
-        gapi.hangout.av.setParticipantVisible(participant.id, false);
-        gapi.hangout.av.setParticipantAudible(participant.id, false);
+        gapi.hangout.av.setParticipantVisible(participant.id, true);
+        gapi.hangout.av.setParticipantAudible(participant.id, true);
       }
-      current_conversant = null;
+      current_conversant = undefined;
     }
   };
 
