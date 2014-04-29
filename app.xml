@@ -216,8 +216,8 @@ li.participant-item + li.participant-item {
       for (var index in participants) {
         var participant = participants[index];
         var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner.id, participant_label);
-        current_conversant = intended_partner;
       }
+      current_conversant = intended_partner;
     } else {
       // Currently already speaking with someone
       // participant_label.innerHTML = current_conversant.person.displayName;
