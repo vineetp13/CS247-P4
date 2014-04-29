@@ -220,7 +220,7 @@ li.participant-item + li.participant-item {
       }
     } else {
       // Currently already speaking with someone
-      participant_label.innerHTML = intended_partner.person.displayName;
+      participant_label.innerHTML = current_conversant.person.displayName;
       for (var index in participants) {
         var participant = participants[index];
         gapi.hangout.av.setParticipantVisible(participant.id, false);
