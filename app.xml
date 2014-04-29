@@ -192,12 +192,11 @@ li.participant-item + li.participant-item {
     for (var index in participants) {
       var participant = participants[index];
 
-      var isDisabled = "participant-item";
       // It's only possible to chat with a participant who actually has the app enabled, because if they don't they're not able to respond to the private conversation request
       if (!participant.hasAppEnabled) {
-        retVal += '<li class="text-muted">' + participant.person.displayName + '</li>';
+        retVal += '<li class="participant-item text-muted">' + participant.person.displayName + '</li>';
       } else {
-        retVal += '<li onclick="initiatePrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
+        retVal += '<li class="participant-item" onclick="initiatePrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
       }
     }
 
@@ -209,7 +208,7 @@ li.participant-item + li.participant-item {
   };
 
   function initiatePrivateChannel(intended_partner, participant_label) {
-    $(participant_label).append('<span class="label label-warning">Requested...</span>');
+    $(participant_label).append('<span class="label label-warning pull-right">Requested...</span>');
     var participants = gapi.hangout.getParticipants();
     
     for (var index in participants) {
@@ -225,7 +224,7 @@ li.participant-item + li.participant-item {
       gapi.hangout.av.setParticipantAudible(participant.id, false);
     }
     var label = $(participant_label).children('.label-warning').first();
-    $(label).attr("class", "label label-success");
+    $(label).attr("class", "label label-success pull-right");
     $(label).html("Private chat in progress");
   };
 
