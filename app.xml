@@ -100,6 +100,7 @@ li.participant-item + li.participant-item {
   var CANVAS_WIDTH;
   var CANVAS_HEIGHT = 450;
   var MIN_WIDTH = 300;
+  var current_conversant;
 
   // Wait for gadget to load.
   gadgets.util.registerOnLoadHandler(init);
@@ -196,7 +197,7 @@ li.participant-item + li.participant-item {
       if (!participant.hasAppEnabled) {
         retVal += '<li class="participant-item text-muted">' + participant.person.displayName + '</li>';
       } else {
-        retVal += '<li class="participant-item" onclick="initiatePrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
+        retVal += '<li class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
       }
     }
 
@@ -207,17 +208,28 @@ li.participant-item + li.participant-item {
     div.innerHTML = retVal;
   };
 
-  function initiatePrivateChannel(intended_partner, participant_label) {
-    $(participant_label).append('<span class="label label-warning pull-right">Requested...</span>');
+  function triggerPrivateChannel(intended_partner, participant_label) {
     var participants = gapi.hangout.getParticipants();
-    
-    for (var index in participants) {
-      var participant = participants[index];
-      var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner, participant_label);
+    if (current_conversant == null) {
+      $(participant_label).append('<span class="label label-warning pull-right">Requested...</span>');
+      
+      for (var index in participants) {
+        var participant = participants[index];
+        var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner, participant_label);
+      }
+    } else {
+      // Currently already speaking with someone
+      participant_label.innerHTML = intended_partner.person.displayName;
+      for (var index in participants) {
+        var participant = participants[index];
+        gapi.hangout.av.setParticipantVisible(participant.id, false);
+        gapi.hangout.av.setParticipantAudible(participant.id, false);
+      }
     }
   };
 
   function muteExcludedParticipants(participant, intended_partner, participant_label) {
+    current_conversant = intended_partner;
     // MUTE and DISABLE EVERYONE EXCEPT THE INTENDED CONVERSATION PARTNER
     if (participant.id != intended_partner) {
       gapi.hangout.av.setParticipantVisible(participant.id, false);
