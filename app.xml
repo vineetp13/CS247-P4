@@ -227,6 +227,8 @@ li.participant-item + li.participant-item {
         }
         gapi.hangout.av.setParticipantVisible(participant.id, true);
         gapi.hangout.av.setParticipantAudible(participant.id, true);
+        gapi.hangout.av.clearAvatar(participant.id);
+
       }
       current_conversant = undefined;
     }
@@ -237,6 +239,8 @@ li.participant-item + li.participant-item {
     if (participant.id != intended_partner) {
       gapi.hangout.av.setParticipantVisible(participant.id, false);
       gapi.hangout.av.setParticipantAudible(participant.id, false);
+      gapi.hangout.av.setAvatar(participant.id, "hidden.png");
+
     }
     var label = $(participant_label).children('.label-warning').first();
     $(label).attr("class", "label label-success pull-right");
