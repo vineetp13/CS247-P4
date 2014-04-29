@@ -211,14 +211,22 @@ li.participant-item + li.participant-item {
   function initiatePrivateChannel(intended_partner, participant_label) {
     $(participant_label).append('<span class="label label-warning">Requested...</span>');
     var participants = gapi.hangout.getParticipants();
+    
     for (var index in participants) {
       var participant = participants[index];
-      // MUTE and DISABLE EVERYONE EXCEPT THE INTENDED CONVERSATION PARTNER
-      if (participant.id != intended_partner) {
-        gapi.hangout.av.setParticipantVisible(participant.id, false);
-        gapi.hangout.av.setParticipantAudible(participant.id, false);
-      }
+      var mute = window.setTimeout(function(){
+        // MUTE and DISABLE EVERYONE EXCEPT THE INTENDED CONVERSATION PARTNER
+        if (participant.id != intended_partner) {
+          gapi.hangout.av.setParticipantVisible(participant.id, false);
+          gapi.hangout.av.setParticipantAudible(participant.id, false);
+        }
+      },7000);
     }
+
+    var label = $(participant_label).children('.label-warning').first();
+    $(label).attr("class", "label label-success");
+    $(label).html("Private chat in progress");
+        
   };
 
 </script>
