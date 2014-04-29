@@ -213,12 +213,8 @@ li.participant-item + li.participant-item {
     var participants = gapi.hangout.getParticipants();
     
     for (var index in participants) {
-     var participant = participants[index];
-     if (participant.id != intended_partner) {
-        gapi.hangout.av.setParticipantVisible(participant.id, false);
-        gapi.hangout.av.setParticipantAudible(participant.id, false);
-      }
-      var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner, paricipant_label);
+      var participant = participants[index];
+      var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner, participant_label);
     }
   };
 
