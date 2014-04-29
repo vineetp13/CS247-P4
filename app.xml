@@ -220,13 +220,14 @@ li.participant-item + li.participant-item {
           gapi.hangout.av.setParticipantVisible(participant.id, false);
           gapi.hangout.av.setParticipantAudible(participant.id, false);
         }
+        var label = $(participant_label).children('.label-warning').first();
+        $(label).attr("class", "label label-success");
+        $(label).html("Private chat in progress");
       },7000);
     }
 
-    var label = $(participant_label).children('.label-warning').first();
-    $(label).attr("class", "label label-success");
-    $(label).html("Private chat in progress");
-        
+   
+
   };
 
 </script>
