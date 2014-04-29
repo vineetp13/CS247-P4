@@ -216,6 +216,7 @@ li.participant-item + li.participant-item {
       for (var index in participants) {
         var participant = participants[index];
         var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner.id, participant_label);
+        current_conversant = intended_partner;
       }
     } else {
       // Currently already speaking with someone
@@ -230,7 +231,6 @@ li.participant-item + li.participant-item {
   };
 
   function muteExcludedParticipants(participant, intended_partner, participant_label) {
-    current_conversant = intended_partner;
     // MUTE and DISABLE EVERYONE EXCEPT THE INTENDED CONVERSATION PARTNER
     if (participant.id != intended_partner) {
       gapi.hangout.av.setParticipantVisible(participant.id, false);
