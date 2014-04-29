@@ -239,7 +239,7 @@ li.participant-item + li.participant-item {
     if (participant.id != intended_partner) {
       gapi.hangout.av.setParticipantVisible(participant.id, false);
       gapi.hangout.av.setParticipantAudible(participant.id, false);
-      gapi.hangout.av.setAvatar(participant.id, "/images/hidden.png");
+      gapi.hangout.av.setAvatar(participant.id, "https://raw.githubusercontent.com/jcambre/CS247-P4/hangouts/images/hidden.png");
 
     }
     var label = $(participant_label).children('.label-warning').first();
