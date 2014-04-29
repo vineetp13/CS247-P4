@@ -197,7 +197,7 @@ li.participant-item + li.participant-item {
       if (!participant.hasAppEnabled) {
         retVal += '<li class="participant-item text-muted">' + participant.person.displayName + '</li>';
       } else {
-        retVal += '<li class="participant-item" onclick="triggerPrivateChannel(\'' + participant + '\', this)">' + participant.person.displayName + '</li>';
+        retVal += '<li class="participant-item" onclick="triggerPrivateChannel(' + participant + ', this)">' + participant.person.displayName + '</li>';
       }
     }
 
@@ -220,7 +220,7 @@ li.participant-item + li.participant-item {
       current_conversant = intended_partner;
     } else {
       // Currently already speaking with someone
-      // participant_label.innerHTML = current_conversant.person.displayName;
+      participant_label.innerHTML = intended_partner.person.displayName;
       for (var index in participants) {
         var participant = participants[index];
         gapi.hangout.av.setParticipantVisible(participant.id, true);
