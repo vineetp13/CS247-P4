@@ -214,7 +214,7 @@ li.participant-item + li.participant-item {
   function showParticipants() {
     var participants = gapi.hangout.getParticipants();
 
-    var retVal = '<p>Participants: </p><ul id="participants-list">';
+    var retVal = '<h3>Click on the name of a participant below to initiate a private conversation with that person<br/><small>If they accept, the two of you will only be able to hear one another, and the other members of the group won\'t be about to listen to your conversation. To end the conversation, click on the individual\'s name once again, and you will return to the full group conversation.</small></h3><ul id="participants-list">';
 
     for (var index in participants) {
       var participant = participants[index];
