@@ -101,6 +101,7 @@ li.participant-item + li.participant-item {
   var CANVAS_HEIGHT = 450;
   var MIN_WIDTH = 300;
   var current_conversant;
+  var fake_mute;
 
   // Wait for gadget to load.
   gadgets.util.registerOnLoadHandler(init);
@@ -120,9 +121,9 @@ li.participant-item + li.participant-item {
         });
 
         //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
-        gapi.hangout.onParticipantsChanged.add(
+        gapi.hangout.onParticipantsAdded.add(
           function(eventObj) {
-            showParticipants();
+            console.log(eventObj);
           }
         );
 
@@ -195,9 +196,9 @@ li.participant-item + li.participant-item {
 
       // It's only possible to chat with a participant who actually has the app enabled, because if they don't they're not able to respond to the private conversation request
       if (!participant.hasAppEnabled) {
-        retVal += '<li class="participant-item text-muted">' + participant.person.displayName + '</li>';
+        retVal += '<li id="' + participant.id + '" class="participant-item text-muted">' + participant.person.displayName + '</li>';
       } else {
-        retVal += '<li class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
+        retVal += '<li id="' + participant.id + '" class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
       }
     }
 
@@ -215,11 +216,12 @@ li.participant-item + li.participant-item {
       
       for (var index in participants) {
         var participant = participants[index];
-        var mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner, participant_label);
+        fake_mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner, participant_label);
       }
       current_conversant = intended_partner;
     } else {
       // Currently already speaking with someone
+      window.clearTimeout(fake_mute);
       for (var index in participants) {
         var participant = participants[index];
         if (participant.id == intended_partner) {
