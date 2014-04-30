@@ -142,7 +142,7 @@ li.participant-item + li.participant-item {
             var removed_participants = eventObj.removedParticipants;
             for (var index in removed_participants) {
               var participant = removed_participants[index];
-              $("#" + participant.id).remove();
+              $("#hg" + participant.person.id).remove();
             }
           }
         );
@@ -216,9 +216,9 @@ li.participant-item + li.participant-item {
 
       // It's only possible to chat with a participant who actually has the app enabled, because if they don't they're not able to respond to the private conversation request
       if (!participant.hasAppEnabled) {
-        retVal += '<li id="' + participant.id + '" class="participant-item text-muted">' + participant.person.displayName + '</li>';
+        retVal += '<li id="hg' + participant.person.id + '" class="participant-item text-muted">' + participant.person.displayName + '</li>';
       } else {
-        retVal += '<li id="' + participant.id + '" class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
+        retVal += '<li id="hg' + participant.person.id + '" class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
       }
     }
 
