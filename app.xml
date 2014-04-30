@@ -133,6 +133,11 @@ li.participant-item + li.participant-item {
               }
               $("#participants-list").append(new_participant_listing);
               // Restrict visibility of this new participant to the local participant if they're currently in a hangout
+              if (current_conversant != undefined) {
+                gapi.hangout.av.setParticipantVisible(participant.id, false);
+                gapi.hangout.av.setParticipantAudible(participant.id, false);
+                gapi.hangout.av.setAvatar(participant.id, "https://raw.githubusercontent.com/jcambre/CS247-P4/hangouts/images/hidden.png");
+              }
             }
           }
         );
