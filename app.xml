@@ -127,9 +127,9 @@ li.participant-item + li.participant-item {
               var participant = new_participants[index];
               var new_participant_listing = "";
               if (!participant.hasAppEnabled) {
-                new_participant_listing += '<li id="' + participant.id + '" class="participant-item text-muted">' + participant.person.displayName + '</li>';
+                new_participant_listing += '<li id="hg' + participant.person.id + '" class="participant-item text-muted">' + participant.person.displayName + '</li>';
               } else {
-                new_participant_listing += '<li id="' + participant.id + '" class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
+                new_participant_listing += '<li id="hg' + participant.person.id + '" class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
               }
               $("#participants-list").append(new_participant_listing);
               // Restrict visibility of this new participant to the local participant if they're currently in a hangout
