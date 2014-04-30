@@ -120,10 +120,30 @@ li.participant-item + li.participant-item {
             recenterCanvas();
         });
 
-        //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
         gapi.hangout.onParticipantsAdded.add(
           function(eventObj) {
-            console.log(eventObj);
+            var new_participants = eventObj.addedParticipants;
+            for (var index in new_participants) {
+              var participant = new_participants[index];
+              var new_participant_listing = "";
+              if (!participant.hasAppEnabled) {
+                new_participant_listing += '<li id="' + participant.id + '" class="participant-item text-muted">' + participant.person.displayName + '</li>';
+              } else {
+                new_participant_listing += '<li id="' + participant.id + '" class="participant-item" onclick="triggerPrivateChannel(\'' + participant.id + '\', this)">' + participant.person.displayName + '</li>';
+              }
+              $("#participants-list").append(new_participant_listing);
+              // Restrict visibility of this new participant to the local participant if they're currently in a hangout
+            }
+          }
+        );
+
+        gapi.hangout.onParticipantsRemoved.add(
+          function(eventObj) {
+            var removed_participants = eventObj.removedParticipants;
+            for (var index in removed_participants) {
+              var participant = removed_participants[index];
+              $("#" + participant.id).remove();
+            }
           }
         );
 
@@ -189,7 +209,7 @@ li.participant-item + li.participant-item {
   function showParticipants() {
     var participants = gapi.hangout.getParticipants();
 
-    var retVal = '<p>Participants: </p><ul>';
+    var retVal = '<p>Participants: </p><ul id="participants-list">';
 
     for (var index in participants) {
       var participant = participants[index];
