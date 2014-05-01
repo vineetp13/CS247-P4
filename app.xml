@@ -241,7 +241,7 @@ li.participant-item + li.participant-item {
       
       for (var index in participants) {
         var participant = participants[index];
-        fake_mute = window.setTimeout(muteExcludedParticipants, 7000, participant, intended_partner, participant_label);
+        fake_mute = window.setTimeout(muteExcludedParticipants, 700000, participant, intended_partner, participant_label);
       }
       current_conversant = intended_partner;
     } else {
