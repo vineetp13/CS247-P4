@@ -11,6 +11,7 @@
   function init() {
     // When API is ready...                                                         
     gapi.hangout.onApiReady.add(
+      console.log("here I am");
       function(eventObj) {
         if (eventObj.isApiReady) {
             gapi.hangout.layout.setChatPaneVisible(false);
