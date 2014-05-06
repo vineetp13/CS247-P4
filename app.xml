@@ -110,20 +110,6 @@
         }
       );
     }
-
-    if (isLiveAttendeeCountReporter) {
-      gapi.hangout.onParticipantsChanged.add(
-        function(eventObj) {
-          reportParticipantsChanged(eventObj);
-        }
-      );
-    } else {
-      gapi.hangout.onParticipantsChanged.remove(
-        function(eventObj) {
-          reportParticipantsChanged(eventObj);
-        }
-      );
-    }
   };
 
   function trackTurns(eventObj) {
