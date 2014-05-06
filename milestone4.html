@@ -1,12 +1,8 @@
 <div class="row">
   <h1 class="page-header">Milestone 4: Functional Prototype</h1>
 <script src="https://perry-mooc.herokuapp.com/instanthangouts-0.1.0.js" async></script>
-<div
-    class='instanthangouts'
-    parsetags='onload'
-    publisher_id='112744459749475398119'
-    render='createhangout'
-    room_id='my_room'
-    topic='My Topic'
-    width='200'></div>
+<div id='instant'></div>
+<script>
+gapi.hangout.render('instant', { 'render': 'hangout' });
+</script>
 </div>
