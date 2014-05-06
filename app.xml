@@ -62,7 +62,6 @@
   var MIN_WIDTH = 300;
 
   var isTurnReporter = false;
-  var isLiveAttendeeCountReporter = false;
   var lastReportedTurnID = null;
 
   // Wait for gadget to load.
@@ -74,11 +73,8 @@
       function(eventObj) {
         if (eventObj.isApiReady) {
             gapi.hangout.layout.setChatPaneVisible(false);
-            gapi.hangout.layout.displayNotice("Tip: For better audio quality, use a headset or headphones.", true);
             setCanvas();
         }
-        var appData = gadgets.views.getParams()['appData'];
-        initAgenda(appData);
 
         $(window).resize(function () {
             recenterCanvas();
@@ -142,21 +138,6 @@
     lastReportedTurnID = participantID;
   };
 
-  function reportParticipantsChanged(eventObj) {
-    appData = gapi.hangout.getStartData();
-    if (appData) {
-      appData = $.parseJSON(appData);
-      var hangout_group_id = appData.group.group_id;
-      if (hangout_group_id) {
-        // var participantsChangedURL = 'https://talkabout.stanford.edu/hangouts/participants_changed.json/?callback=?';
-        // $.getJSON(participantsChangedURL, {
-        //   "hangout_group_id" : hangout_group_id,
-        //   "total_num_participants" : eventObj.participants.length
-        // });
-      }
-    }
-  };
-
   //This function is called any time a participant enables or disables the app, in order to update whether the local participant is the turn-taking reporter
   function determineReporters() {
     var enabledParticipants = gapi.hangout.getEnabledParticipants();
@@ -175,78 +156,21 @@
     // Participant is a turn reporter if they are EITHER the lowest and highest ID. They are the live attendance reporter ONLY IF they are the lowest ID.
     if (lowestID == localParticipantID)  {
       isTurnReporter = true;
-      isLiveAttendeeCountReporter = true;
-      console.log("Am i the live atendee count reporter? " + isLiveAttendeeCountReporter);
     } else if (highestID == localParticipantID) {
       isTurnReporter = true;
-      isLiveAttendeeCountReporter = false;
     } else {
       isTurnReporter = false;
-      isLiveAttendeeCountReporter = false;
     }
     return true;
   };
 
-  //AGENDA CONTROLS:
-  function initAgenda(appData) {
-    if (appData) {
-      //console.log("App Data: " + appData);
-      appData = $.parseJSON(appData);
-      timeslot_id = appData.group.timeslot_id;
-      if (timeslot_id) {
-        // $.getJSON('https://talkabout.stanford.edu/timeslots/' + timeslot_id +'/export_agenda.json?callback=?', {"group_id": appData.group.group_id}, function(data) {
-        //   $("#agenda_details").html(data.courseName);
-        //   if (data.agenda !== "") {
-        //     $("#agenda_content").html(data.agenda);
-        //     $(".nav-tabs").removeClass("nav-tabs").addClass("nav-pills");
-        //   }
-        //   // NOTE!!!! All of the following items are special cased for Scott Plous's class because it uses a custom agenda header
-        //   if (data.customAgendaHeader !== "") {
-        //     $("#agenda-label").html(data.customAgendaHeader);
-        //     $("#show_agenda_label").html("Show " + data.customAgendaHeader + "  &#9660;");
-        //     $("#show_agenda").css("top", "160px");
-        //     $("#show_agenda").css("left", "-55px");
-        //     $("#agenda-label").css("font-size", "18pt");
-        //     $("#agenda_details").hide();
-        //   } else {
-        //     $("li.agenda").prepend("<input type='checkbox'>");
-        //     initCheckboxes();
-        //   }
-        // });
-      }
-    }
-  }
-
-  // Under default agenda display settings, each discussion item is formatted as a clickable checkbox
-  function initCheckboxes() {
-    $('[type=checkbox]').change(function(){
-      $(this).siblings().toggleClass("active");
-      if($(this).is(':checked')) {
-        $(this).parent().fadeTo(600, .5);
-        $(this).siblings('.agenda-item-description').slideUp();
-      } else {
-        $(this).parent().fadeTo('fast', 1);
-        $(this).siblings('.agenda-item-description').slideDown();
-      }
-    });
-  };
-
   //TURN TAKING TRACKING CONTROLS:
   function reportTurnTakingEvent(participantID) {
-    appData = gapi.hangout.getStartData();
-    if (appData) {
-      appData = $.parseJSON(appData);
       var hangout_group_id = appData.group.group_id;
       var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
       if (hangout_group_id && reporter_google_id && participantID) {
-        // var trackingRequestURL = 'https://talkabout.stanford.edu/hangouts/turn_taking_event.json/?callback=?';
-        // $.getJSON(trackingRequestURL, {
-        //   "disp_g_id" : participantID,
-        //   "rep_g_id" : reporter_google_id,
-        //   "hangout_group_id" : hangout_group_id
-        // });
+        // This is where we should send the info back and forth to firebase
       } 
-    }
   };
 
   $('#hide_agenda').click(function() {
