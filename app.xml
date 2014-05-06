@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<!-- Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *      
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License
+-->
+        <ModulePrefs title="Hangout Starter">
+                <Require feature="rpc" />
+                <Require feature="views"/>
+        </ModulePrefs>
+        <Content type="html"><![CDATA[
+        <!DOCTYPE html>
+     
+<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'></link>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+<style>
+  body {
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  ul.agenda {
+    list-style: none;
+    padding-left: 0;
+    margin: 8px 0 0 0;
+  }
+
+  li.agenda {
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  ol.agenda {
+    padding-left: 0px;
+    margin-left: 5px;
+  }
+
+  .agenda-item-label {
+    font-size: 14px;
+    font-weight: 600;
+    width: 300px;
+  }
+
+  #agenda_container {
+    float: left;
+    width: 380px;
+    padding: 20px;
+  }
+
+  .legend {
+    display: block;
+    padding-top: 5px;
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 40px;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  #header {
+    display: block;
+    margin-bottom: 5px;
+    height: 40px;
+    font-size: 14pt;
+    color: #aaaaaa;
+    background-color: #fcfcfc;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+    .agenda-legend {
+    display: block;
+    position: relative;
+    left: 20px;
+    padding-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  #agenda-label {
+    font-size: 24pt;
+    font-weight: 600;
+  }
+
+  .nav-pills>li>a {
+    border-radius: 5px;
+    padding: 3px 3px;
+  }
+
+  .nav-pills>li {
+    float: left;
+    padding-right: 6px;
+  }
+
+  #agenda_details {
+    float:right;
+    font-size:10pt;
+    font-weight: 600;
+    color:#777777;
+  }
+
+  .description {
+    display: inline;
+  }
+
+  .agenda-item-description {
+    font-size: 9pt;
+    font-weight: 500;
+    color: #777777;
+    margin-left: 20px;
+    display: block;
+    padding-bottom: 15px;
+  }
+
+  .agenda-item {
+    font-size: 10pt;
+    font-weight: 500;
+    margin-left: .5em;
+    line-height: 12pt;
+    color: #777777;
+    display: inline;
+    padding-bottom: 15px;
+  }
+
+  .label-info {
+    float: right;
+    display: inline-block;
+    padding: 2px 4px;
+    font-size: 11.844px;
+    font-weight: bold;
+    line-height: 14px;
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #6dc5f0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+  }
+
+  #show_agenda {
+    /* Safari */
+    -webkit-transform: rotate(-90deg);
+
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+
+    /* IE */
+    -ms-transform: rotate(-90deg);
+
+    /* Opera */
+    -o-transform: rotate(-90deg);
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+    position: absolute;
+    top: 100px;
+    margin: -25px;
+    left: 0;
+    cursor: pointer;
+    display: none;
+  }
+
+  .misconduct {
+    width: 380px;
+    height: 100%;
+    border: 1px solid #e5e5e5;
+    border-bottom: 0px;
+    background: #eeeeee;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display:none;
+    z-index:5;
+    padding: 10px;
+    overflow: scroll;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<html>
+<div id="container" style="position:relative; width:100%;">
+
+
+  <!-- AGENDA PANEL-->
+  <div id="show_agenda">
+    <span id="show_agenda_label" style="font-size: 10pt;">Show Agenda  &#9660;</span>
+  </div>
+  <div id="agenda_container" style="overflow:scroll; position:relative;">
+    <a id="hide_agenda" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Discussion Topics">&times;</a>
+    <div id="agenda-header">
+      <span id="agenda-label">Agenda</span>
+      <div id="agenda_details" style="padding-right:20px;"> 
+        &nbsp;
+      </div>
+    </div>
+    <div class="legend"></div>
+    <div id="agenda_content">
+      The agenda is not available.
+      <br><br>
+        <div class="well">
+          <b>If you cannot view the agenda...</b>
+          <span>You may need to exit this Hangout and re-enter from the Talkabout course page once again. On the same Talkabout page from which you joined the Hangout, click the "Enter Hangout"/"Join the Hangout" buttons to re-launch the Hangout.</span>
+        </div>
+    </div>
+  </div>
+
+</div>
+</html>
+
+<script>
+  var CANVAS_WIDTH;
+  var CANVAS_HEIGHT = 450;
+  var MIN_WIDTH = 300;
+
+  var isTurnReporter = false;
+  var isLiveAttendeeCountReporter = false;
+  var lastReportedTurnID = null;
+
+  // Wait for gadget to load.
+  gadgets.util.registerOnLoadHandler(init);
+
+  function init() {
+    // When API is ready...                                                         
+    gapi.hangout.onApiReady.add(
+      function(eventObj) {
+        if (eventObj.isApiReady) {
+            gapi.hangout.layout.setChatPaneVisible(false);
+            gapi.hangout.layout.displayNotice("Tip: For better audio quality, use a headset or headphones.", true);
+            setCanvas();
+        }
+        var appData = gadgets.views.getParams()['appData'];
+        initAgenda(appData);
+
+        $(window).resize(function () {
+            recenterCanvas();
+        });
+
+        //Determine whether the just-added local participant is a turn reporter (there are two per session)
+        listenForTurnReporting();
+
+        //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
+        gapi.hangout.onEnabledParticipantsChanged.add(
+          function(eventObj) {
+            listenForTurnReporting();
+          }
+        );
+
+      }
+    );
+  };
+
+  function listenForTurnReporting() {
+    determineReporters();
+    if (isTurnReporter) {
+      gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.add(
+        function(eventObj) {
+          trackTurns(eventObj);
+        }
+      );
+    } else {
+      lastReportedTurnID = null; //reset the last reported ID to null in preparation for the next time we're turn reporter
+      gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.remove(
+        function(eventObj) {
+          trackTurns(eventObj);
+        }
+      );
+    }
+
+    if (isLiveAttendeeCountReporter) {
+      gapi.hangout.onParticipantsChanged.add(
+        function(eventObj) {
+          reportParticipantsChanged(eventObj);
+        }
+      );
+    } else {
+      gapi.hangout.onParticipantsChanged.remove(
+        function(eventObj) {
+          reportParticipantsChanged(eventObj);
+        }
+      );
+    }
+  };
+
+  function trackTurns(eventObj) {
+    var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
+    var participantID = participant.person.id;
+
+    //Only report if I have not already reported seeing this same participant
+    if (participantID != lastReportedTurnID) {
+      //Report data back to the server. Send displayed participant's NAME & ID, reporter's ID **for each reporter**
+      reportTurnTakingEvent(participantID);
+    }
+    lastReportedTurnID = participantID;
+  };
+
+  function reportParticipantsChanged(eventObj) {
+    appData = gapi.hangout.getStartData();
+    if (appData) {
+      appData = $.parseJSON(appData);
+      var hangout_group_id = appData.group.group_id;
+      if (hangout_group_id) {
+        var participantsChangedURL = 'https://talkabout.stanford.edu/hangouts/participants_changed.json/?callback=?';
+        $.getJSON(participantsChangedURL, {
+          "hangout_group_id" : hangout_group_id,
+          "total_num_participants" : eventObj.participants.length
+        });
+      }
+    }
+  };
+
+  //This function is called any time a participant enables or disables the app, in order to update whether the local participant is the turn-taking reporter
+  function determineReporters() {
+    var enabledParticipants = gapi.hangout.getEnabledParticipants();
+    var localParticipantID = gapi.hangout.getLocalParticipant().person.id;
+    var lowestID = localParticipantID;
+    var highestID = localParticipantID;
+    for (var i=0; i<enabledParticipants.length; i++) {
+      var participant = enabledParticipants[i];
+      //console.log(participant);
+      if (participant.person.id < lowestID) {
+        lowestID = participant.person.id;
+      } else if (participant.person.id > highestID) {
+        highestID = participant.person.id;
+      }
+    }
+    // Participant is a turn reporter if they are EITHER the lowest and highest ID. They are the live attendance reporter ONLY IF they are the lowest ID.
+    if (lowestID == localParticipantID)  {
+      isTurnReporter = true;
+      isLiveAttendeeCountReporter = true;
+      console.log("Am i the live atendee count reporter? " + isLiveAttendeeCountReporter);
+    } else if (highestID == localParticipantID) {
+      isTurnReporter = true;
+      isLiveAttendeeCountReporter = false;
+    } else {
+      isTurnReporter = false;
+      isLiveAttendeeCountReporter = false;
+    }
+    return true;
+  };
+
+  //AGENDA CONTROLS:
+  function initAgenda(appData) {
+    if (appData) {
+      //console.log("App Data: " + appData);
+      appData = $.parseJSON(appData);
+      timeslot_id = appData.group.timeslot_id;
+      if (timeslot_id) {
+        $.getJSON('https://talkabout.stanford.edu/timeslots/' + timeslot_id +'/export_agenda.json?callback=?', {"group_id": appData.group.group_id}, function(data) {
+          $("#agenda_details").html(data.courseName);
+          if (data.agenda !== "") {
+            $("#agenda_content").html(data.agenda);
+            $(".nav-tabs").removeClass("nav-tabs").addClass("nav-pills");
+          }
+          // NOTE!!!! All of the following items are special cased for Scott Plous's class because it uses a custom agenda header
+          if (data.customAgendaHeader !== "") {
+            $("#agenda-label").html(data.customAgendaHeader);
+            $("#show_agenda_label").html("Show " + data.customAgendaHeader + "  &#9660;");
+            $("#show_agenda").css("top", "160px");
+            $("#show_agenda").css("left", "-55px");
+            $("#agenda-label").css("font-size", "18pt");
+            $("#agenda_details").hide();
+          } else {
+            $("li.agenda").prepend("<input type='checkbox'>");
+            initCheckboxes();
+          }
+        });
+      }
+    }
+  }
+
+  // Under default agenda display settings, each discussion item is formatted as a clickable checkbox
+  function initCheckboxes() {
+    $('[type=checkbox]').change(function(){
+      $(this).siblings().toggleClass("active");
+      if($(this).is(':checked')) {
+        $(this).parent().fadeTo(600, .5);
+        $(this).siblings('.agenda-item-description').slideUp();
+      } else {
+        $(this).parent().fadeTo('fast', 1);
+        $(this).siblings('.agenda-item-description').slideDown();
+      }
+    });
+  };
+
+  //TURN TAKING TRACKING CONTROLS:
+  function reportTurnTakingEvent(participantID) {
+    appData = gapi.hangout.getStartData();
+    if (appData) {
+      appData = $.parseJSON(appData);
+      var hangout_group_id = appData.group.group_id;
+      var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
+      if (hangout_group_id && reporter_google_id && participantID) {
+        var trackingRequestURL = 'https://talkabout.stanford.edu/hangouts/turn_taking_event.json/?callback=?';
+        $.getJSON(trackingRequestURL, {
+          "disp_g_id" : participantID,
+          "rep_g_id" : reporter_google_id,
+          "hangout_group_id" : hangout_group_id
+        });
+      } 
+    }
+  };
+
+  $('#hide_agenda').click(function() {
+    $("#agenda_container").hide();
+    $("#show_agenda").show();
+    recenterCanvas();
+  });
+
+  $('#show_agenda').click(function() {
+    $("#agenda_container").show();
+    $("#show_agenda").hide();
+    recenterCanvas();
+  });
+
+  //LAYOUT AND VIDEO FEED CONTROLS:
+  function setCanvas() {
+    var feed = gapi.hangout.layout.getDefaultVideoFeed();
+    var canvas = gapi.hangout.layout.getVideoCanvas();
+    var newSize = canvas.setHeight(CANVAS_HEIGHT);
+    CANVAS_WIDTH = newSize.width
+    canvas.setVideoFeed(feed);
+    canvas.setVisible(true);
+    var leftOffset = 40;
+    if ($("#agenda_container").is(":visible")) {
+      leftOffset += $("#agenda_container").width();
+    }
+    canvas.setPosition(leftOffset, 45);
+    recenterCanvas();
+  };
+
+  function recenterCanvas() {
+    var canvas = gapi.hangout.layout.getVideoCanvas();
+    canvas.setVisible(false);
+    var effectiveWidth = 0;
+    if ($("#agenda_container").is(":visible") || $(".misconduct").is(":visible")) {
+      effectiveWidth += 380;
+    }
+    CANVAS_WIDTH = Math.max($("#container").width() - effectiveWidth - 40, MIN_WIDTH);
+    var newSize = canvas.setWidth(CANVAS_WIDTH);
+    CANVAS_HEIGHT = newSize.height;
+    var maxheight = $(window).height()-30;
+    if (CANVAS_HEIGHT > maxheight) {
+      CANVAS_HEIGHT -= 30;
+      newSize = canvas.setHeight(maxheight);
+      CANVAS_WIDTH = newSize.width;
+    }
+    var leftOffset = 40;
+    if ($("#agenda_container").is(":visible") || $(".misconduct").is(":visible")) {
+      leftOffset += 380;
+    } else {
+      leftOffset = ($(window).width() - CANVAS_WIDTH)/2;
+    }
+    canvas.setPosition(leftOffset, 0);
+    canvas.setVisible(true);
+    $("#agenda_container").height(CANVAS_HEIGHT);
+  };
+
+
+</script>
+]]>
+</Content>
+</Module>
