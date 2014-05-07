@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <div id="visualization_container" style="width: 400px; margin: 0 auto; position: relative; float: 0">
+  <div id="visualization_container" style="width: 400px; margin: 0 auto; position: relative; float: right">
     <!-- div id="gauge_container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div -->
     <div id="graph_container" style="min-width: 210px; max-width: 400px; height: 300px; margin: 0 auto"></div>
   </div>
