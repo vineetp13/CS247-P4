@@ -11,6 +11,12 @@
   function init() {
     // When API is ready...                                                         
     gapi.hangout.onApiReady.add(
+
+      connect_to_timer_firebase();
+      setupGauge();
+      setupGraph();
+      setupButtons();
+      
       console.log("here I am");
       function(eventObj) {
         if (eventObj.isApiReady) {

@@ -22,10 +22,16 @@
 <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'></link>
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"></link>
 <link href='//rawgit.com/jcambre/CS247-P4/moderator/style.css' rel='stylesheet' type='text/css'></link>
+<script src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src='//rawgit.com/jcambre/CS247-P4/moderator/turn-taking.js'></script>
+<script src='//rawgit.com/jcambre/CS247-P4/moderator/firebase.js'></script>
+
 
 <html>
 <div id="container" style="position:relative; width:100%;">
@@ -53,6 +59,9 @@
         </div>
     </div>
   </div>
+
+  <div id="gauge_container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+  <div id="graph_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 </div>
 </html>
