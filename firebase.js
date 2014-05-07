@@ -50,7 +50,7 @@ $(document).ready(function(){
   //setupGauge();
   setupGraph();
   setupButtons();
-});
+}, start_timer());
 
 function percentage_talk(time) {
   return Math.ceil((time/300000)*100);
