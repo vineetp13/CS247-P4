@@ -46,7 +46,10 @@ var total_talk = 300000;
 var username;
 
 $(document).ready(function(){
-
+  connect_to_timer_firebase();
+  setupGauge();
+  setupGraph();
+  setupButtons();
 });
 
 function percentage_talk(time) {
