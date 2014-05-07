@@ -39,31 +39,17 @@
 
   <!-- AGENDA PANEL-->
   <div id="show_agenda">
-    <span id="show_agenda_label" style="font-size: 10pt;">Show Agenda  &#9660;</span>
+    <span id="show_agenda_label" style="font-size: 10pt;">Show Participation Metrics &#9660;</span>
   </div>
   <div id="agenda_container" style="overflow:scroll; position:relative;">
-    <a id="hide_agenda" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Discussion Topics">&times;</a>
-    <div id="agenda-header">
-      <span id="agenda-label">Agenda</span>
-      <div id="agenda_details" style="padding-right:20px;"> 
-        &nbsp;
-      </div>
-    </div>
-    <div class="legend"></div>
-    <div id="agenda_content">
-      The agenda is not available.
-      <br><br>
-        <div class="well">
-          <b>If you cannot view the agenda...</b>
-          <span>You may need to exit this Hangout and re-enter from the Talkabout course page once again. On the same Talkabout page from which you joined the Hangout, click the "Enter Hangout"/"Join the Hangout" buttons to re-launch the Hangout.</span>
-        </div>
+    <a id="hide_agenda" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
+    <div id="visualization_container">
+      <!-- div id="gauge_container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div -->
+      <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 400px; margin: 0 auto; position: relative; float: right"></div>
     </div>
   </div>
 
-  <div id="visualization_container">
-    <!-- div id="gauge_container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div -->
-    <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 400px; margin: 0 auto; position: relative; float: right"></div>
-  </div>
+  
 
 </div>
 </html>
