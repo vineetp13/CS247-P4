@@ -61,8 +61,8 @@
   </div>
 
   <div>
-    <div id="gauge_container" style="min-width: 210px; max-width: 300px; height: 200px; margin: 0 auto"></div>
-    <div id="graph_container" style="min-width: 210px; height: 300px; margin: 0 auto"></div>
+    <div id="gauge_container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+    <div id="graph_container" style="min-width: 210px; max-width: 500px; height: 300px; margin: 0 auto"></div>
   </div>
 
 </div>
