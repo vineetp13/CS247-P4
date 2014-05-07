@@ -50,7 +50,7 @@ $(document).ready(function(){
   //setupGauge();
   setupGraph();
   setupButtons();
-}, start_timer());
+});
 
 function percentage_talk(time) {
   return Math.ceil((time/300000)*100);
@@ -389,21 +389,19 @@ function setupButtons() {
       case 52: // '4'
         fb_increment_index.set(4);
         break;
-      case 13:
-        if(timer != null){
-          if(timer != 1){
-            start_timer();
-          }else{
-            console.log("Timer has already been started");
-          }
-        }else{
-          start_timer();
-        }
-        break;
       default:
         fb_increment_index.set(0);
         break;
     }
     graphChart.series
+  }
+  if(timer != null){
+    if(timer != 1){
+      start_timer();
+    }else{
+      console.log("Timer has already been started");
+    }
+  }else{
+    start_timer();
   }
 }
