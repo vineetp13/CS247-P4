@@ -47,7 +47,7 @@ var username;
 
 $(document).ready(function(){
   connect_to_timer_firebase();
-  setupGauge();
+  //setupGauge();
   setupGraph();
   setupButtons();
 });
