@@ -304,10 +304,6 @@ function setupGauge() {
 }
 
 function setupGraph() {
-  var name = ["user1", "user2", "user3", "user4"];
-  name[user_designation - 1] = username;
-  console.log(name);
-
   graphChart = new Highcharts.Chart({
     chart: {
       renderTo: 'graph_container',
