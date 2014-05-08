@@ -101,14 +101,14 @@
   };
 
   function hidePanel() {
-    $("#agenda_container").hide();
-    $("#show_agenda").show();
+    $("#panel_container").hide();
+    $("#show_panel").show();
     recenterCanvas();
   };
 
   function showPanel() {
-    $("#agenda_container").show();
-    $("#show_agenda").hide();
+    $("#panel_container").show();
+    $("#show_panel").hide();
     recenterCanvas();
   };
 
@@ -121,8 +121,8 @@
     canvas.setVideoFeed(feed);
     canvas.setVisible(true);
     var leftOffset = 40;
-    if ($("#agenda_container").is(":visible")) {
-      leftOffset += $("#agenda_container").width();
+    if ($("#panel_container").is(":visible")) {
+      leftOffset += $("#panel_container").width();
     }
     canvas.setPosition(leftOffset, 45);
     recenterCanvas();
@@ -132,7 +132,7 @@
     var canvas = gapi.hangout.layout.getVideoCanvas();
     canvas.setVisible(false);
     var effectiveWidth = 0;
-    if ($("#agenda_container").is(":visible") || $(".misconduct").is(":visible")) {
+    if ($("#panel_container").is(":visible") || $(".misconduct").is(":visible")) {
       effectiveWidth += 380;
     }
     CANVAS_WIDTH = Math.max($("#container").width() - effectiveWidth - 40, MIN_WIDTH);
@@ -145,12 +145,12 @@
       CANVAS_WIDTH = newSize.width;
     }
     var leftOffset = 40;
-    if ($("#agenda_container").is(":visible") || $(".misconduct").is(":visible")) {
+    if ($("#panel_container").is(":visible") || $(".misconduct").is(":visible")) {
       leftOffset += 380;
     } else {
       leftOffset = ($(window).width() - CANVAS_WIDTH)/2;
     }
     canvas.setPosition(leftOffset, 0);
     canvas.setVisible(true);
-    $("#agenda_container").height(CANVAS_HEIGHT);
+    $("#panel_container").height(CANVAS_HEIGHT);
   };
