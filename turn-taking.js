@@ -321,7 +321,7 @@ function setupGauge() {
   });
 }
 
-function setupGraph() {
+function setupGraph(names) {
   graphChart = new Highcharts.Chart({
     chart: {
       renderTo: 'graph_container',
@@ -372,18 +372,18 @@ function setupGraph() {
         }
     },
     series: [{
-        name: 'Katie',
+        name: names[0],
         data: [25]
 
     }, {
-        name: 'Andrew',
+        name: names[1],
         data: [25]
     }, {
-        name: 'Julia',
+        name: names[2],
         data: [25]
 
     }, {
-        name: 'Will',
+        name: names[3],
         data: [25]
 
     }]
@@ -510,8 +510,6 @@ function init() {
       );
       connect_to_timer_firebase();
       getFBHangout();
-      setupGraph();
-      setupButtons();
     }
   );
 };
@@ -527,6 +525,13 @@ function getFBHangout(){
     var num_children = dataSnapshot.numChildren();
     if(num_children == 4){
       console.log(4 + " children now added!");
+      var names = [];
+      dataSnapshot.forEach(function(childSnapshot) {
+        var name = childSnapshot.child('name').val();
+        names.push(name);
+      });
+      setupGraph(names);
+      setupButtons();
     }
     console.log("child added!");
   });
