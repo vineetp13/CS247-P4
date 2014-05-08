@@ -59,10 +59,18 @@
 <script>
   gapi.hangout.onApiReady.add(
     function(eventObj) {
-      $('#hide_panel').click(hidePanel);
-      $('#show_panel').click(showPanel);
-      $('#start_discussion_btn').click(startDiscussion);
-      $('#end_discussion_btn').click(endDiscussion);
+      $('#hide_panel').click(function() {
+        hidePanel();
+      });
+      $('#show_panel').click(function() {
+        showPanel();
+      });
+      $('#start_discussion_btn').click(function() {
+        startDiscussion();
+      });
+      $('#end_discussion_btn').click(function() {
+        endDiscussion();
+      });
     }
   );
 </script>
