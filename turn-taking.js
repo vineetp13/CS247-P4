@@ -714,9 +714,9 @@ function determineReporters() {
 // NOTE: This function was derived from Julia Cambre's work on Talkabout 
 //TURN TAKING TRACKING CONTROLS:
 function reportTurnTakingEvent(participantID) {
-  if(current_participant != participantID) {
+  var index = participantIDs.indexOf(participantID);
+  if(current_participant != index) {
     console.log("Change speaker to: " + participantID);
-    var index = participantIDs.indexOf(participantID);
     fb_increment_index.set(index);
   }
 };
