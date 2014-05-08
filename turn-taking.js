@@ -576,7 +576,7 @@ function getFBHangout(){
           case 3:
             fourth_user = dataSnapshot.val();
             break;
-          default
+          default:
             break;
         }
         });
