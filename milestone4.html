@@ -38,8 +38,14 @@ window.___gcfg = {
   <dt>Show/Hide the left-hand panel with the discussion graph</dt>
   <dd>In response to feedback we gathered during Wizard of Oz testing and M3 evaluation, we decided to allow users to hide the discussion participation graph within the app interface. During user testing, participants voiced discomfort with the prominence of the graph in displaying information about their performance, and signaled that they would prefer to have the graph visible only on-demand so that it did not distract significantly from the conersation. To that end, we allow participants to toggle the visibility of the discussion graph panel; when hidden, the interface looks almost identical to a normal Hangout app.</dd>
 </dl>
-<h3 class="page-header">Implementation Progress</h3>
-<span></span>
+<h3 class="page-header">Implementation</h3>
+<span>The github reposity for this milestone can be found <a href="https://github.com/jcambre/CS247-P4/tree/moderator">here.</a> Implementation progress can be viewed <a href="https://github.com/jcambre/CS247-P4/commits/moderator">here.</a> Unfortunately we've found no better way to test changes to our code than in actually running live instances of Hangout, so we push often and even for debugging purposes.</a></span>
+<ul>
+  <li><b>app.xml</b> - Originally adopted from Talkabout (see Additional Notes below), this file implements the Hangout app. It employs the Google Hangouts API to intitiate an interface when the hangout has fully loaded and readies the callback functions defined in <i>turn-taking.js</i>.</li>
+  <li><b>firebase_setup.js</b> - This file is reserved for future implementation, specifically in initializing multiple instances of Firebase (we currently employ only one instance on the backend, which we reset manually).</li>
+  <li><b>style.css</b> - Contains the CSS rules for our Hangouts app, including the size and orientation of the interface. Also includes override rules for styling the Highcharts graph we use to display user activity.</li>
+  <li><b>turn-taking.js</b> - This file currently contains the bulk of our implementation. Here we initiate and connect to Firebase, declare all local and global variables, and define the callbacks for use in <i>app.xml</i>. The <i>init()</i> function sets up the app, getting participant information (IDs, etc.) and listens for turn reporting. Turn reporting listens for calls to the Hangouts API function <i>gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged()</i> and updates the Firebase backend accordingly to reflect who is currently speaking. Because the displayed participant will never be the currently active local user, we must have 3 or more users reporting who is currently displayed (this is the user who is on display for all but one of those other participants). We periodically update the data content of the Highcharts graph by pulling from Firebase on a <i>setTimer()</i> function. Chart creation logic is also here, at least temporarily, as the Highcharts API has a strict requirements for which properties to include when initiating instances of a chart/graph.</li>
+</ul>
 
 <h3 class="page-header">Next Steps: Looking Ahead to User Testing</h3>
 <ol>
@@ -48,7 +54,9 @@ window.___gcfg = {
   <li>Thoughtfully decide upon what constitutes as "acceptable" discussion behavior, and where the extremes for low and high participation on the graph should be set. This will likely involve widening the middle region to allow for a wider variance in participation levels.</li>
   <li>Display automated, private notifications to users who cross into the "extreme" regions of low or high participation to discretely prompt them to speak up or quiet down.</li>
   <li>Design and implement an alternative visualization for the same participation metric information, which will serve as an alternative interface for the purposes of A/B testing in use studies.</li>
-  <li>Improve the process of entering a Hangout together as a group. If possible, we'd like to allow everyone to enter a Hangout through the <a href="https://github.com/google/instant-hangouts">Instant Hangout widget</a>, which creates one "always open" Hangout room for anyone to join from a particular page, without needing to be invited. However, it seems that the feature is not yet publically supported.</li>
+  <li>Improve the process of entering a Hangout together as a group. If possible, we'd like to allow everyone to enter a Hangout through the <a href="https://github.com/google/instant-hangouts">Instant Hangout widget</a>, which creates one "always open" Hangout room for anyone to join from a particular page, without needing to be invited. However, it seems that the feature is not yet publicly supported.</li>
+  <li>Support multiple discussions being held concurrently. This means initiliating multiple instances of Firebase. This is required as our app is now public and this is scenario is likely to occur.</li>
+  <li>Fix bugs related to hiding and re-opening the interface.</li>
   <li>Make the interface pixel-perfect!</li>
 </ol>
 
