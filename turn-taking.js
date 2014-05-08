@@ -547,7 +547,10 @@ function checkSetup(dataSnapshot){
       snapshots = [];
       participantIDs = [];
 
-      dataSnapshot.forEach(processIDs.call(this));
+      dataSnapshot.forEach( function(childSnapshot) {
+        var id = childSnapshot.name();
+        participantIDs.push(id);
+      });
 
       console.log("IDs: ");
       console.log(participantIDs);
