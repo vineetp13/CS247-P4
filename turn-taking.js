@@ -51,8 +51,6 @@
   function getFBHangout(){
     var hangout_group_id = gapi.hangout.getHangoutId();
     var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
-    var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
-    var participantID = participant.person.id;
     console.log(hangout_group_id + " " + reporter_google_id + " " + participantID);
   }
 
@@ -114,7 +112,7 @@
 
   //TURN TAKING TRACKING CONTROLS:
   function reportTurnTakingEvent(participantID) {
-      var hangout_group_id = appData.group.group_id;
+      var hangout_group_id = gapi.hangout.getHangoutId();
       var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
       if (hangout_group_id && reporter_google_id && participantID) {
         console.log(hangout_group_id + " " + reporter_google_id + " " + participantID);
