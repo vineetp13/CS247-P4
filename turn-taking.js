@@ -538,9 +538,7 @@ function checkSetup(dataSnapshot){
   }else{
     console.log("THIS IS OUR CONVERSATION! :)");
   }
-    console.log(fb_conversation);
-    console.log("GETS HERE");
-    var num_children = fb_conversation.numChildren();
+    var num_children = dataSnapshot.numChildren();
     console.log("# Children: " + num_children);
     if(num_children == 2){
       console.log(4 + " children now added!");
