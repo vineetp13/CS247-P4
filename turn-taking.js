@@ -695,5 +695,6 @@ function setNumParticipantsNeeded() {
   } else {
     $("#num_participants_needed").innerHTML = "" + num_participants_needed;
   }
+  console.log("num_participants_needed: " + num_participants_needed);
   console.log("in this set num participants method");
 };
