@@ -525,10 +525,13 @@ function getFBHangout(){
   var fb_conversations = fb_instance.child('conversations');
   fb_conversation = fb_conversations.child(hangout_group_id);
 
-  fb_conversation.on('child_added', function(dataSnapshot) {
-    var hangout_group_id = gapi.hangout.getHangoutId();
-    var fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
-    var fb_conversation = fb_instance.child('conversations').child(hangout_group_id);
+  fb_conversation.on('child_added', checkSetup.call(this, fb_conversation));
+
+  fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
+}
+
+function checkSetup(fb_conversation){
+  function(dataSnapshot) {
     var num_children = fb_conversation.numChildren();
     if(num_children == 2){
       console.log(4 + " children now added!");
@@ -595,9 +598,7 @@ function getFBHangout(){
 
     }
     console.log("child added!");
-  });
-
-  fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
+  }
 }
 
 function listenForTurnReporting() {
