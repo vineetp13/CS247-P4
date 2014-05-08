@@ -575,9 +575,9 @@ function checkSetup(dataSnapshot){
     console.log("NOT OUR CONVERSATION");
     return;
   }
-  
+
   var num_children = dataSnapshot.numChildren();
-  if(num_children == 2){
+  if(num_children == 3){
     console.log(4 + " children now added!");
     names = [];
     users = [];
