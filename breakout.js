@@ -155,7 +155,7 @@ function trigger_tps() {
 
   // Start Think Phase
   var phase_duration = 30000;
-  remaining_time_in_phase = phase_duration;
+  remaining_time_in_phase = phase_duration/1000;
   counter=setInterval(timer, 1000); //1000 will  run it every 1 second
   // var totalTime;
   thinkTimer = window.setTimeout(initiatePairPhase, phase_duration);   
@@ -183,7 +183,7 @@ function startPairPhase() {
   console.log("Current time is: " + Date.now());
 
   var phase_duration = 60000;
-  remaining_time_in_phase = phase_duration;
+  remaining_time_in_phase = phase_duration/1000;
   counter=setInterval(timer, 1000); //1000 will  run it every 1 second
   // var totalTime;
   var pairTimer = window.setTimeout(initiateSharePhase, phase_duration);
