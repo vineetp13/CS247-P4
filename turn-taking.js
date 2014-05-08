@@ -555,17 +555,12 @@ function checkSetup(dataSnapshot){
       console.log("IDs: ");
       console.log(participantIDs);
 
-      dataSnapshot.forEach(processUsers.call(this));
+      dataSnapshot.forEach(processUsers);
 
       setupGraph(names);
       setupButtons();
 
     }
-}
-
-function processIDs(childSnapshot){
-  var id = childSnapshot.name();
-  participantIDs.push(id);
 }
 
 function processUsers(childSnapshot){
