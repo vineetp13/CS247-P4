@@ -107,6 +107,7 @@
       var hangout_group_id = appData.group.group_id;
       var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
       if (hangout_group_id && reporter_google_id && participantID) {
+        console.log(hangout_group_id + " " + reporter_google_id + " " + participantID);
         // This is where we should send the info back and forth to firebase
       } 
   };
