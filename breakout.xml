@@ -46,17 +46,18 @@
   <div id="panel_container" style="overflow:scroll; position:relative;">
     <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
     <div id="visualization_container">
-      <!-- div id="gauge_container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div -->
       <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
       <center>
-        <button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Discussion</button>
-        <button type="button" class="btn btn-danger" id="end_discussion_btn" style="display:none;">End Discussion</button>
+        <button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Think-Pair-Share</button>
+        <button type="button" class="btn btn-danger" id="restart_discussion_btn" style="display:none;">Restart Think-Pair-Share</button>
       </center>
       <br/><br/>
       <h4>Current Phase:</h4>
-      <p class="lead" id="phase_label"></p>
-      <h4>Remaining time in this phase:</h4>
-      <p class="lead" id="timer_label"></p>
+      <p class="lead" id="phase_label">Waiting to begin</p>
+      <div id="timer_wrapper">
+        <h4>Remaining time in this phase:</h4>
+        <p class="lead" id="timer_label"></p>
+      </div>
     </div>
   </div>
 
@@ -80,8 +81,8 @@
       $('#start_discussion_btn').click(function() {
         startDiscussion();
       });
-      $('#end_discussion_btn').click(function() {
-        endDiscussion();
+      $('#restart_discussion_btn').click(function() {
+        restartDiscussion();
       });
     }
   );

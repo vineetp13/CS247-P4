@@ -89,8 +89,6 @@ function init() {
         function(eventObj) {
           if (eventObj.state.discussing == "true") {
             trigger_tps();
-          } else if (eventObj.state.discussing == "false") {
-            end_tps();
           }
 
           if (eventObj.state.phase == "pair") {
@@ -127,13 +125,15 @@ function showPanel() {
 function startDiscussion() {
   gapi.hangout.data.setValue("discussing","true");
   gapi.hangout.data.setValue("phase", "think");
-  trigger_tps();
 };
 
-function endDiscussion() {
+function restartDiscussion() {
   // $("#start_discussion_btn").show();
-  gapi.hangout.data.setValue("discussing","false");
-  end_tps();
+  thinkPhaseInitialized = false;
+  pairPhaseInitialized = false;
+  sharePhaseInitialized = false;
+  gapi.hangout.data.setValue("discussing","true");
+  gapi.hangout.data.setValue("phase","think");
 };
 
 function timer(){
@@ -151,13 +151,13 @@ function trigger_tps() {
   if (thinkPhaseInitialized == false) {
     // Control the button display for all participants
     $("#start_discussion_btn").hide();
-    $("#end_discussion_btn").show();
     $("#pending_participants").hide();
 
 
     console.log("I'm in the think phase!");
     console.log("Current time is: " + Date.now());
 
+    $("#timer_wrapper").show();
     document.getElementById("phase_label").innerHTML = "Think"
 
     // Start Think Phase
@@ -182,6 +182,7 @@ function initiatePairPhase() {
 function initiateSharePhase() {
   if (gapi.hangout.data.getValue("phase") !== "share") {
     gapi.hangout.data.setValue("phase", "share");
+    gapi.hangout.data.setValue("discussing", "false");
   }
 };
 
@@ -208,6 +209,8 @@ function startSharePhase() {
   if (sharePhaseInitialized == false) {
     window.clearTimeout(thinkTimer);
     window.clearInterval(counter);
+
+    $("#restart_discussion_btn").show();
 
     document.getElementById("phase_label").innerHTML = "Share"
     document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
