@@ -695,6 +695,4 @@ function setNumParticipantsNeeded() {
   } else {
     document.getElementById("num_participants_needed").innerHTML = num_needed_participants;
   }
-  console.log("num_participants_needed: " + num_needed_participants);
-  console.log("in this set num participants method");
 };
