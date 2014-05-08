@@ -65,6 +65,7 @@
   };
 
   function trackTurns(eventObj) {
+    console.log(eventObj)
     var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
     var participantID = participant.person.id;
 
