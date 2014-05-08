@@ -525,12 +525,12 @@ function getFBHangout(){
   var fb_conversations = fb_instance.child('conversations');
   fb_conversation = fb_conversations.child(hangout_group_id);
 
-  fb_conversation.on('child_added', checkSetup.call(this, fb_conversation));
+  fb_conversation.on('child_added', checkSetup.call(this, dataSnapshot));
 
   fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
 }
 
-function checkSetup(fb_conversation){
+function checkSetup(dataSnapshot){
   function(dataSnapshot) {
     var num_children = fb_conversation.numChildren();
     if(num_children == 2){
