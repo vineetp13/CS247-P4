@@ -559,7 +559,7 @@ function getFBHangout(){
     //console.log(percentage_2);
     //console.log(percentage_3);
     //console.log(percentage_4);
-  }, null this);
+  }, null, this);
 
 }
 
