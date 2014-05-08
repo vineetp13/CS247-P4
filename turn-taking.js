@@ -139,10 +139,10 @@ function start_timer(){
 function connect_to_timer_firebase(){
 
   //Create new fb instance
-  fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
+  //fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
 
   //Establish link so that all instances recieve changes in increment index
-  fb_increment_index = fb_instance.child('increment_index');
+  /*fb_increment_index = fb_instance.child('increment_index');
   fb_increment_index.on('value', function(dataSnapshot) {
     increment_index = dataSnapshot.val();
   });
@@ -193,34 +193,7 @@ function connect_to_timer_firebase(){
     //console.log(percentage_2);
     //console.log(percentage_3);
     //console.log(percentage_4);
-  });
-
-  fb_conversation = fb_instance.child('conversation');
-
-  //Link local user percentages to fb objects/updates  
-  first_user = fb_conversation.child('1');
-  first_user.on('value', function(dataSnapshot) {
-    first_snapshot_val = dataSnapshot.val();
-  });
-  first_user.set(initial_contribution);
-
-  second_user = fb_conversation.child('2');
-  second_user.on('value', function(dataSnapshot) {
-    second_snapshot_val = dataSnapshot.val();
-  });
-  second_user.set(initial_contribution);
-
-  third_user = fb_conversation.child('3');
-  third_user.on('value', function(dataSnapshot) {
-    third_snapshot_val = dataSnapshot.val();
-  });
-  third_user.set(initial_contribution);
-
-  fourth_user = fb_conversation.child('4');
-  fourth_user.on('value', function(dataSnapshot) {
-    fourth_snapshot_val = dataSnapshot.val();
-  });
-  fourth_user.set(initial_contribution);
+  });*/
 
   //User designation code
   /*if(!user_index){
@@ -515,7 +488,7 @@ function init() {
           }
         }
       );
-      connect_to_timer_firebase();
+      //connect_to_timer_firebase();
       getFBHangout();
     }
   );
@@ -532,6 +505,62 @@ function getFBHangout(){
   fb_conversation.on('value', checkSetup, null, self);
 
   fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
+
+  //Establish link so that all instances recieve changes in increment index
+  fb_increment_index = fb_conversation.child('increment_index');
+  fb_increment_index.on('value', function(dataSnapshot) {
+    increment_index = dataSnapshot.val();
+    current_participant = increment_index;
+  }, null, this);
+
+  //Keep track for every instance of whether timer has been started
+  fb_timer = fb_conversation.child('timer');
+  fb_timer.on('value', function(dataSnapshot) {
+    timer = dataSnapshot.val();
+  }, null, this);
+
+  //Keep track of new users
+  fb_user_index = fb_conversation.child('user_index');
+  fb_user_index.on('value', function(dataSnapshot) {
+    user_index = dataSnapshot.val() + 1;
+  }, null, this);
+
+
+
+  //mechanism to receive vis. updates pushed to fb
+  fb_update_vis = fb_conversation.child('update');
+  fb_update_vis.on('child_added', function(dataSnapshot) {
+    var percentage_1 = percentage_talk(first_snapshot_val);
+    var percentage_2 = percentage_talk(second_snapshot_val);
+    var percentage_3 = percentage_talk(third_snapshot_val);
+    var percentage_4 = percentage_talk(fourth_snapshot_val);
+
+    //Update user 1 percentage
+    var data = graphChart.series[0].data;
+    data[0].y = percentage_1;
+    graphChart.series[0].setData(data,true);
+
+    //... user 2 percentage
+    var data = graphChart.series[1].data;
+    data[0].y = percentage_2;
+    graphChart.series[1].setData(data,true);
+
+    //... user 3 percentage
+    var data = graphChart.series[2].data;
+    data[0].y = percentage_3;
+    graphChart.series[2].setData(data,true);
+
+    //... user 4 percentage
+    var data = graphChart.series[3].data;
+    data[0].y = percentage_4;
+    graphChart.series[3].setData(data,true);
+
+    //console.log(percentage_1);
+    //console.log(percentage_2);
+    //console.log(percentage_3);
+    //console.log(percentage_4);
+  }, null this);
+
 }
 
 function checkSetup(dataSnapshot){
@@ -575,42 +604,35 @@ function processUser(childSnapshot){
   switch (my_index) {
     case 0:
       first_user = fb_conversation.child(childSnapshot.name());
+      first_user.child('contribution').on('value', function(dataSnapshot) {
+        first_snapshot_val = dataSnapshot.val();
+      });
+      first_user.child('contribution').set(initial_contribution);
       break;
     case 1:
       second_user = fb_conversation.child(childSnapshot.name());
+      second_user.child('contribution').on('value', function(dataSnapshot) {
+        second_snapshot_val = dataSnapshot.val();
+      });
+      second_user.child('contribution').set(initial_contribution);
       break;
     case 2:
       third_user = fb_conversation.child(childSnapshot.name());
+      third_user.child('contribution').on('value', function(dataSnapshot) {
+        third_snapshot_val = dataSnapshot.val();
+      });
+      third_user.child('contribution').set(initial_contribution);
       break;
     case 3:
       fourth_user = fb_conversation.child(childSnapshot.name());
+      fourth_user.child('contribution').on('value', function(dataSnapshot) {
+        fourth_snapshot_val = dataSnapshot.val();
+      });
+      fourth_user.child('contribution').set(initial_contribution);
       break;
     default:
       break;
   }
-
-  var cont = fb_conversation.child(childSnapshot.name()).child('contribution');
-  cont.on('value', function(dataSnapshot) {
-    snapshots[my_index] = dataSnapshot.val();
-    switch (my_index) {
-      case 0:
-        first_snapshot_val = dataSnapshot.val();
-        break;
-      case 1:
-        second_user = dataSnapshot.val();
-        break;
-      case 2:
-        third_user = dataSnapshot.val();
-        break;
-      case 3:
-        fourth_user = dataSnapshot.val();
-        break;
-      default:
-        break;
-    }
-  }, null, this);
-  
-  cont.set(initial_contribution);
 
   var name = childSnapshot.child('name').val();
   names.push(name);
@@ -683,12 +705,9 @@ function reportTurnTakingEvent(participantID) {
     var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
     if (hangout_group_id && reporter_google_id && participantID) {
       console.log(hangout_group_id + " " + reporter_google_id + " " + participantID);
-      if(current_participant == null){
-        current_participant = participantID;
-      }else if(current_participant != participantID) {
+      if(current_participant != participantID) {
         var index = participantIDs.indexOf(participantID);
         fb_increment_index.set(index);
-        current_participant = participantID;
       }
     } 
 };
