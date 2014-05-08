@@ -20,6 +20,9 @@ var remaining_time_in_phase;
 var thinkTimer;
 var pairTimer;
 var shareTimer;
+var thinkPhaseInitialized = false;
+var pairPhaseInitialized = false;
+var sharePhaseInitialized = false;
 
 // TURN-TAKING STARTS HERE
 
@@ -146,19 +149,22 @@ function timer(){
 
 // Called by EVERY participant running the app to establish each person's timers/displays
 function trigger_tps() {
-  // Control the button display for all participants
-  $("#start_discussion_btn").hide();
-  $("#end_discussion_btn").show();
+  if (thinkPhaseInitialized == false) {
+    // Control the button display for all participants
+    $("#start_discussion_btn").hide();
+    $("#end_discussion_btn").show();
 
-  console.log("I'm in the think phase!");
-  console.log("Current time is: " + Date.now());
+    console.log("I'm in the think phase!");
+    console.log("Current time is: " + Date.now());
 
-  // Start Think Phase
-  var phase_duration = 30000;
-  remaining_time_in_phase = phase_duration/1000;
-  counter=setInterval(timer, 1000); //1000 will  run it every 1 second
-  // var totalTime;
-  thinkTimer = window.setTimeout(initiatePairPhase, phase_duration);   
+    // Start Think Phase
+    var phase_duration = 30000;
+    remaining_time_in_phase = phase_duration/1000;
+    counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+    // var totalTime;
+    thinkTimer = window.setTimeout(initiatePairPhase, phase_duration);
+    thinkPhaseInitialized = true;
+  }  
 };
 
 // Called ONLY BY THE FIRST PERSON whose timer reaches the pair phase!
@@ -176,27 +182,30 @@ function initiateSharePhase() {
 };
 
 function startPairPhase() {
-  window.clearTimeout(thinkTimer);
-  window.clearInterval(counter);
+  if (pairPhaseInitialized == false) {
+    window.clearTimeout(thinkTimer);
+    window.clearInterval(counter);
 
-  console.log("I'm in the pair phase!");
-  console.log("Current time is: " + Date.now());
+    console.log("I'm in the pair phase!");
+    console.log("Current time is: " + Date.now());
 
-  var phase_duration = 60000;
-  remaining_time_in_phase = phase_duration/1000;
-  counter=setInterval(timer, 1000); //1000 will  run it every 1 second
-  // var totalTime;
-  var pairTimer = window.setTimeout(initiateSharePhase, phase_duration);
+    var phase_duration = 60000;
+    remaining_time_in_phase = phase_duration/1000;
+    counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+    // var totalTime;
+    var pairTimer = window.setTimeout(initiateSharePhase, phase_duration);
+  }
 };
 
 function startSharePhase() {
-  window.clearTimeout(thinkTimer);
-  window.clearInterval(counter);
+  if (sharePhaseInitialized == false) {
+    window.clearTimeout(thinkTimer);
+    window.clearInterval(counter);
 
-  console.log("I'm in the share phase!");
-  console.log("Current time is: " + Date.now());
-  // Untimed!
-
+    console.log("I'm in the share phase!");
+    console.log("Current time is: " + Date.now());
+    // Untimed!
+  }
 };
 
 
