@@ -18,20 +18,22 @@ window.___gcfg = {
 <h3 class="page-header">Features</h3>
 <dl>
   <dt>Simple Hangout initiation</dt>
-  <dd>Launching a Hangout directly from this webpage, rather than having to manually create one and find the app. Also made the app public.</dd>
-  <dt>Indicator for number of remaining participants necessary to begin a discussion</dt>
-  <dd>...</dd>
+  <dd>In order to make it easier to test our functional prototype, we integrated an "Instant Hangout" button within this page to initiate a discussion. Any Hangout launched from this page will load with our custom Hangout app within it automatically, which eases the setup burden on participants. Implementing the Instant Hangout button also required that we make the app public, which consequently allows for anyone to use the app rather than just the development team.</dd>
 
-  <dt>Synchronized start/stop buttons across all instances of the Hangout App to control participation tracking</dt>
-  <dd>...</dd>
+  <dt>Indicator for number of remaining participants necessary before a discussion can begin</dt>
+  <dd>For the purposes of our functional prototype, we needed to simplify the implementation a bit and impose a strict number of participants present in a discussion at a given time. Since we require that there be 4 participants total, the system will display to the local participant how many additional participants are needed in order to initiate a conversation. This gives users an understanding of why the interface is rather limited as others are initially joining the Hangout.</dd>
 
   <dt>Live graph indications for participation metrics</dt>
-  <dd>...</dd>
+  <dd>Building on our Wizard of Oz prototype from Milestone 3, we created a live, conversational cue indicator to give participants in a Google Hangout immediate feedback about relative speaking times in a group conversation. Of the two indicators that we tested, we selected one to integrate as part of a custom Google Hangout app. In a left-hand panel next to the main video feed, we show participants a dynamic bar graph with four columns, one for each participant in the group. Each participant's column is automatically labeled with their name. As the conversation progresses, the bars will automatically re-weight to indicate the changing distribution of the conversation. While the WoZ test relied upon a wizard to manually log the speaking time for each participant, our prototype leverages the default Hangouts behavior which automatically switches the video feed to focus on whichever participant is currently speaking. Using the Hangouts API to track these camera feed event changes, we compute how long each participant spoke on a given turn, and use that information to generate the conversation distribution.</dd>
+
+  <dt>Synchronized start/stop buttons across all instances of the Hangout App to control participation tracking</dt>
+  <dd>The live graph indicator introduced above relies upon a single Firebase instance on the backend to keep track of discussion participation distribution. Since we only wanted to display participation indicators once <i>all</i> participants had arrived and were ready to chat, we allow the discussion participants to determine exactly when their discussion really starts and stops to avoid skewing the statistics based on pre-meeting chatter. This ability to initiate the discussion only appears once there are 4 participants present in the discussion. Any participant can start or stop the discussion, and these controls are shared across all instances of the app. Any time one person clicks to start or stop the discussion, that action will be reflected on everyone else's app as well.</dd>
 
   <dt>Show/Hide the left-hand panel with the discussion graph</dt>
-  <dd>(This was in response to users voicing discomfort with the prominence of the interface during our WoZ testing... They can hide it and pretend it's just a normal hangout going on and eventually, the only interruption they will receive is if they end up in either of the "extreme" categories for low or high participation)</dd>
+  <dd>In response to feedback we gathered during Wizard of Oz testing and M3 evaluation, we decided to allow users to hide the discussion participation graph within the app interface. During user testing, participants voiced discomfort with the prominence of the graph in displaying information about their performance, and signaled that they would prefer to have the graph visible only on-demand so that it did not distract significantly from the conersation. To that end, we allow participants to toggle the visibility of the discussion graph panel; when hidden, the interface looks almost identical to a normal Hangout app.</dd>
 </dl>
 <h3 class="page-header">Implementation Progress</h3>
+<span></span>
 
 <h3 class="page-header">Next Steps: Looking Ahead to User Testing</h3>
 <ol>
