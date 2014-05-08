@@ -654,14 +654,14 @@ function listenForTurnReporting() {
   if (isTurnReporter) {
     gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.add(
       function(eventObj) {
-        trackTurns.call(this, eventObj);
+        trackTurns.call(gapi, eventObj);
       }
     );
   } else {
     lastReportedTurnID = null; //reset the last reported ID to null in preparation for the next time we're turn reporter
     gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.remove(
       function(eventObj) {
-        trackTurns.call(this, eventObj);
+        trackTurns.call(gapi, eventObj);
       }
     );
   }
@@ -669,10 +669,7 @@ function listenForTurnReporting() {
 
 // NOTE: This function was derived from Julia Cambre's work on Talkabout 
 function trackTurns(eventObj) {
-  console.log("---");
-  console.log(eventObj.displayedParticipant);
-  console.log("---");
-  var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
+  var participant = this.hangout.getParticipantById(eventObj.displayedParticipant);
   participantID = participant.person.id;
   console.log("I just got a turn-tracking event!");
   console.log("participant ID: " + participantID);
