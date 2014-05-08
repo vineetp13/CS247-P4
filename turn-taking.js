@@ -62,10 +62,10 @@ var lastReportedTurnID = null;
 //FIREBASE STARTS HERE
 
 $(document).ready(function(){
-  connect_to_timer_firebase();
+  //connect_to_timer_firebase();
   //setupGauge();
-  setupGraph();
-  setupButtons();
+  //setupGraph();
+  //setupButtons();
 });
 
 function percentage_talk(time) {
@@ -504,7 +504,9 @@ function init() {
           }
         }
       );
-
+      connect_to_timer_firebase();
+      setupGraph();
+      setupButtons();
       getFBHangout();
     }
   );
