@@ -31,6 +31,17 @@
           }
         );
 
+        gapi.hangout.onParticipantsAdded.add(
+          function(eventObj) {
+            addParticipantsToGraph(eventObj.addedParticipants);
+          }
+        );        
+
+        gapi.hangout.onParticipantsRemoved.add(
+          function(eventObj) {
+            removeParticipantsFromGraph(eventObj.removedParticipants);
+          }
+        ); 
       }
     );
   };
@@ -100,6 +111,19 @@
       } 
   };
 
+  function addParticipantsToGraph(addedParticipants) {
+    // LOGIC FOR ADDING NEW PARTICIPANTS TO THE GRAPH GOES HERE
+    console.log("adding a participant to the graph");
+  };
+
+  function removeParticipantsFromGraph(removedParticipants) {
+    // LOGIC FOR REMOVING DEPARTED PARTICIPANTS TO THE GRAPH GOES HERE
+    console.log("removing a participant from the graph");
+  };
+
+  ////////////////////////////////////
+  /// ALL DISPLAY LOGIC GOES BELOW ///
+  ////////////////////////////////////
   function hidePanel() {
     $("#panel_container").hide();
     $("#show_panel").show();
