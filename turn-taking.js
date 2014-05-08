@@ -107,28 +107,28 @@ function start_timer(){
       case 0: //NO SPEAKER
         break;
       case 1:
-        first_user.set(first_snapshot_val + 100 < 300000 ? first_snapshot_val + 100 : 300000);
-        second_user.set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
-        third_user.set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
+        first_user.child('contribution').set(first_snapshot_val + 100 < 300000 ? first_snapshot_val + 100 : 300000);
+        second_user.child('contribution').set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
+        third_user.child('contribution').set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
         //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 2:
-        second_user.set(second_snapshot_val + 100 < 300000 ? second_snapshot_val + 100 : 300000);
-        first_user.set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
-        third_user.set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
+        second_user.child('contribution').set(second_snapshot_val + 100 < 300000 ? second_snapshot_val + 100 : 300000);
+        first_user.child('contribution').set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
+        third_user.child('contribution').set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
         //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 3:
-        third_user.set(third_snapshot_val + 100 < 300000 ? third_snapshot_val + 100 : 300000);
-        first_user.set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
-        second_user.set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
+        third_user.child('contribution').set(third_snapshot_val + 100 < 300000 ? third_snapshot_val + 100 : 300000);
+        first_user.child('contribution').set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
+        second_user.child('contribution').set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
         //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 4:
         //fourth_user.set(fourth_snapshot_val + 99 < 300000 ? fourth_snapshot_val + 99 : 300000);
-        first_user.set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
-        second_user.set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
-        third_user.set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
+        first_user.child('contribution').set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
+        second_user.child('contribution').set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
+        third_user.child('contribution').set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
         break;
       default:
         break;
