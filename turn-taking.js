@@ -673,14 +673,9 @@ function trackTurns(eventObj) {
   var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
   if(participant){
     participantID = participant.person.id;
-    console.log("I just got a turn-tracking event!");
-    console.log("participant ID: " + participantID);
-    //Only report if I have not already reported seeing this same participant
-    if (participantID != lastReportedTurnID) {
-      //Report data back to the server. Send displayed participant's NAME & ID, reporter's ID **for each reporter**
-      reportTurnTakingEvent.call(this, participantID);
-    }
-    lastReportedTurnID = participantID;
+
+    //Report data back to the server. Send displayed participant's NAME & ID, reporter's ID **for each reporter**
+    reportTurnTakingEvent.call(this, participantID);
   }
 };
 
@@ -714,15 +709,11 @@ function determineReporters() {
 // NOTE: This function was derived from Julia Cambre's work on Talkabout 
 //TURN TAKING TRACKING CONTROLS:
 function reportTurnTakingEvent(participantID) {
-    var hangout_group_id = gapi.hangout.getHangoutId();
-    var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
-    if (hangout_group_id && reporter_google_id && participantID) {
-      console.log(hangout_group_id + " " + reporter_google_id + " " + participantID);
-      if(current_participant != participantID) {
-        var index = participantIDs.indexOf(participantID);
-        fb_increment_index.set(index);
-      }
-    } 
+  if(current_participant != participantID) {
+    console.log("Change speaker to: " + participantID);
+    var index = participantIDs.indexOf(participantID);
+    fb_increment_index.set(index);
+  }
 };
 
 function addParticipantsToGraph(addedParticipants) {
