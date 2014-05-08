@@ -654,14 +654,14 @@ function listenForTurnReporting() {
   if (isTurnReporter) {
     gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.add(
       function(eventObj) {
-        trackTurns.call(gapi, eventObj);
+        trackTurns.call(this, eventObj);
       }
     );
   } else {
     lastReportedTurnID = null; //reset the last reported ID to null in preparation for the next time we're turn reporter
     gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.remove(
       function(eventObj) {
-        trackTurns.call(gapi, eventObj);
+        trackTurns.call(this, eventObj);
       }
     );
   }
@@ -669,16 +669,18 @@ function listenForTurnReporting() {
 
 // NOTE: This function was derived from Julia Cambre's work on Talkabout 
 function trackTurns(eventObj) {
-  var participant = this.hangout.getParticipantById(eventObj.displayedParticipant);
-  participantID = participant.person.id;
-  console.log("I just got a turn-tracking event!");
-  console.log("participant ID: " + participantID);
-  //Only report if I have not already reported seeing this same participant
-  if (participantID != lastReportedTurnID) {
-    //Report data back to the server. Send displayed participant's NAME & ID, reporter's ID **for each reporter**
-    reportTurnTakingEvent.call(this, participantID);
+  var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
+  if(participant){
+    participantID = participant.person.id;
+    console.log("I just got a turn-tracking event!");
+    console.log("participant ID: " + participantID);
+    //Only report if I have not already reported seeing this same participant
+    if (participantID != lastReportedTurnID) {
+      //Report data back to the server. Send displayed participant's NAME & ID, reporter's ID **for each reporter**
+      reportTurnTakingEvent.call(this, participantID);
+    }
+    lastReportedTurnID = participantID;
   }
-  lastReportedTurnID = participantID;
 };
 
 // NOTE: This function was derived from Julia Cambre's work on Talkabout 
