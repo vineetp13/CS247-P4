@@ -578,7 +578,7 @@ function checkSetup(dataSnapshot){
   }
 
   var num_children = dataSnapshot.numChildren();
-  if(num_children == 2){
+  if(num_children == 3){
     console.log(4 + " children now added!");
     names = [];
     users = [];
@@ -654,14 +654,14 @@ function listenForTurnReporting() {
   if (isTurnReporter) {
     gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.add(
       function(eventObj) {
-        trackTurns(eventObj);
+        trackTurns.call(this, eventObj);
       }
     );
   } else {
     lastReportedTurnID = null; //reset the last reported ID to null in preparation for the next time we're turn reporter
     gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.remove(
       function(eventObj) {
-        trackTurns(eventObj);
+        trackTurns.call(this, eventObj);
       }
     );
   }
