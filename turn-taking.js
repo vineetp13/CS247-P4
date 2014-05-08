@@ -526,7 +526,7 @@ function getFBHangout(){
   fb_conversation = fb_conversations.child(hangout_group_id);
 
   fb_conversation.on('child_added', function(dataSnapshot) {
-    var num_children = fb_conversation.child(dataSnapshot.name()).numChildren());
+    var num_children = fb_conversation.numChildren();
     if(num_children == 2){
       console.log(4 + " children now added!");
       var names = [];
