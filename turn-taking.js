@@ -531,7 +531,6 @@ function getFBHangout(){
 }
 
 function checkSetup(dataSnapshot){
-  function(dataSnapshot) {
     var num_children = fb_conversation.numChildren();
     if(num_children == 2){
       console.log(4 + " children now added!");
@@ -598,7 +597,6 @@ function checkSetup(dataSnapshot){
 
     }
     console.log("child added!");
-  }
 }
 
 
