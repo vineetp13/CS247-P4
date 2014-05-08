@@ -556,7 +556,7 @@ function getFBHangout(){
           case 3:
             fourth_user = fb_conversation.child(childSnapshot.name);
             break;
-          default
+          default:
             break;
         }
 
