@@ -555,7 +555,11 @@ function checkSetup(dataSnapshot){
       console.log("IDs: ");
       console.log(participantIDs);
 
-      dataSnapshot.forEach(processUsers);
+      dataSnapshot.forEach(processUser);
+      console.log("Users: ");
+      console.log(users);
+      console.log(names);
+      console.log(snapshots);
 
       setupGraph(names);
       setupButtons();
@@ -563,7 +567,7 @@ function checkSetup(dataSnapshot){
     }
 }
 
-function processUsers(childSnapshot){
+function processUser(childSnapshot){
   users.push(childSnapshot.name());
 
   var my_index = participantIDs.indexOf(childSnapshot.child('id').val());
@@ -585,7 +589,7 @@ function processUsers(childSnapshot){
       break;
   }
 
-  var cont = childSnapshot.child('contribution');
+  var cont = fb_conversation.child(childSnapshot.name()).child('contribution');
   cont.on('value', function(dataSnapshot) {
     snapshots[my_index] = dataSnapshot.val();
     switch (my_index) {
