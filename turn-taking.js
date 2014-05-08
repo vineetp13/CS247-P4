@@ -59,6 +59,7 @@
 
         gapi.hangout.data.onStateChanged.add(
           function(eventObj) {
+            console.log("what is event obj");
             console.log(eventObj);
             console.log("PLEEEEASE: " + $(eventObj.state).data("discussing"));
           }
