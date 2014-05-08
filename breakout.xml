@@ -26,7 +26,7 @@
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src='//rawgit.com/jcambre/CS247-P4/moderator/turn-taking.js'></script>
+<script src='//rawgit.com/jcambre/CS247-P4/moderator/breakout.js'></script>
 
 
 <html>
@@ -46,7 +46,9 @@
         <button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Discussion</button>
         <button type="button" class="btn btn-danger" id="end_discussion_btn" style="display:none;">End Discussion</button>
       </center>
-      <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right"></div>
+      <br/><br/>
+      <h3>Current Phase: <span id="phase_label"></span></h3>
+      <h3>Remaining time in this phase: <span id="timer_label"></span></h3>
     </div>
   </div>
 
