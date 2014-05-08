@@ -139,7 +139,7 @@ function start_timer(){
   //Push update event for visualization every 3 seconds to reflect changes
   setInterval(function(){
     fb_update_vis.push('update');
-  }, 3000);
+  }, 1000);
 
 }
 
@@ -808,7 +808,7 @@ function recenterCanvas() {
 
 function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
-  var num_needed_participants = 4 - (num_participants);
+  var num_needed_participants = 3 - (num_participants);
   if (num_needed_participants <= 0) {
     document.getElementById("num_participants_needed").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
   } else {
