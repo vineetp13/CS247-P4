@@ -52,6 +52,7 @@ var local_user_contribution;
 var total_talk = 300000;
 
 var username;
+var names;
 var current_participant;
 var participantIDs;
 
@@ -541,7 +542,7 @@ function checkSetup(dataSnapshot){
     var num_children = dataSnapshot.numChildren();
     if(num_children == 1){
       console.log(4 + " children now added!");
-      var names = [];
+      names = [];
       users = [];
       snapshots = [];
       participantIDs = [];
