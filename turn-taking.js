@@ -13,6 +13,7 @@ var timer;
 var fb_timer;
 
 //User fb objects
+var users;
 var local_user;
 var first_user;
 var second_user;
@@ -20,6 +21,7 @@ var third_user;
 var fourth_user;
 
 //Snapshots for each user. Updated after change on firebase end
+var snapshots;
 var first_snapshot_val;
 var second_snapshot_val;
 var third_snapshot_val;
@@ -48,6 +50,8 @@ var local_user_contribution;
 var total_talk = 300000;
 
 var username;
+var current_participant;
+var participantIDs;
 
 
 
@@ -526,23 +530,71 @@ function getFBHangout(){
     if(num_children == 4){
       console.log(4 + " children now added!");
       var names = [];
+      users = [];
+      snapshots = [];
+      participantIDs = [];
+
       dataSnapshot.forEach(function(childSnapshot) {
+        var id = childSnapshot.name();
+        participantIDs.push(id);
+      });
+
+      dataSnapshot.forEach(function(childSnapshot) {
+        users.push(fb_conversation.child(childSnapshot.name));
+
+        var my_index = participantIDs.indexOf(childSnapshot.name());
+        switch (my_index) {
+          case 0:
+            first_user = fb_conversation.child(childSnapshot.name);
+            break;
+          case 1:
+            second_user = fb_conversation.child(childSnapshot.name);
+            break;
+          case 2:
+            third_user = fb_conversation.child(childSnapshot.name);
+            break;
+          case 3:
+            fourth_user = fb_conversation.child(childSnapshot.name);
+            break;
+          default
+            break;
+        }
+
+        var cont = childSnapshot.child('contribution');
+        cont.on('value', function(dataSnapshot) {
+          snapshots[my_index] = dataSnapshot.val();
+          switch (my_index) {
+          case 0:
+            first_snapshot_val = dataSnapshot.val();
+            break;
+          case 1:
+            second_user = dataSnapshot.val();
+            break;
+          case 2:
+            third_user = dataSnapshot.val();
+            break;
+          case 3:
+            fourth_user = dataSnapshot.val();
+            break;
+          default
+            break;
+        }
+        });
+        cont.set(initial_contribution);
+
         var name = childSnapshot.child('name').val();
         names.push(name);
+
       });
+
       setupGraph(names);
       setupButtons();
+
     }
     console.log("child added!");
   });
 
-  local_user = fb_conversation.child(reporter_google_id);
-  local_user_contribution = local_user.child('contribution');
-  local_user.child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
-  local_user_contribution.on('value', function(dataSnapshot) {
-    first_snapshot_val = dataSnapshot.val();
-  });
-  local_user_contribution.set(initial_contribution);
+  fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
 }
 
 function listenForTurnReporting() {
@@ -607,7 +659,13 @@ function reportTurnTakingEvent(participantID) {
     var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
     if (hangout_group_id && reporter_google_id && participantID) {
       console.log(hangout_group_id + " " + reporter_google_id + " " + participantID);
-      // This is where we should send the info back and forth to firebase
+      if(current_participant == null){
+        current_participant = participantID;
+      }else if(current_participant != participantID) {
+        var index = participantIDs.indexOf(participantID);
+        fb_increment_index.set(index);
+        current_participant = participantID;
+      }
     } 
 };
 
@@ -640,6 +698,7 @@ function startDiscussion() {
   $("#start_discussion_btn").hide();
   $("#end_discussion_btn").show();
   gapi.hangout.data.setValue("discussing","true");
+  start_timer();
 };
 
 function endDiscussion() {
