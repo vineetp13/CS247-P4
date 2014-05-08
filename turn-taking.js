@@ -565,40 +565,43 @@ function getFBHangout(){
 }
 
 function checkSetup(dataSnapshot){
+  if(set_up_done){
+    return;
+  }else{
+    set_up_done = true;
+  }
+
   if(dataSnapshot.name() != hangout_group_id){
     console.log("NOT OUR CONVERSATION");
     return;
   }
-  if(set_up_done){
-    return;
+  
+  var num_children = dataSnapshot.numChildren();
+  if(num_children == 2){
+    console.log(4 + " children now added!");
+    names = [];
+    users = [];
+    snapshots = [];
+    participantIDs = [];
+
+    dataSnapshot.forEach( function(childSnapshot) {
+      var id = childSnapshot.name();
+      participantIDs.push(id);
+    });
+
+    console.log("IDs: ");
+    console.log(participantIDs);
+
+    dataSnapshot.forEach(processUser);
+    console.log("Users: ");
+    console.log(users);
+    console.log(names);
+    console.log(snapshots);
+
+    setupGraph(names);
+    setupButtons();
+
   }
-    var num_children = dataSnapshot.numChildren();
-    if(num_children == 2){
-      console.log(4 + " children now added!");
-      names = [];
-      users = [];
-      snapshots = [];
-      participantIDs = [];
-
-      dataSnapshot.forEach( function(childSnapshot) {
-        var id = childSnapshot.name();
-        participantIDs.push(id);
-      });
-
-      console.log("IDs: ");
-      console.log(participantIDs);
-
-      dataSnapshot.forEach(processUser);
-      set_up_done = true;
-      console.log("Users: ");
-      console.log(users);
-      console.log(names);
-      console.log(snapshots);
-
-      setupGraph(names);
-      setupButtons();
-
-    }
 }
 
 function processUser(childSnapshot){
