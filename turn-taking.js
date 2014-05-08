@@ -6,6 +6,7 @@ var graphChart;
 //fb instance variable and conversation variable for ease of access
 var fb_instance;
 var fb_conversation;
+var fb_conversations;
 
 //Indicator variable to keep track of whether timer has been started on any instance
 var timer;
@@ -522,7 +523,7 @@ function getFBHangout(){
   var hangout_group_id = gapi.hangout.getHangoutId();
   var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
-  var fb_conversations = fb_instance.child('conversations');
+  fb_conversations = fb_instance.child('conversations');
   fb_conversation = fb_conversations.child(hangout_group_id);
   var self = this;
 
