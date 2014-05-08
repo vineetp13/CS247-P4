@@ -3,6 +3,11 @@ var set_up_done = false;
 var hangout_group_id;
 var participantID;
 
+//MATH
+var subtract;
+var increment;
+var divide_by;
+
 var gaugeChart;
 var graphChart;
 
@@ -102,28 +107,28 @@ function start_timer(){
       case 0: //NO SPEAKER
         break;
       case 1:
-        first_user.set(first_snapshot_val + 99 < 300000 ? first_snapshot_val + 99 : 300000);
-        second_user.set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
-        third_user.set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
-        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        first_user.set(first_snapshot_val + 100 < 300000 ? first_snapshot_val + 100 : 300000);
+        second_user.set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
+        third_user.set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
+        //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 2:
-        second_user.set(second_snapshot_val + 99 < 300000 ? second_snapshot_val + 99 : 300000);
-        first_user.set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
-        third_user.set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
-        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        second_user.set(second_snapshot_val + 100 < 300000 ? second_snapshot_val + 100 : 300000);
+        first_user.set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
+        third_user.set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
+        //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 3:
-        third_user.set(third_snapshot_val + 99 < 300000 ? third_snapshot_val + 99 : 300000);
-        first_user.set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
-        second_user.set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
-        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        third_user.set(third_snapshot_val + 100 < 300000 ? third_snapshot_val + 100 : 300000);
+        first_user.set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
+        second_user.set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
+        //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 4:
-        fourth_user.set(fourth_snapshot_val + 99 < 300000 ? fourth_snapshot_val + 99 : 300000);
-        first_user.set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
-        second_user.set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
-        third_user.set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
+        //fourth_user.set(fourth_snapshot_val + 99 < 300000 ? fourth_snapshot_val + 99 : 300000);
+        first_user.set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
+        second_user.set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
+        third_user.set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
         break;
       default:
         break;
@@ -364,11 +369,11 @@ function setupGraph(names) {
         name: names[2],
         data: [25]
 
-    }, {
+    }/*, {
         name: names[3],
         data: [25]
 
-    }]
+    }*/]
   });
 }
 
@@ -535,7 +540,7 @@ function getFBHangout(){
     var percentage_1 = percentage_talk(first_snapshot_val);
     var percentage_2 = percentage_talk(second_snapshot_val);
     var percentage_3 = percentage_talk(third_snapshot_val);
-    var percentage_4 = percentage_talk(fourth_snapshot_val);
+    //var percentage_4 = percentage_talk(fourth_snapshot_val);
 
     //Update user 1 percentage
     var data = graphChart.series[0].data;
@@ -553,9 +558,9 @@ function getFBHangout(){
     graphChart.series[2].setData(data,true);
 
     //... user 4 percentage
-    var data = graphChart.series[3].data;
-    data[0].y = percentage_4;
-    graphChart.series[3].setData(data,true);
+   // var data = graphChart.series[3].data;
+    //data[0].y = percentage_4;
+    //graphChart.series[3].setData(data,true);
 
     //console.log(percentage_1);
     //console.log(percentage_2);
@@ -580,7 +585,7 @@ function checkSetup(dataSnapshot){
   var num_children = dataSnapshot.numChildren();
   if(num_children == 3){
     set_up_done = true;
-    console.log(4 + " children now added!");
+    console.log(3 + " children now added!");
     names = [];
     users = [];
     snapshots = [];
