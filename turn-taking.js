@@ -526,7 +526,7 @@ function getFBHangout(){
   fb_conversation = fb_conversations.child(hangout_group_id);
 
   fb_conversation.on('child_added', function(dataSnapshot) {
-    var num_children = dataSnapshot.numChildren();
+    var num_children = fb_conversation.child(dataSnapshot.name()).numChildren());
     if(num_children == 2){
       console.log(4 + " children now added!");
       var names = [];
@@ -534,12 +534,12 @@ function getFBHangout(){
       snapshots = [];
       participantIDs = [];
 
-      dataSnapshot.forEach(function(childSnapshot) {
+      fb_conversation.forEach(function(childSnapshot) {
         var id = childSnapshot.name();
         participantIDs.push(id);
       });
 
-      dataSnapshot.forEach(function(childSnapshot) {
+      fb_conversation.forEach(function(childSnapshot) {
         users.push(fb_conversation.child(childSnapshot.name));
 
         var my_index = participantIDs.indexOf(childSnapshot.name());
