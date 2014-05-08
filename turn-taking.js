@@ -570,7 +570,7 @@ function checkSetup(dataSnapshot){
 function processUser(childSnapshot){
   users.push(childSnapshot.name());
 
-  var my_index = participantIDs.indexOf(childSnapshot.child('id').val());
+  var my_index = participantIDs.indexOf(childSnapshot.name());
   console.log("my_index: " + my_index);
   switch (my_index) {
     case 0:
