@@ -145,6 +145,16 @@
     recenterCanvas();
   };
 
+  function startDiscussion() {
+    $("#start_discussion_btn").hide();
+    $("#end_discussion_btn").show();
+  };
+
+  function endDiscussion() {
+    // $("#start_discussion_btn").show();
+    $("#end_discussion_btn").hide();
+  };
+
   //LAYOUT AND VIDEO FEED CONTROLS:
   function setCanvas() {
     var feed = gapi.hangout.layout.getDefaultVideoFeed();

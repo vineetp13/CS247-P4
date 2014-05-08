@@ -45,6 +45,8 @@
     <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
     <div id="visualization_container">
       <!-- div id="gauge_container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div -->
+      <button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Discussion</button>
+      <button type="button" class="btn btn-success" id="end_discussion_btn" style="display:none;">End Discussion</button>
       <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 400px; margin: 0 auto; position: relative; float: right"></div>
     </div>
   </div>
@@ -59,6 +61,8 @@
     function(eventObj) {
       $('#hide_panel').click(hidePanel);
       $('#show_panel').click(showPanel);
+      $('#start_discussion_btn').click(startDiscussion);
+      $('#end_discussion_btn').click(endDiscussion);
     }
   );
 </script>
