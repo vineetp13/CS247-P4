@@ -532,6 +532,7 @@ function getFBHangout(){
 }
 
 function checkSetup(dataSnapshot){
+    console.log(fb_conversation);
     console.log("GETS HERE");
     var num_children = fb_conversation.numChildren();
     console.log("# Children: " + num_children);
