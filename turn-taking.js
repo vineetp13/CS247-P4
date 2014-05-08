@@ -526,6 +526,9 @@ function getFBHangout(){
   fb_conversation = fb_conversations.child(hangout_group_id);
 
   fb_conversation.on('child_added', function(dataSnapshot) {
+    var hangout_group_id = gapi.hangout.getHangoutId();
+    var fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
+    var fb_conversation = fb_instance.child('conversations').child(hangout_group_id);
     var num_children = fb_conversation.numChildren();
     if(num_children == 2){
       console.log(4 + " children now added!");
