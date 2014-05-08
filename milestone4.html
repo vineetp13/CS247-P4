@@ -10,12 +10,12 @@ window.___gcfg = {
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
-<h3 class="page-header">Try it out</h1>
+<h3 class="page-header">Try it out</h3>
 <p class="lead">To test our functional prototype, have one participant initiate a Hangout using the green button below. From within that Hangout, the tester should then invite <b>3 additional participants</b> to join in the conversation. Once all 4 individuals are in the Hangout, click the "Start Discussion" button on the left-hand panel, and begin speaking. Throughout the conversation, keep tabs on how much each person has contributed to the discussion through the Discussion Metrics graph on the left.</p>
 <div class="g-hangout" data-render="createhangout"
     data-initial_apps="[{ app_id : '539950228958', 'app_type' : 'ROOM_APP' }]">
 </div>
-<h3 class="page-header">Features</h1>
+<h3 class="page-header">Features</h3>
 <dl>
   <dt>Simple Hangout initiation</dt>
   <dd>Launching a Hangout directly from this webpage, rather than having to manually create one and find the app. Also made the app public.</dd>
@@ -31,14 +31,19 @@ window.___gcfg = {
   <dt>Show/Hide the left-hand panel with the discussion graph</dt>
   <dd>(This was in response to users voicing discomfort with the prominence of the interface during our WoZ testing... They can hide it and pretend it's just a normal hangout going on and eventually, the only interruption they will receive is if they end up in either of the "extreme" categories for low or high participation)</dd>
 </dl>
-<h3 class="page-header">Implementation Progress</h1>
+<h3 class="page-header">Implementation Progress</h3>
 
-<h3 class="page-header">Next Steps: Looking Ahead to User Testing</h1>
+<h3 class="page-header">Next Steps: Looking Ahead to User Testing</h3>
 <ol>
   <li>Support an arbitrary number of participants in a discussion, rather than limiting it to 4.</li>
   <li>Gracefully handle the situation in which participants join or drop out of the discussion in the middle of a conversation.</li>
-  <li>Thoughtfully decide upon what constitutes as "acceptable" discussion behavior, and where the extremes for low and high participation on the graph should be set.</li>
-  <li>Display automated private notifications to users who cross into the "extreme" regions of low or high participation to discretely prompt them to speak up or quiet down.</li>
-  <li>Design and implement an alternative visualization for the same discussion metric information, which will serve as an alternative for the purposes of A/B testing in use studies.</li>
+  <li>Thoughtfully decide upon what constitutes as "acceptable" discussion behavior, and where the extremes for low and high participation on the graph should be set. This will likely involve widening the middle region to allow for a wider variance in participation levels.</li>
+  <li>Display automated, private notifications to users who cross into the "extreme" regions of low or high participation to discretely prompt them to speak up or quiet down.</li>
+  <li>Design and implement an alternative visualization for the same participation metric information, which will serve as an alternative interface for the purposes of A/B testing in use studies.</li>
+  <li>Improve the process of entering a Hangout together as a group. If possible, we'd like to allow everyone to enter a Hangout through the <a href="https://github.com/google/instant-hangouts">Instant Hangout widget</a>, which creates one "always open" Hangout room for anyone to join from a particular page, without needing to be invited. However, it seems that the feature is not yet publically supported.</li>
   <li>Make the interface pixel-perfect!</li>
 </ol>
+
+<h3 class="page-header">Additional Notes</h3>
+	A small portion of the code which served as the building blocks for our Google Hangout app -- in particular, some layout logic and components of our automated turn-taking detection -- was drawn from previous work by team member Julia Cambre on Talkabout, an (almost-but-not-quite) open-source platform for small-group discussions in MOOCs. Any code derived from her work is attributed within the comments. Additionally, we are using the <a href="http://www.highcharts.com/">Highcharts API</a> to create our dynamic graph.
+</h3>
