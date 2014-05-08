@@ -675,7 +675,7 @@ function trackTurns(eventObj) {
   //Only report if I have not already reported seeing this same participant
   if (participantID != lastReportedTurnID) {
     //Report data back to the server. Send displayed participant's NAME & ID, reporter's ID **for each reporter**
-    reportTurnTakingEvent(participantID);
+    reportTurnTakingEvent.call(this, participantID);
   }
   lastReportedTurnID = participantID;
 };
