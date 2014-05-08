@@ -76,8 +76,8 @@ function init() {
             // $('#start_discussion_btn').click(function() {
             //   startDiscussion();
             // });
-            // $('#end_discussion_btn').click(function() {
-            //   endDiscussion();
+            // $('#restart_discussion_btn').click(function() {
+            //   restartDiscussion();
             // });
           }
           setNumParticipantsNeeded();
@@ -134,6 +134,7 @@ function restartDiscussion() {
   sharePhaseInitialized = false;
   gapi.hangout.data.setValue("discussing","true");
   gapi.hangout.data.setValue("phase","think");
+  console.log("restarting discussion");
 };
 
 function timer(){
@@ -151,6 +152,7 @@ function trigger_tps() {
   if (thinkPhaseInitialized == false) {
     // Control the button display for all participants
     $("#start_discussion_btn").hide();
+    $("#restart_discussion_btn").hide();
     $("#pending_participants").hide();
 
 
