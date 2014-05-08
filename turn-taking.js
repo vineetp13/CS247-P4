@@ -133,19 +133,19 @@ function connect_to_timer_firebase(){
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
 
   //Establish link so that all instances recieve changes in increment index
-  fb_increment_index = fb_instance.child("increment_index");
+  fb_increment_index = fb_instance.child('increment_index');
   fb_increment_index.on('value', function(dataSnapshot) {
     increment_index = dataSnapshot.val();
   });
 
   //Keep track for every instance of whether timer has been started
-  fb_timer = fb_instance.child("timer");
+  fb_timer = fb_instance.child('timer');
   fb_timer.on('value', function(dataSnapshot) {
     timer = dataSnapshot.val();
   });
 
   //Keep track of new users
-  fb_user_index = fb_instance.child("user_index");
+  fb_user_index = fb_instance.child('user_index');
   fb_user_index.on('value', function(dataSnapshot) {
     user_index = dataSnapshot.val() + 1;
   });
@@ -153,7 +153,7 @@ function connect_to_timer_firebase(){
 
 
   //mechanism to receive vis. updates pushed to fb
-  fb_update_vis = fb_instance.child("update");
+  fb_update_vis = fb_instance.child('update');
   fb_update_vis.on('child_added', function(dataSnapshot) {
     var percentage_1 = percentage_talk(first_snapshot_val);
     var percentage_2 = percentage_talk(second_snapshot_val);
