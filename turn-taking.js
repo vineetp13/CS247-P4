@@ -524,8 +524,6 @@ function listenForTurnReporting() {
   if (isTurnReporter) {
     gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.add(
       function(eventObj) {
-        console.log("the event obj that I'm sending to trackTurns is: ");
-        console.log(eventObj);
         trackTurns(eventObj);
       }
     );
@@ -542,7 +540,7 @@ function listenForTurnReporting() {
 function trackTurns(eventObj) {
   var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
   var participantID = participant.person.id;
-
+  console.log("I just got a turn-tracking event!");
   //Only report if I have not already reported seeing this same participant
   if (participantID != lastReportedTurnID) {
     //Report data back to the server. Send displayed participant's NAME & ID, reporter's ID **for each reporter**
