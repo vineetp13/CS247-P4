@@ -153,6 +153,8 @@ function trigger_tps() {
     // Control the button display for all participants
     $("#start_discussion_btn").hide();
     $("#end_discussion_btn").show();
+    $("#pending_participants").hide();
+
 
     console.log("I'm in the think phase!");
     console.log("Current time is: " + Date.now());
@@ -207,6 +209,7 @@ function startSharePhase() {
     window.clearInterval(counter);
 
     document.getElementById("phase_label").innerHTML = "Share"
+    document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
 
     console.log("I'm in the share phase!");
     console.log("Current time is: " + Date.now());
@@ -270,7 +273,7 @@ function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
   var num_needed_participants = 4 - (num_participants);
   if (num_needed_participants <= 0) {
-    document.getElementById("num_participants_needed").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
+    document.getElementById("pending_participants").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
   } else {
     document.getElementById("num_participants_needed").innerHTML = num_needed_participants;
   }
