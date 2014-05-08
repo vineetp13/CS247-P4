@@ -2,7 +2,6 @@
 
 var username;
 var names;
-var current_participant;
 var participantIDs;
 
 
@@ -168,6 +167,7 @@ function trigger_tps() {
     // var totalTime;
     thinkTimer = window.setTimeout(initiatePairPhase, phase_duration);
     thinkPhaseInitialized = true;
+    hideAllButSelf();
   }  
 };
 
@@ -200,6 +200,7 @@ function startPairPhase() {
     counter=setInterval(timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
     var pairTimer = window.setTimeout(initiateSharePhase, phase_duration);
+    hideAllButPair();
   }
 };
 
@@ -214,6 +215,8 @@ function startSharePhase() {
     console.log("I'm in the share phase!");
     console.log("Current time is: " + Date.now());
     // Untimed!
+
+    showAllParticipants();
   }
 };
 
@@ -221,6 +224,54 @@ function startSharePhase() {
 function end_tps() {
   // Control the button display for all participants
   $("#end_discussion_btn").hide();
+};
+
+function hideAllButSelf() {
+  var participants = gapi.hangout.getParticipants();
+  var local_participant = gapi.hangout.getLocalParticipantId();
+  for (var index in participants) {
+    var participant = participants[index];
+    if (participant.id != local_participant) {
+      gapi.hangout.av.setParticipantVisible(participant.id, false);
+      gapi.hangout.av.setParticipantAudible(participant.id, false);
+      gapi.hangout.av.setAvatar(participant.id, "https://raw.githubusercontent.com/jcambre/CS247-P4/hangouts/images/hidden.png");
+    }
+  }
+};
+
+function hideAllButPair() {
+  var participants = gapi.hangout.getParticipants();
+  var participantIDs = [];
+  // get all of the ids
+  for (var index in participants) {
+    participantIDs << participants[index].id
+  }
+  //then sort them in ascending order
+  participantIDs.sort();
+  // Now find the partner for the local participant. If the participant's index is EVEN (0, 2), then their partner will be the person at their index + 1. If their index is ODD (1, 3) then their partner will be the person at their index - 1 
+  var local_participant_id = gapi.hangout.getLocalParticipantId();
+  var local_participant_index = participantIDs.indexOf(local_participant_id);
+  var partner_id;
+  if (local_participant_index % 2 == 0) {
+    // Their index is EVEN, so partner is index + 1
+    partner_id = local_participant_index + 1;
+  } else {
+    // Their index is ODD, so partner is index - 1
+    partner_id = local_participant_index - 1;
+  }
+  gapi.hangout.av.setParticipantVisible(partner_id, true);
+  gapi.hangout.av.setParticipantAudible(partner_id, true);
+  gapi.hangout.av.clearAvatar(partner_id);
+};
+
+function showAllParticipants() {
+  var participants = gapi.hangout.getParticipants();
+  for (var index in participants) {
+    var participant = participants[index];
+    gapi.hangout.av.setParticipantVisible(participant.id, true);
+    gapi.hangout.av.setParticipantAudible(participant.id, true);
+    gapi.hangout.av.clearAvatar(participant.id);
+  }
 };
 
 //LAYOUT AND VIDEO FEED CONTROLS:
