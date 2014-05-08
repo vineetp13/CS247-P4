@@ -527,7 +527,7 @@ function getFBHangout(){
   fb_conversation = fb_conversations.child(hangout_group_id);
   var self = this;
 
-  fb_conversations.on('child_changed', checkSetup, null, self);
+  fb_conversations.on('value', checkSetup, null, self);
 
   fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
 }
