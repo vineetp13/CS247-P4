@@ -693,6 +693,7 @@ function setNumParticipantsNeeded() {
   if (num_needed_participants <= 0) {
     $("#num_participants_needed").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
   } else {
-    $("#num_participants_needed").innerHTML = num_participants_needed;
+    $("#num_participants_needed").innerHTML = "" + num_participants_needed;
   }
+  console.log("in this set num participants method");
 };
