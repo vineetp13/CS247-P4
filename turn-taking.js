@@ -578,7 +578,7 @@ function checkSetup(dataSnapshot){
   }
 
   var num_children = dataSnapshot.numChildren();
-  if(num_children == 2){
+  if(num_children == 3){
     set_up_done = true;
     console.log(4 + " children now added!");
     names = [];
