@@ -61,6 +61,7 @@
           function(eventObj) {
             console.log("what is event obj");
             console.log(eventObj);
+            console.log(eventObj.state.data.discussing);
             console.log("PLEEEEASE: " + $(eventObj.state).data("discussing"));
           }
         );
