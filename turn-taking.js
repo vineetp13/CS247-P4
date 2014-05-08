@@ -601,6 +601,8 @@ function checkSetup(fb_conversation){
   }
 }
 
+
+// NOTE: This function was derived from Julia Cambre's work on Talkabout 
 function listenForTurnReporting() {
   determineReporters();
   if (isTurnReporter) {
@@ -619,6 +621,7 @@ function listenForTurnReporting() {
   }
 };
 
+// NOTE: This function was derived from Julia Cambre's work on Talkabout 
 function trackTurns(eventObj) {
   var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
   var participantID = participant.person.id;
@@ -631,6 +634,7 @@ function trackTurns(eventObj) {
   lastReportedTurnID = participantID;
 };
 
+// NOTE: This function was derived from Julia Cambre's work on Talkabout 
 //This function is called any time a participant enables or disables the app, in order to update whether the local participant is the turn-taking reporter
 function determineReporters() {
   var enabledParticipants = gapi.hangout.getEnabledParticipants();
@@ -657,6 +661,7 @@ function determineReporters() {
   return true;
 };
 
+// NOTE: This function was derived from Julia Cambre's work on Talkabout 
 //TURN TAKING TRACKING CONTROLS:
 function reportTurnTakingEvent(participantID) {
     var hangout_group_id = gapi.hangout.getHangoutId();
@@ -713,6 +718,8 @@ function endDiscussion() {
 };
 
 //LAYOUT AND VIDEO FEED CONTROLS:
+
+// NOTE: This function was derived from Julia Cambre's work on Talkabout 
 function setCanvas() {
   var feed = gapi.hangout.layout.getDefaultVideoFeed();
   var canvas = gapi.hangout.layout.getVideoCanvas();
@@ -728,6 +735,7 @@ function setCanvas() {
   recenterCanvas();
 };
 
+// NOTE: This function was derived from Julia Cambre's work on Talkabout 
 function recenterCanvas() {
   var canvas = gapi.hangout.layout.getVideoCanvas();
   canvas.setVisible(false);
