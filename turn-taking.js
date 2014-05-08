@@ -524,8 +524,9 @@ function getFBHangout(){
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
   var fb_conversations = fb_instance.child('conversations');
   fb_conversation = fb_conversations.child(hangout_group_id);
+  var self = this;
 
-  fb_conversation.on('child_added', checkSetup(dataSnapshot));
+  fb_conversation.on('child_added', checkSetup, null, self);
 
   fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
 }
