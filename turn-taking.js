@@ -516,6 +516,7 @@ function getFBHangout(){
   var hangout_group_id = gapi.hangout.getHangoutId();
   var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
   console.log(hangout_group_id + " " + reporter_google_id);
+  fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
   fb_conversation = fb_instance.child(hangout_group_id);
 }
 
