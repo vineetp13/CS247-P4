@@ -252,6 +252,12 @@ function hideAllButPair() {
   var local_participant_id = gapi.hangout.getLocalParticipantId();
   var local_participant_index = participantIDs.indexOf(local_participant_id);
   var partner_id;
+  
+  console.log("local_participant_index: " + local_participant_index);
+  console.log("Participants: ");
+  console.log(participants);
+  console.log(participantIDs);
+
   if (local_participant_index % 2 == 0) {
     // Their index is EVEN, so partner is index + 1
     partner_id = participantIDs[local_participant_index + 1];
@@ -259,6 +265,8 @@ function hideAllButPair() {
     // Their index is ODD, so partner is index - 1
     partner_id = participantIDs[local_participant_index - 1];
   }
+  console.log("Partner ID:");
+  console.log(partner_id);
   gapi.hangout.av.setParticipantVisible(partner_id, true);
   gapi.hangout.av.setParticipantAudible(partner_id, true);
   gapi.hangout.av.clearAvatar(partner_id);
