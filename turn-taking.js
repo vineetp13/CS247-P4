@@ -522,6 +522,8 @@ function listenForTurnReporting() {
   if (isTurnReporter) {
     gapi.hangout.layout.getDefaultVideoFeed().onDisplayedParticipantChanged.add(
       function(eventObj) {
+        console.log("the event obj that I'm sending to trackTurns is: ");
+        console.log(eventObj);
         trackTurns(eventObj);
       }
     );
