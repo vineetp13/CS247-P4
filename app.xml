@@ -55,8 +55,8 @@
 </html>
 
 <script>
-  $('#hide_panel').click(hidePanel());
-  $('#show_panel').click(showPanel());
+  $('#hide_panel').click(hidePanel);
+  $('#show_panel').click(showPanel);
 </script>
 ]]>
 </Content>
