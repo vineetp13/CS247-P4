@@ -520,7 +520,7 @@ function getFBHangout(){
   var l_fb_conversation = l_fb_instance.child(hangout_group_id);
   console.log("-------");
   console.log(l_fb_instance);
-  console.log(l_fb_conversation);
+  console.log(l_fb_conversation.set(0));
 }
 
 function listenForTurnReporting() {
