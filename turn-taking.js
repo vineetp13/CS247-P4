@@ -46,6 +46,7 @@
         gapi.hangout.onParticipantsChanged.add(
           function(eventObj) {
             if (eventObj.participants.length == 4) {
+              // MAKE SURE TO UN_COMMENT THIS!!
               // $('#start_discussion_btn').toggleClass("disabled");
               // $('#start_discussion_btn').click(function() {
               //   startDiscussion();
@@ -57,12 +58,16 @@
           }
         );
 
+        // Update the display for the *other* participants in response to one person clicking the start/stop 
         gapi.hangout.data.onStateChanged.add(
           function(eventObj) {
-            console.log("what is event obj");
-            console.log(eventObj);
-            console.log(eventObj.state.discussing);
-            console.log("PLEEEEASE: " + $(eventObj.state).data("discussing"));
+            if (eventObj.state.discussing == "true") {
+              $("#start_discussion_btn").hide();
+              $("#end_discussion_btn").show();
+            } else {
+              $("#end_discussion_btn").hide();
+              // $("#start_discussion_btn").show();
+            }
           }
         );
 
