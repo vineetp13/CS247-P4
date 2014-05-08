@@ -671,6 +671,7 @@ function trackTurns(eventObj) {
   var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
   var participantID = participant.person.id;
   console.log("I just got a turn-tracking event!");
+  console.log("participant ID: " + participantID);
   //Only report if I have not already reported seeing this same participant
   if (participantID != lastReportedTurnID) {
     //Report data back to the server. Send displayed participant's NAME & ID, reporter's ID **for each reporter**
