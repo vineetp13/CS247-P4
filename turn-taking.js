@@ -42,6 +42,7 @@ var user_designation;
 
 //Seed contribution in seconds to balance statistics (.25 of 5 minutes each in ms)
 var initial_contribution = 75000;
+var local_user_contribution;
 
 //Total amount of talking done by all parties (total talk is set to 5 minute inverval in ms)
 var total_talk = 300000;
@@ -520,10 +521,12 @@ function getFBHangout(){
   var fb_conversations = fb_instance.child('conversations');
   fb_conversation = fb_conversations.child(hangout_group_id);
   local_user = fb_conversation.child(reporter_google_id);
-  local_user.on('value', function(dataSnapshot) {
+  local_user_contribution = local_user.child('contribution');
+  local_user.child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
+  local_user_contribution.on('value', function(dataSnapshot) {
     first_snapshot_val = dataSnapshot.val();
   });
-  local_user.set(initial_contribution);
+  local_user_contribution.set(initial_contribution);
 }
 
 function listenForTurnReporting() {
