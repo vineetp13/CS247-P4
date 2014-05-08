@@ -539,27 +539,25 @@ function checkSetup(dataSnapshot){
   if(dataSnapshot.name() != hangout_group_id){
     console.log("NOT OUR CONVERSATION");
     return;
-  }else{
-    console.log("THIS IS OUR CONVERSATION! :)");
   }
     var num_children = dataSnapshot.numChildren();
-    console.log("# Children: " + num_children);
-    if(num_children == 2){
+    if(num_children == 1){
       console.log(4 + " children now added!");
       var names = [];
       users = [];
       snapshots = [];
       participantIDs = [];
 
-      fb_conversation.forEach(function(childSnapshot) {
+      dataSnapshot.forEach(function(childSnapshot) {
         var id = childSnapshot.name();
         participantIDs.push(id);
       });
 
-      fb_conversation.forEach(function(childSnapshot) {
-        users.push(fb_conversation.child(childSnapshot.name()));
+      dataSnapshot.forEach(function(childSnapshot) {
+        users.push(childSnapshot.name());
 
-        var my_index = participantIDs.indexOf(childSnapshot.name());
+        var my_index = participantIDs.indexOf(childSnapshot.child('id').val());
+        console.log("my_index: " + my_index);
         switch (my_index) {
           case 0:
             first_user = fb_conversation.child(childSnapshot.name());
@@ -608,7 +606,6 @@ function checkSetup(dataSnapshot){
       setupButtons();
 
     }
-    console.log("child added!");
 }
 
 
