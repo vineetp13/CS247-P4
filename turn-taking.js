@@ -689,11 +689,11 @@ function recenterCanvas() {
 
 function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
-  var num_needed_participants = 3 - (num_participants); // effectively 4 - (num_participants - 1)
+  var num_needed_participants = 4 - (num_participants);
   if (num_needed_participants <= 0) {
-    $("#num_participants_needed").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
+    document.getElementById("num_participants_needed").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
   } else {
-    $("#num_participants_needed").innerHTML = num_needed_participants;
+    document.getElementById("num_participants_needed").innerHTML = num_needed_participants;
   }
   console.log("num_participants_needed: " + num_needed_participants);
   console.log("in this set num participants method");
