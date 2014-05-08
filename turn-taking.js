@@ -1,4 +1,5 @@
 //FIREBASE VARIABLES
+var hangout_group_id;
 
 var gaugeChart;
 var graphChart;
@@ -520,7 +521,7 @@ function init() {
 };
 
 function getFBHangout(){
-  var hangout_group_id = gapi.hangout.getHangoutId();
+  hangout_group_id = gapi.hangout.getHangoutId();
   var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
   fb_conversations = fb_instance.child('conversations');
