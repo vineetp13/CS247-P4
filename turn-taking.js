@@ -43,6 +43,20 @@
           }
         ); 
 
+        gapi.hangout.onParticipantsChanged.add(
+          function(eventObj) {
+            if (eventObj.participants.length == 4) {
+              $('#start_discussion_btn').toggleClass("disabled");
+              $('#start_discussion_btn').click(function() {
+                startDiscussion();
+              });
+              $('#end_discussion_btn').click(function() {
+                endDiscussion();
+              });
+            }
+          }
+        );
+
         getFBHangout();
       }
     );

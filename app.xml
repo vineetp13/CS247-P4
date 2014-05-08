@@ -46,7 +46,7 @@
     <div id="visualization_container">
       <!-- div id="gauge_container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div -->
       <button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Discussion</button>
-      <button type="button" class="btn btn-success" id="end_discussion_btn" style="display:none;">End Discussion</button>
+      <button type="button" class="btn btn-danger" id="end_discussion_btn" style="display:none;">End Discussion</button>
       <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 400px; margin: 0 auto; position: relative; float: right"></div>
     </div>
   </div>
@@ -64,12 +64,6 @@
       });
       $('#show_panel').click(function() {
         showPanel();
-      });
-      $('#start_discussion_btn').click(function() {
-        startDiscussion();
-      });
-      $('#end_discussion_btn').click(function() {
-        endDiscussion();
       });
     }
   );
