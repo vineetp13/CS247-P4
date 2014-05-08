@@ -669,6 +669,9 @@ function listenForTurnReporting() {
 
 // NOTE: This function was derived from Julia Cambre's work on Talkabout 
 function trackTurns(eventObj) {
+  console.log("---");
+  console.log(eventObj.displayedParticipant);
+  console.log("---");
   var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
   participantID = participant.person.id;
   console.log("I just got a turn-tracking event!");
