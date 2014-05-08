@@ -1,6 +1,7 @@
 //FIREBASE VARIABLES
 var set_up_done = false;
 var hangout_group_id;
+var participantID;
 
 var gaugeChart;
 var graphChart;
@@ -669,7 +670,7 @@ function listenForTurnReporting() {
 // NOTE: This function was derived from Julia Cambre's work on Talkabout 
 function trackTurns(eventObj) {
   var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
-  var participantID = participant.person.id;
+  participantID = participant.person.id;
   console.log("I just got a turn-tracking event!");
   console.log("participant ID: " + participantID);
   //Only report if I have not already reported seeing this same participant
