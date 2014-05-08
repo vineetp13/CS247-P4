@@ -254,10 +254,10 @@ function hideAllButPair() {
   var partner_id;
   if (local_participant_index % 2 == 0) {
     // Their index is EVEN, so partner is index + 1
-    partner_id = local_participant_index + 1;
+    partner_id = participantIDs[local_participant_index + 1];
   } else {
     // Their index is ODD, so partner is index - 1
-    partner_id = local_participant_index - 1;
+    partner_id = participantIDs[local_participant_index - 1];
   }
   gapi.hangout.av.setParticipantVisible(partner_id, true);
   gapi.hangout.av.setParticipantAudible(partner_id, true);
