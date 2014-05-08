@@ -20,12 +20,18 @@
         <!DOCTYPE html>
      
 <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'></link>
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"></link>
 <link href='//rawgit.com/jcambre/CS247-P4/moderator/style.css' rel='stylesheet' type='text/css'></link>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src='//rawgit.com/jcambre/CS247-P4/breakout/breakout.js'></script>
 
 
@@ -47,9 +53,9 @@
         <button type="button" class="btn btn-danger" id="end_discussion_btn" style="display:none;">End Discussion</button>
       </center>
       <br/><br/>
-      <h2>Current Phase:</h2>
+      <h4>Current Phase:</h4>
       <p class="lead" id="phase_label"></p>
-      <h2>Remaining time in this phase:</h2>
+      <h4>Remaining time in this phase:</h4>
       <p class="lead" id="timer_label"></p>
     </div>
   </div>
