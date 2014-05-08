@@ -13,6 +13,7 @@ var timer;
 var fb_timer;
 
 //User fb objects
+var local_user;
 var first_user;
 var second_user;
 var third_user;
@@ -515,12 +516,14 @@ function init() {
 function getFBHangout(){
   var hangout_group_id = gapi.hangout.getHangoutId();
   var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
-  console.log(hangout_group_id + " " + reporter_google_id);
-  var l_fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
-  var l_fb_conversation = l_fb_instance.child(hangout_group_id);
-  console.log("-------");
-  console.log(l_fb_instance);
-  console.log(l_fb_conversation.set(0));
+  fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
+  var fb_conversations = fb_instance.child('conversations');
+  fb_conversation = conversations.child(hangout_group_id);
+  local_user = fb_conversation.child(reporter_google_id);
+  local_user.on('value', function(dataSnapshot) {
+    first_snapshot_val = dataSnapshot.val();
+  });
+  local_user.set(initial_contribution);
 }
 
 function listenForTurnReporting() {
