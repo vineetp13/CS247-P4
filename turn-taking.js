@@ -100,17 +100,17 @@
       } 
   };
 
-  $('#hide_agenda').click(function() {
+  function hidePanel() {
     $("#agenda_container").hide();
     $("#show_agenda").show();
     recenterCanvas();
-  });
+  };
 
-  $('#show_agenda').click(function() {
+  function showPanel() {
     $("#agenda_container").show();
     $("#show_agenda").hide();
     recenterCanvas();
-  });
+  };
 
   //LAYOUT AND VIDEO FEED CONTROLS:
   function setCanvas() {
