@@ -518,6 +518,9 @@ function getFBHangout(){
   console.log(hangout_group_id + " " + reporter_google_id);
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
   fb_conversation = fb_instance.child(hangout_group_id);
+  console.log("-------");
+  console.log(fb_instance);
+  console.log(fb_conversation);
 }
 
 function listenForTurnReporting() {
