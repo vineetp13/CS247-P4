@@ -152,5 +152,5 @@
     }
     canvas.setPosition(leftOffset, 0);
     canvas.setVisible(true);
-    $("#panel_container").height(CANVAS_HEIGHT);
+    // $("#panel_container").height(CANVAS_HEIGHT);
   };
