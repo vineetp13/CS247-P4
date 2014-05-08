@@ -46,14 +46,20 @@
         gapi.hangout.onParticipantsChanged.add(
           function(eventObj) {
             if (eventObj.participants.length == 4) {
-              $('#start_discussion_btn').toggleClass("disabled");
-              $('#start_discussion_btn').click(function() {
-                startDiscussion();
-              });
-              $('#end_discussion_btn').click(function() {
-                endDiscussion();
-              });
+              // $('#start_discussion_btn').toggleClass("disabled");
+              // $('#start_discussion_btn').click(function() {
+              //   startDiscussion();
+              // });
+              // $('#end_discussion_btn').click(function() {
+              //   endDiscussion();
+              // });
             }
+          }
+        );
+
+        gapi.hangout.data.onStateChanged.add(
+          function(eventObj) {
+            console.log("PLEEEEASE: " + $(eventObj.state).data("discussing"));
           }
         );
 
@@ -163,11 +169,14 @@
   function startDiscussion() {
     $("#start_discussion_btn").hide();
     $("#end_discussion_btn").show();
+    gapi.hangout.data.setValue("discussing","true");
   };
 
   function endDiscussion() {
     // $("#start_discussion_btn").show();
     $("#end_discussion_btn").hide();
+    gapi.hangout.data.setValue("discussing","false");
+
   };
 
   //LAYOUT AND VIDEO FEED CONTROLS:

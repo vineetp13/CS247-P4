@@ -65,6 +65,15 @@
       $('#show_panel').click(function() {
         showPanel();
       });
+
+      // DELETE ONCE TESTED
+      $('#start_discussion_btn').toggleClass("disabled");
+      $('#start_discussion_btn').click(function() {
+        startDiscussion();
+      });
+      $('#end_discussion_btn').click(function() {
+        endDiscussion();
+      });
     }
   );
 </script>
