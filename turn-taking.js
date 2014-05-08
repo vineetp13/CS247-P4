@@ -526,12 +526,18 @@ function getFBHangout(){
   fb_conversation = fb_conversations.child(hangout_group_id);
   var self = this;
 
-  fb_conversation.on('child_added', checkSetup, null, self);
+  fb_conversations.on('child_changed', checkSetup, null, self);
 
   fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
 }
 
 function checkSetup(dataSnapshot){
+  if(dataSnapshot.name != hangout_group_id){
+    console.log("NOT OUR CONVERSATION");
+    return;
+  }else{
+    console.log("THIS IS OUR CONVERSATION! :)");
+  }
     console.log(fb_conversation);
     console.log("GETS HERE");
     var num_children = fb_conversation.numChildren();
@@ -549,21 +555,21 @@ function checkSetup(dataSnapshot){
       });
 
       fb_conversation.forEach(function(childSnapshot) {
-        users.push(fb_conversation.child(childSnapshot.name));
+        users.push(fb_conversation.child(childSnapshot.name()));
 
         var my_index = participantIDs.indexOf(childSnapshot.name());
         switch (my_index) {
           case 0:
-            first_user = fb_conversation.child(childSnapshot.name);
+            first_user = fb_conversation.child(childSnapshot.name());
             break;
           case 1:
-            second_user = fb_conversation.child(childSnapshot.name);
+            second_user = fb_conversation.child(childSnapshot.name());
             break;
           case 2:
-            third_user = fb_conversation.child(childSnapshot.name);
+            third_user = fb_conversation.child(childSnapshot.name());
             break;
           case 3:
-            fourth_user = fb_conversation.child(childSnapshot.name);
+            fourth_user = fb_conversation.child(childSnapshot.name());
             break;
           default:
             break;
