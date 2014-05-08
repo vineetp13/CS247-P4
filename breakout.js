@@ -244,7 +244,7 @@ function hideAllButPair() {
   var participantIDs = [];
   // get all of the ids
   for (var index in participants) {
-    participantIDs << participants[index].id
+    participantIDs.push(participants[index].id);
   }
   //then sort them in ascending order
   participantIDs.sort();
