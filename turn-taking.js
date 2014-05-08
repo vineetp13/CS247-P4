@@ -534,7 +534,9 @@ function getFBHangout(){
 }
 
 function checkSetup(dataSnapshot){
-  if(dataSnapshot.name != hangout_group_id){
+  console.log("hangout_group_id: " + hangout_group_id);
+  console.log("dataSnapshot.name: " + dataSnapshot.name());
+  if(dataSnapshot.name() != hangout_group_id){
     console.log("NOT OUR CONVERSATION");
     return;
   }else{
