@@ -4,7 +4,6 @@
 
   var isTurnReporter = false;
   var lastReportedTurnID = null;
-  var gapi_instance;
 
   // Wait for gadget to load.
   gadgets.util.registerOnLoadHandler(init);
@@ -12,7 +11,6 @@
   function init() {
     // When API is ready...                                                         
     gapi.hangout.onApiReady.add(
-      gapi_instance = gapi
       function(eventObj) {
         if (eventObj.isApiReady) {
             gapi.hangout.layout.setChatPaneVisible(false);
@@ -44,9 +42,19 @@
             removeParticipantsFromGraph(eventObj.removedParticipants);
           }
         ); 
+
+        getFBHangout();
       }
     );
   };
+
+  function getFBHangout(){
+    var hangout_group_id = appData.group.group_id;
+    var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
+    var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
+    var participantID = participant.person.id;
+    console.log(hangout_group_id + " " + reporter_google_id + " " + participantID);
+  }
 
   function listenForTurnReporting() {
     determineReporters();
@@ -67,8 +75,7 @@
   };
 
   function trackTurns(eventObj) {
-    console.log(eventObj)
-    var participant = gapi_instance.hangout.getParticipantById(eventObj.displayedParticipant);
+    var participant = gapi.hangout.getParticipantById(eventObj.displayedParticipant);
     var participantID = participant.person.id;
 
     //Only report if I have not already reported seeing this same participant
