@@ -50,7 +50,7 @@
         <button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Discussion</button>
         <button type="button" class="btn btn-danger" id="end_discussion_btn" style="display:none;">End Discussion</button>
       </center>
-      <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 400px; margin: 0 auto; position: relative; float: right"></div>
+      <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right"></div>
     </div>
   </div>
 
