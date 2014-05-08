@@ -47,8 +47,10 @@
         <button type="button" class="btn btn-danger" id="end_discussion_btn" style="display:none;">End Discussion</button>
       </center>
       <br/><br/>
-      <h3>Current Phase: <span id="phase_label"></span></h3>
-      <h3>Remaining time in this phase: <span id="timer_label"></span></h3>
+      <h2>Current Phase:</h2>
+      <p class="lead" id="phase_label"></p>
+      <h2>Remaining time in this phase:</h2>
+      <p class="lead" id="timer_label"></p>
     </div>
   </div>
 
