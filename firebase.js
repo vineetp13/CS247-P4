@@ -397,11 +397,11 @@ function setupButtons() {
   }
   if(timer != null){
     if(timer != 1){
-      start_timer();
+      //start_timer();
     }else{
       console.log("Timer has already been started");
     }
   }else{
-    start_timer();
+    //start_timer();
   }
 }
