@@ -49,14 +49,14 @@
       <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
       <center>
         <button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Think-Pair-Share</button>
-        <button type="button" class="btn btn-danger" id="restart_discussion_btn" style="display:none;">Restart Think-Pair-Share</button>
+        <button type="button" class="btn btn-primary" id="restart_discussion_btn" style="display:none;">Restart Think-Pair-Share</button>
       </center>
       <br/><br/>
       <h4>Current Phase:</h4>
       <p class="lead" id="phase_label">Waiting to begin</p>
       <div id="timer_wrapper">
         <h4>Remaining time in this phase:</h4>
-        <p class="lead" id="timer_label"></p>
+        <p class="lead" id="timer_label">Waiting to begin</p>
       </div>
     </div>
   </div>

@@ -160,7 +160,7 @@ function trigger_tps() {
     console.log("Current time is: " + Date.now());
 
     $("#timer_wrapper").show();
-    document.getElementById("phase_label").innerHTML = "Think"
+    document.getElementById("phase_label").innerHTML = "Think<br/>On your own, take this time to decide what Disney character you most identify with."
 
     // Start Think Phase
     var phase_duration = 30000;
@@ -196,7 +196,7 @@ function startPairPhase() {
     console.log("I'm in the pair phase!");
     console.log("Current time is: " + Date.now());
 
-    document.getElementById("phase_label").innerHTML = "Pair"
+    document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share what Disney character you decided on and why you identify with that character."
 
     var phase_duration = 60000;
     remaining_time_in_phase = phase_duration/1000;
@@ -214,7 +214,7 @@ function startSharePhase() {
 
     $("#restart_discussion_btn").show();
 
-    document.getElementById("phase_label").innerHTML = "Share"
+    document.getElementById("phase_label").innerHTML = "Share<br/>Now that we're all back, take turns going around and sharing what you discussed. Introduce what Disney character your partner chose to the rest of the group."
     document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
 
     console.log("I'm in the share phase!");
