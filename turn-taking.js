@@ -507,9 +507,9 @@ function init() {
         }
       );
       connect_to_timer_firebase();
+      getFBHangout();
       setupGraph();
       setupButtons();
-      getFBHangout();
     }
   );
 };
@@ -520,6 +520,15 @@ function getFBHangout(){
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
   var fb_conversations = fb_instance.child('conversations');
   fb_conversation = fb_conversations.child(hangout_group_id);
+
+  fb_conversation.on('child_added', function(dataSnapshot) {
+    var num_children = fb_conversation.numChildren();
+    if(num_children == 4){
+      console.log(4 + " children now added!");
+    }
+    console.log("child added!");
+  });
+
   local_user = fb_conversation.child(reporter_google_id);
   local_user_contribution = local_user.child('contribution');
   local_user.child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
