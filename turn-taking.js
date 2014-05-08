@@ -534,8 +534,6 @@ function getFBHangout(){
 }
 
 function checkSetup(dataSnapshot){
-  console.log("hangout_group_id: " + hangout_group_id);
-  console.log("dataSnapshot.name: " + dataSnapshot.name());
   if(dataSnapshot.name() != hangout_group_id){
     console.log("NOT OUR CONVERSATION");
     return;
@@ -548,64 +546,71 @@ function checkSetup(dataSnapshot){
       snapshots = [];
       participantIDs = [];
 
-      dataSnapshot.forEach(function(childSnapshot) {
-        var id = childSnapshot.name();
-        participantIDs.push(id);
-      });
+      dataSnapshot.forEach(processIDs.call(this));
 
-      dataSnapshot.forEach(function(childSnapshot) {
-        users.push(childSnapshot.name());
+      console.log("IDs: ");
+      console.log(participantIDs);
 
-        var my_index = participantIDs.indexOf(childSnapshot.child('id').val());
-        console.log("my_index: " + my_index);
-        switch (my_index) {
-          case 0:
-            first_user = fb_conversation.child(childSnapshot.name());
-            break;
-          case 1:
-            second_user = fb_conversation.child(childSnapshot.name());
-            break;
-          case 2:
-            third_user = fb_conversation.child(childSnapshot.name());
-            break;
-          case 3:
-            fourth_user = fb_conversation.child(childSnapshot.name());
-            break;
-          default:
-            break;
-        }
-
-        var cont = childSnapshot.child('contribution');
-        cont.on('value', function(dataSnapshot) {
-          snapshots[my_index] = dataSnapshot.val();
-          switch (my_index) {
-          case 0:
-            first_snapshot_val = dataSnapshot.val();
-            break;
-          case 1:
-            second_user = dataSnapshot.val();
-            break;
-          case 2:
-            third_user = dataSnapshot.val();
-            break;
-          case 3:
-            fourth_user = dataSnapshot.val();
-            break;
-          default:
-            break;
-        }
-        });
-        cont.set(initial_contribution);
-
-        var name = childSnapshot.child('name').val();
-        names.push(name);
-
-      });
+      dataSnapshot.forEach(processUsers.call(this));
 
       setupGraph(names);
       setupButtons();
 
     }
+}
+
+function processIDs(childSnapshot){
+  var id = childSnapshot.name();
+  participantIDs.push(id);
+}
+
+function processUsers(childSnapshot){
+  users.push(childSnapshot.name());
+
+  var my_index = participantIDs.indexOf(childSnapshot.child('id').val());
+  console.log("my_index: " + my_index);
+  switch (my_index) {
+    case 0:
+      first_user = fb_conversation.child(childSnapshot.name());
+      break;
+    case 1:
+      second_user = fb_conversation.child(childSnapshot.name());
+      break;
+    case 2:
+      third_user = fb_conversation.child(childSnapshot.name());
+      break;
+    case 3:
+      fourth_user = fb_conversation.child(childSnapshot.name());
+      break;
+    default:
+      break;
+  }
+
+  var cont = childSnapshot.child('contribution');
+  cont.on('value', function(dataSnapshot) {
+    snapshots[my_index] = dataSnapshot.val();
+    switch (my_index) {
+      case 0:
+        first_snapshot_val = dataSnapshot.val();
+        break;
+      case 1:
+        second_user = dataSnapshot.val();
+        break;
+      case 2:
+        third_user = dataSnapshot.val();
+        break;
+      case 3:
+        fourth_user = dataSnapshot.val();
+        break;
+      default:
+        break;
+    }
+  }, null, this);
+  
+  cont.set(initial_contribution);
+
+  var name = childSnapshot.child('name').val();
+  names.push(name);
 }
 
 
