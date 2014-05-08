@@ -569,13 +569,14 @@ function checkSetup(dataSnapshot){
   if(set_up_done){
     return;
   }else{
-    set_up_done = true;
+    
   }
 
   if(dataSnapshot.name() != hangout_group_id){
     console.log("NOT OUR CONVERSATION");
     return;
   }
+  set_up_done = true;
 
   var num_children = dataSnapshot.numChildren();
   if(num_children == 1){
