@@ -1,4 +1,5 @@
 //FIREBASE VARIABLES
+var set_up_done = false;
 var hangout_group_id;
 
 var gaugeChart;
@@ -568,6 +569,9 @@ function checkSetup(dataSnapshot){
     console.log("NOT OUR CONVERSATION");
     return;
   }
+  if(set_up_done){
+    return;
+  }
     var num_children = dataSnapshot.numChildren();
     if(num_children == 2){
       console.log(4 + " children now added!");
@@ -585,6 +589,7 @@ function checkSetup(dataSnapshot){
       console.log(participantIDs);
 
       dataSnapshot.forEach(processUser);
+      set_up_done = true;
       console.log("Users: ");
       console.log(users);
       console.log(names);
