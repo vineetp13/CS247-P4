@@ -569,7 +569,7 @@ function checkSetup(dataSnapshot){
     return;
   }
     var num_children = dataSnapshot.numChildren();
-    if(num_children == 1){
+    if(num_children == 4){
       console.log(4 + " children now added!");
       names = [];
       users = [];
