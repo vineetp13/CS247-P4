@@ -55,8 +55,12 @@
 </html>
 
 <script>
-  $('#hide_panel').click(hidePanel);
-  $('#show_panel').click(showPanel);
+  gapi.hangout.onApiReady.add(
+    function(eventObj) {
+      $('#hide_panel').click(hidePanel);
+      $('#show_panel').click(showPanel);
+    }
+  );
 </script>
 ]]>
 </Content>
