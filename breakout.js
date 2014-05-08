@@ -40,13 +40,9 @@ function init() {
           recenterCanvas();
       });
 
-      //Determine whether the just-added local participant is a turn reporter (there are two per session)
-      listenForTurnReporting();
-
       //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
       gapi.hangout.onEnabledParticipantsChanged.add(
         function(eventObj) {
-          listenForTurnReporting();
         }
       );
 
@@ -54,13 +50,9 @@ function init() {
           recenterCanvas();
       });
 
-      //Determine whether the just-added local participant is a turn reporter (there are two per session)
-      listenForTurnReporting();
-
       //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
       gapi.hangout.onEnabledParticipantsChanged.add(
         function(eventObj) {
-          listenForTurnReporting();
         }
       );
 
