@@ -13,6 +13,7 @@ var timer;
 var fb_timer;
 
 //User fb objects
+var local_user;
 var first_user;
 var second_user;
 var third_user;
@@ -41,6 +42,7 @@ var user_designation;
 
 //Seed contribution in seconds to balance statistics (.25 of 5 minutes each in ms)
 var initial_contribution = 75000;
+var local_user_contribution;
 
 //Total amount of talking done by all parties (total talk is set to 5 minute inverval in ms)
 var total_talk = 300000;
@@ -133,19 +135,19 @@ function connect_to_timer_firebase(){
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
 
   //Establish link so that all instances recieve changes in increment index
-  fb_increment_index = fb_instance.child("increment_index");
+  fb_increment_index = fb_instance.child('increment_index');
   fb_increment_index.on('value', function(dataSnapshot) {
     increment_index = dataSnapshot.val();
   });
 
   //Keep track for every instance of whether timer has been started
-  fb_timer = fb_instance.child("timer");
+  fb_timer = fb_instance.child('timer');
   fb_timer.on('value', function(dataSnapshot) {
     timer = dataSnapshot.val();
   });
 
   //Keep track of new users
-  fb_user_index = fb_instance.child("user_index");
+  fb_user_index = fb_instance.child('user_index');
   fb_user_index.on('value', function(dataSnapshot) {
     user_index = dataSnapshot.val() + 1;
   });
@@ -153,7 +155,7 @@ function connect_to_timer_firebase(){
 
 
   //mechanism to receive vis. updates pushed to fb
-  fb_update_vis = fb_instance.child("update");
+  fb_update_vis = fb_instance.child('update');
   fb_update_vis.on('child_added', function(dataSnapshot) {
     var percentage_1 = percentage_talk(first_snapshot_val);
     var percentage_2 = percentage_talk(second_snapshot_val);
@@ -505,9 +507,9 @@ function init() {
         }
       );
       connect_to_timer_firebase();
+      getFBHangout();
       setupGraph();
       setupButtons();
-      getFBHangout();
     }
   );
 };
@@ -515,12 +517,25 @@ function init() {
 function getFBHangout(){
   var hangout_group_id = gapi.hangout.getHangoutId();
   var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
-  console.log(hangout_group_id + " " + reporter_google_id);
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
-  fb_conversation = fb_instance.child(hangout_group_id);
-  console.log("-------");
-  console.log(fb_instance);
-  console.log(fb_conversation);
+  var fb_conversations = fb_instance.child('conversations');
+  fb_conversation = fb_conversations.child(hangout_group_id);
+
+  fb_conversation.on('child_added', function(dataSnapshot) {
+    var num_children = dataSnapshot.numChildren();
+    if(num_children == 4){
+      console.log(4 + " children now added!");
+    }
+    console.log("child added!");
+  });
+
+  local_user = fb_conversation.child(reporter_google_id);
+  local_user_contribution = local_user.child('contribution');
+  local_user.child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
+  local_user_contribution.on('value', function(dataSnapshot) {
+    first_snapshot_val = dataSnapshot.val();
+  });
+  local_user_contribution.set(initial_contribution);
 }
 
 function listenForTurnReporting() {
