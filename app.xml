@@ -92,7 +92,6 @@
         document.getElementById("graph_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_graph_btn">Start Graphing</button><button type="button" class="btn btn-primary" id="end_graph_btn" style="display:none;">End Graphing</button></center>';
       }
 
-      // DELETE ONCE TESTED
       $('#start_tps_btn').click(function() {
         startTPS();
       });
@@ -100,7 +99,6 @@
         restartTPS();
       });
 
-      // DELETE ONCE TESTED
       $('#start_graph_btn').click(function() {
         startGraphing();
       });

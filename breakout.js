@@ -22,6 +22,7 @@ var shareTimer;
 var thinkPhaseInitialized = false;
 var pairPhaseInitialized = false;
 var sharePhaseInitialized = false;
+var isInstructor = false;
 
 // TURN-TAKING STARTS HERE
 
@@ -163,6 +164,10 @@ function trigger_tps() {
     $("#restart_discussion_btn").hide();
     $("#pending_participants").hide();
 
+    var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
+    if (localParticipantId == "111880716844037207882" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
+      isInstructor = true;
+    }
 
     console.log("I'm in the think phase!");
     console.log("Current time is: " + Date.now());
@@ -177,7 +182,9 @@ function trigger_tps() {
     // var totalTime;
     thinkTimer = window.setTimeout(initiatePairPhase, phase_duration);
     thinkPhaseInitialized = true;
-    hideAllButSelf();
+    if (!isInstructor) {
+      hideAllButSelf();
+    }
   }  
 };
 
@@ -211,7 +218,9 @@ function startPairPhase() {
     counter=setInterval(timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
     var pairTimer = window.setTimeout(initiateSharePhase, phase_duration);
-    hideAllButPair();
+    if (!isInstructor) {
+      hideAllButPair();
+    }
   }
 };
 
@@ -228,8 +237,9 @@ function startSharePhase() {
     console.log("I'm in the share phase!");
     console.log("Current time is: " + Date.now());
     // Untimed!
-
-    showAllParticipants();
+    if (!isInstructor) {
+      showAllParticipants();
+    }
   }
 };
 
@@ -257,7 +267,11 @@ function hideAllButPair() {
   var participantIDs = [];
   // get all of the ids
   for (var index in participants) {
-    participantIDs.push(participants[index].id);
+    var participantId = participants[index].id;
+    // Include all participants EXCEPT the instructor accounts.
+    if (!(participantId == "111880716844037207882" || participantId == "wjkchid@gmail.com" || participantId == "kdumovic@gmail.com")) {
+      participantIDs.push(participants[index].id);
+    }
   }
   //then sort them in ascending order
   participantIDs.sort();
