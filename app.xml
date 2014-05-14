@@ -87,7 +87,7 @@
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
       console.log("My local participant ID is: " + localParticipantId);
-      if (localParticipantId == "111880716844037207883" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
+      if (localParticipantId == "111880716844037207882" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
         document.getElementById("tps_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>';
         document.getElementById("graph_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_graph_btn">Start Graphing</button><button type="button" class="btn btn-primary" id="end_graph_btn" style="display:none;">End Graphing</button></center>';
       }
