@@ -53,10 +53,8 @@
     <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
     <div id="visualization_container">
       <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
-      <center>
-        <button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Think-Pair-Share</button>
-        <button type="button" class="btn btn-primary" id="restart_discussion_btn" style="display:none;">Restart Think-Pair-Share</button>
-      </center>
+      <!-- Only display this if the individual is an admin (Kyle, Julia, Will) -->
+      <div id="buttons"></div>
       <br/><br/>
       <h4>Current Phase:</h4>
       <p class="lead" id="phase_label">Waiting to begin</p>
