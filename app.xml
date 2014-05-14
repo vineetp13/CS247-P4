@@ -96,10 +96,18 @@
 
       // DELETE ONCE TESTED
       $('#start_tps_btn').click(function() {
-        startDiscussion();
+        startTPS();
       });
       $('#restart_tps_btn').click(function() {
-        restartDiscussion();
+        restartTPS();
+      });
+
+      // DELETE ONCE TESTED
+      $('#start_graph_btn').click(function() {
+        startGraphing();
+      });
+      $('#restart_graph_btn').click(function() {
+        endGraphing();
       });
     }
   );
