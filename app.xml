@@ -95,7 +95,6 @@
       });
 
       // DELETE ONCE TESTED
-      $('#start_tps_btn').toggleClass("disabled");
       $('#start_tps_btn').click(function() {
         startDiscussion();
       });
