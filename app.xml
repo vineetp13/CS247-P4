@@ -37,7 +37,6 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src='//rawgit.com/jcambre/CS247-P4/breakout/breakout.js'></script>
 
 
 <html>
