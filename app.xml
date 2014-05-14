@@ -29,8 +29,8 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src='//rawgit.com/jcambre/CS247-P4/moderator/firebase_setup.js'></script>
-<script src='//rawgit.com/jcambre/CS247-P4/moderator/turn-taking.js'></script>
-<script src='//rawgit.com/jcambre/CS247-P4/moderator/breakout.js'></script>
+<script src='//rawgit.com/jcambre/CS247-P4/mod/turn-taking.js'></script>
+<script src='//rawgit.com/jcambre/CS247-P4/mod/breakout.js'></script>
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
