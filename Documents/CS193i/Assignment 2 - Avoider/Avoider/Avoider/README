@@ -1,8 +1,0 @@
-So I ended up using two CADisplayLinks in order to have two callbacks on separate timing, one to animate and the other to control spawning. I didn't know whether it was the best implementation but I preferred it to some sort of random generation (controlling timing seems important to me) and I didn't want to manually take care of updating some counter variable to check in order to space spawning.
-
-I also encountered a weird "reset" glitch from the IB placement of the player image when I tried to manipulate it as the user. I couldn't figure out what was going on there so I implemented it all manually.
-
-I also used constants and was not sure whether or not I implemented them correctly. Is there some convention like properties I should know about?
-
-Thanks,
-William
