@@ -54,9 +54,9 @@
     <div id="visualization_container">
       <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
       <!-- Only display this if the individual is an admin (Kyle, Julia, Will) -->
-      <div id="buttons">
+      <div id="tps_buttons">
         <center>
-          <button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button>
+          <button type="button" class="btn btn-success" id="start_tps_btn" style="display: none;">Start Think-Pair-Share</button>
           <button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button>
         </center>
       </div>
@@ -67,7 +67,14 @@
         <h4>Remaining time in this phase:</h4>
         <p class="lead" id="timer_label">Waiting to begin</p>
       </div>
-          <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right"></div>
+      <hr/>
+      <div id="graph_buttons">
+        <center>
+          <button type="button" class="btn btn-success" id="start_graph_btn" style="display: none;">Start Graph Discussion</button>
+          <button type="button" class="btn btn-primary" id="restart_graph_btn" style="display:none;">Restart Graph Discussion</button>
+        </center>
+      </div>
+      <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right"></div>
 
     </div>
   </div>

@@ -471,8 +471,8 @@ function init() {
         function(eventObj) {
           if (eventObj.participants.length == 4) {
             // MAKE SURE TO UN_COMMENT THIS!!
-            // $('#start_discussion_btn').toggleClass("disabled");
-            // $('#start_discussion_btn').click(function() {
+            // $('#start_graph_btn').toggleClass("disabled");
+            // $('#start_graph_btn').click(function() {
             //   startDiscussion();
             // });
             // $('#end_discussion_btn').click(function() {
@@ -487,11 +487,11 @@ function init() {
       gapi.hangout.data.onStateChanged.add(
         function(eventObj) {
           if (eventObj.state.discussing == "true") {
-            $("#start_discussion_btn").hide();
+            $("#start_graph_btn").hide();
             $("#end_discussion_btn").show();
           } else {
             $("#end_discussion_btn").hide();
-            // $("#start_discussion_btn").show();
+            // $("#start_graph_btn").show();
           }
         }
       );
@@ -747,15 +747,15 @@ function showPanel() {
 };
 
 function startDiscussion() {
-  $("#start_discussion_btn").hide();
+  $("#start_graph_btn").hide();
   $("#end_discussion_btn").show();
   gapi.hangout.data.setValue("discussing","true");
   start_timer();
 };
 
 function endDiscussion() {
-  // $("#start_discussion_btn").show();
-  $("#end_discussion_btn").hide();
+  // $("#start_graph_btn").show();
+  $("#end_start_tps_btn").hide();
   gapi.hangout.data.setValue("discussing","false");
 
 };
