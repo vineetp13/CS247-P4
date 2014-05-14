@@ -182,7 +182,7 @@ function trigger_tps() {
     // var totalTime;
     thinkTimer = window.setTimeout(initiatePairPhase, phase_duration);
     thinkPhaseInitialized = true;
-    if (!isInstructor) {
+    if (isInstructor == false) {
       hideAllButSelf();
     }
   }  
@@ -218,7 +218,7 @@ function startPairPhase() {
     counter=setInterval(timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
     var pairTimer = window.setTimeout(initiateSharePhase, phase_duration);
-    if (!isInstructor) {
+    if (isInstructor == false) {
       hideAllButPair();
     }
   }
@@ -237,7 +237,7 @@ function startSharePhase() {
     console.log("I'm in the share phase!");
     console.log("Current time is: " + Date.now());
     // Untimed!
-    if (!isInstructor) {
+    if (isInstructor == false) {
       showAllParticipants();
     }
   }
