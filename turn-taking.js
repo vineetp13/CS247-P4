@@ -431,13 +431,6 @@ function init() {
           recenterCanvas();
       });
 
-      // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
-      var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
-      console.log("My local participant ID is: " + localParticipantId);
-      if (localParticipantId == "111880716844037207882" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
-        document.getElementById("buttons").innerHTML = '<center><button type="button" class="btn btn-success disabled" id="start_discussion_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-primary" id="restart_discussion_btn" style="display:none;">Restart Think-Pair-Share</button></center>';
-      }
-
       //Determine whether the just-added local participant is a turn reporter (there are two per session)
       listenForTurnReporting();
 

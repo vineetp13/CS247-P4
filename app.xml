@@ -54,7 +54,12 @@
     <div id="visualization_container">
       <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
       <!-- Only display this if the individual is an admin (Kyle, Julia, Will) -->
-      <div id="buttons"></div>
+      <div id="buttons">
+        <center>
+          <button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button>
+          <button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button>
+        </center>
+      </div>
       <br/><br/>
       <h4>Current Phase:</h4>
       <p class="lead" id="phase_label">Waiting to begin</p>
@@ -83,11 +88,11 @@
       });
 
       // DELETE ONCE TESTED
-      $('#start_discussion_btn').toggleClass("disabled");
-      $('#start_discussion_btn').click(function() {
+      $('#start_tps_btn').toggleClass("disabled");
+      $('#start_tps_btn').click(function() {
         startDiscussion();
       });
-      $('#restart_discussion_btn').click(function() {
+      $('#restart_tps_btn').click(function() {
         restartDiscussion();
       });
     }
