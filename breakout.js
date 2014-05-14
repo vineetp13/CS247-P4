@@ -74,10 +74,10 @@ function init() {
             // MAKE SURE TO UN_COMMENT THIS!!
             // $('#start_discussion_btn').toggleClass("disabled");
             // $('#start_discussion_btn').click(function() {
-            //   startDiscussion();
+            //   startTPS();
             // });
             // $('#restart_discussion_btn').click(function() {
-            //   restartDiscussion();
+            //   restartTPS();
             // });
           }
           setNumParticipantsNeeded();
@@ -130,12 +130,12 @@ function showPanel() {
 };
 
 // This is called ONLY by a local participant who initiates the discussion
-function startDiscussion() {
+function startTPS() {
   gapi.hangout.data.setValue("discussing","true");
   gapi.hangout.data.setValue("phase", "think");
 };
 
-function restartDiscussion() {
+function restartTPS() {
   // $("#start_discussion_btn").show();
   thinkPhaseInitialized = false;
   pairPhaseInitialized = false;

@@ -473,10 +473,10 @@ function init() {
             // MAKE SURE TO UN_COMMENT THIS!!
             // $('#start_graph_btn').toggleClass("disabled");
             // $('#start_graph_btn').click(function() {
-            //   startDiscussion();
+            //   startGraphing();
             // });
             // $('#end_discussion_btn').click(function() {
-            //   endDiscussion();
+            //   endGraphing();
             // });
           }
           setNumParticipantsNeeded();
@@ -746,14 +746,14 @@ function showPanel() {
   recenterCanvas();
 };
 
-function startDiscussion() {
+function startGraphing() {
   $("#start_graph_btn").hide();
   $("#end_discussion_btn").show();
   gapi.hangout.data.setValue("discussing","true");
   start_timer();
 };
 
-function endDiscussion() {
+function endGraphing() {
   // $("#start_graph_btn").show();
   $("#end_start_tps_btn").hide();
   gapi.hangout.data.setValue("discussing","false");
