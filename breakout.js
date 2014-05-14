@@ -153,7 +153,7 @@ function timer(){
      clearInterval(counter);
      return;
   }
-  document.getElementById("timer_label").innerHTML=remaining_time_in_phase + " secs"; // watch for spelling
+  document.getElementById("timer_label").innerHTML=remaining_time_in_phase + " secs";
 };
 
 // Called by EVERY participant running the app to establish each person's timers/displays
@@ -357,7 +357,7 @@ function recenterCanvas() {
 
 function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
-  var num_needed_participants = 4 - (num_participants);
+  var num_needed_participants = 5 - (num_participants);
   if (num_needed_participants <= 0) {
     document.getElementById("pending_participants").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
   } else {
