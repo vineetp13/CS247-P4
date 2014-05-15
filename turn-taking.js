@@ -3,6 +3,10 @@ var set_up_done = false;
 var hangout_group_id;
 var participantID;
 
+//VARS
+var THRESHOLD_HIGH = 30
+var THRESHOLD_LOW = 20
+
 //MATH
 var subtract;
 var increment;
@@ -65,6 +69,7 @@ var total_talk = 300000;
 var username;
 var names;
 var current_participant;
+var cur_userID;
 var participantIDs;
 
 
@@ -217,6 +222,8 @@ function connect_to_timer_firebase(){
 
 }
 
+/* We do not need this for now 
+ * 
 function setupGauge() {
   gaugeChart = new Highcharts.Chart({
     chart: {
@@ -312,6 +319,9 @@ function setupGauge() {
   });
 }
 
+*
+*/
+
 function setupGraph(names) {
   graphChart = new Highcharts.Chart({
     chart: {
@@ -381,39 +391,39 @@ function setupGraph(names) {
   });
 }
 
-function setupButtons() {
-  document.body.onkeydown = function(event) {
-    event = event || window.event;
-    var keycode = event.charCode || event.keyCode;
-    switch (keycode) {
-      case 49: // '1'
-        fb_increment_index.set(1);
-        break;
-      case 50: // '2'
-        fb_increment_index.set(2);
-        break;
-      case 51: // '3'
-        fb_increment_index.set(3);
-        break;
-      case 52: // '4'
-        fb_increment_index.set(4);
-        break;
-      default:
-        fb_increment_index.set(0);
-        break;
-    }
-    graphChart.series
-  }
-  if(timer != null){
-    if(timer != 1){
-      //start_timer();
-    }else{
-      console.log("Timer has already been started");
-    }
-  }else{
-    //start_timer();
-  }
-}
+// function setupButtons() {
+//   document.body.onkeydown = function(event) {
+//     event = event || window.event;
+//     var keycode = event.charCode || event.keyCode;
+//     switch (keycode) {
+//       case 49: // '1'
+//         fb_increment_index.set(1);
+//         break;
+//       case 50: // '2'
+//         fb_increment_index.set(2);
+//         break;
+//       case 51: // '3'
+//         fb_increment_index.set(3);
+//         break;
+//       case 52: // '4'
+//         fb_increment_index.set(4);
+//         break;
+//       default:
+//         fb_increment_index.set(0);
+//         break;
+//     }
+//     graphChart.series
+//   }
+//   if(timer != null){
+//     if(timer != 1){
+//       //start_timer();
+//     }else{
+//       console.log("Timer has already been started");
+//     }
+//   }else{
+//     //start_timer();
+//   }
+// }
 
 
 // TURN-TAKING STARTS HERE
@@ -473,16 +483,16 @@ function init() {
 
       gapi.hangout.onParticipantsChanged.add(
         function(eventObj) {
-          // if (eventObj.participants.length == 4) {
-          //   // MAKE SURE TO UN_COMMENT THIS!!
-          //   $('#start_graph_btn').toggleClass("disabled");
-          //   $('#start_graph_btn').on('click', function() {
-          //     startGraphing();
-          //   });
-          //   $('#end_discussion_btn').on('click', function() {
-          //     endGraphing();
-          //   });
-          // }
+          if (eventObj.participants.length == 4) {
+            // MAKE SURE TO UN_COMMENT THIS!!
+            $('#start_graph_btn').toggleClass("disabled");
+            $('#start_graph_btn').on('click', function() {
+              startGraphing();
+            });
+            $('#end_discussion_btn').on('click', function() {
+              endGraphing();
+            });
+          }
           setNumParticipantsNeeded();
         }
       );
@@ -523,9 +533,14 @@ function init() {
   );
 };
 
+function dispNotice(msg) {
+  gapi.hangout.layout.displayNotice(msg,true);
+}
+
 function getFBHangout(){
   hangout_group_id = gapi.hangout.getHangoutId();
   var reporter_google_id = gapi.hangout.getLocalParticipant().person.id;
+  cur_userID = reporter_google_id;
   fb_instance = new Firebase("https://cs247-milestone3.firebaseio.com");
   fb_conversations = fb_instance.child('conversations');
   fb_conversation = fb_conversations.child(hangout_group_id);
@@ -566,30 +581,55 @@ function getFBHangout(){
     var percentage_3 = percentage_talk(third_snapshot_val);
     var percentage_4 = percentage_talk(fourth_snapshot_val);
 
-    //Update user 1 percentage
-    var data = graphChart.series[0].data;
-    data[0].y = percentage_1;
-    graphChart.series[0].setData(data,true);
+    var percentages = [percentage_1, percentage_3, percentage_2, percentage_4];
 
-    //... user 2 percentage
-    var data = graphChart.series[1].data;
-    data[0].y = percentage_2;
-    graphChart.series[1].setData(data,true);
+  
+    for (int i = 0; i < percentages.size; i++) {
 
-    //... user 3 percentage
-    var data = graphChart.series[2].data;
-    data[0].y = percentage_3;
-    graphChart.series[2].setData(data,true);
+      // update percentages for user on graphh
+      var data = graphChart.series[i].data;
+      data[0].y = percentages[i];
+      graphChart.series[i].setData(data,true);
 
-    //... user 4 percentage
-    var data = graphChart.series[3].data;
-    data[0].y = percentage_4;
-    graphChart.series[3].setData(data,true);
+      // check if above or below threshold to trigger alerts
+      if (percentages[i] < THRESHOLD_LOW) { // too low
+        if (participantIDs[i] == cur_userID) {
+          dispNotice("Speak up! You should participate more.");
+        } 
+      }
+      if (percentages[i] > THRESHOLD_HIGH) { // too high
+        if (participantIDs[i] == cur_userID) {
+          dispNotice("Yo calm down brotha. You be talking too much.");
+        }
+      }
+
+    }
+
+    // //Update user 1 percentage
+    // var data = graphChart.series[0].data;
+    // data[0].y = percentage_1;
+    // graphChart.series[0].setData(data,true);
+
+    // //... user 2 percentage
+    // var data = graphChart.series[1].data;
+    // data[0].y = percentage_2;
+    // graphChart.series[1].setData(data,true);
+
+    // //... user 3 percentage
+    // var data = graphChart.series[2].data;
+    // data[0].y = percentage_3;
+    // graphChart.series[2].setData(data,true);
+
+    // //... user 4 percentage
+    // var data = graphChart.series[3].data;
+    // data[0].y = percentage_4;
+    // graphChart.series[3].setData(data,true);
 
     //console.log(percentage_1);
     //console.log(percentage_2);
     //console.log(percentage_3);
     //console.log(percentage_4);
+
   }, null, this);
 
 }
@@ -607,7 +647,7 @@ function checkSetup(dataSnapshot){
   }
 
   var num_children = dataSnapshot.numChildren();
-  if(num_children == 4){
+  if (num_children == 4) {
     set_up_done = true;
     console.log(4 + " children now added!");
     names = [];
@@ -630,8 +670,7 @@ function checkSetup(dataSnapshot){
     console.log(snapshots);
 
     setupGraph(names);
-    setupButtons();
-
+    //setupButtons();
   }
 }
 
@@ -775,6 +814,7 @@ function startGraphing() {
   $("#end_discussion_btn").show();
   start_timer();
   gapi.hangout.data.setValue("graphing","true");
+  $("#graph_buttons").show();
   $("#graph_container").show();
   $("#panel_container_wrapper").height(CANVAS_HEIGHT);
 
