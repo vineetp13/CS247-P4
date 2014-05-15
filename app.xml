@@ -20,7 +20,7 @@
         <!DOCTYPE html>
      
 <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'></link>
-<link href='//rawgit.com/jcambre/CS247-P4/moderator/style.css' rel='stylesheet' type='text/css'></link>
+<link href='//rawgit.com/jcambre/CS247-P4/mod/style.css' rel='stylesheet' type='text/css'></link>
 <script src='//cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="//code.highcharts.com/highcharts.js"></script>
