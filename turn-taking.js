@@ -7,6 +7,8 @@ var participantID;
 var THRESHOLD_HIGH = 50;
 var THRESHOLD_LOW = 10;
 var NUM_USERS = 4;
+var VIZ_REFRESH_INTERVAL_MS = 7000;
+var TIMER_UPDATE_INTERVAL = 1000;
 
 //MATH
 var subtract;
@@ -140,12 +142,12 @@ function start_timer(){
         break;
     }
 
-  }, 1000);
+  }, TIMER_UPDATE_INTERVAL);
   
   //Push update event for visualization every 3 seconds to reflect changes
   timer_2_id = setInterval(function(){
     fb_update_vis.push('update');
-  }, 3000);
+  }, VIZ_REFRESH_INTERVAL_MS);
 
 }
 
