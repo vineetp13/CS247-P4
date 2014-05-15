@@ -483,7 +483,7 @@ function init() {
 
       gapi.hangout.onParticipantsChanged.add(
         function(eventObj) {
-          if (eventObj.participants.length == 4) {
+          if (eventObj.participants.length == 2) { // change this back to 4?
             // MAKE SURE TO UN_COMMENT THIS!!
             $('#start_graph_btn').toggleClass("disabled");
             $('#start_graph_btn').on('click', function() {
@@ -647,7 +647,7 @@ function checkSetup(dataSnapshot){
   }
 
   var num_children = dataSnapshot.numChildren();
-  if (num_children == 4) {
+  if (num_children == 2) { // change back to 4
     set_up_done = true;
     console.log(4 + " children now added!");
     names = [];
