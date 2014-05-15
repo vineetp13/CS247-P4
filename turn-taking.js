@@ -93,7 +93,7 @@ $(document).ready(function(){
 });
 
 function percentage_talk(time) {
-  return Math.ceil((time/300000)*100);
+  return Math.floor((time/total_talk)*100);
 }
 
 
