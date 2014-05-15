@@ -7,6 +7,8 @@ var participantID;
 var THRESHOLD_HIGH = 30
 var THRESHOLD_LOW = 20
 
+var NUM_USERS = 2;
+
 //MATH
 var subtract;
 var increment;
@@ -116,28 +118,28 @@ function start_timer(){
       case -1: //NO SPEAKER
         break;
       case 0:
-        first_user.child('contribution').set(first_snapshot_val + 99 < 300000 ? first_snapshot_val + 99 : 300000);
-        second_user.child('contribution').set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
-        third_user.child('contribution').set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
-        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        first_user ? first_user.child('contribution').set(first_snapshot_val + increment < 300000 ? first_snapshot_val + increment : 300000) : null;
+        second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
+        third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
+        fourth_user ? fourth_user.set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 1:
-        second_user.child('contribution').set(second_snapshot_val + 99 < 300000 ? second_snapshot_val + 99 : 300000);
-        first_user.child('contribution').set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
-        third_user.child('contribution').set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
-        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        second_user ? second_user.child('contribution').set(second_snapshot_val + increment < 300000 ? second_snapshot_val + increment : 300000) : null;
+        first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
+        third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
+        fourth_user ? fourth_user.set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 2:
-        third_user.child('contribution').set(third_snapshot_val + 99 < 300000 ? third_snapshot_val + 99 : 300000);
-        first_user.child('contribution').set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
-        second_user.child('contribution').set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
-        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        third_user ? third_user.child('contribution').set(third_snapshot_val + increment < 300000 ? third_snapshot_val + increment : 300000) : null;
+        first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
+        second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
+        fourth_user ? fourth_user.set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 3:
-        fourth_user.set(fourth_snapshot_val + 99 < 300000 ? fourth_snapshot_val + 99 : 300000);
-        first_user.child('contribution').set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
-        second_user.child('contribution').set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
-        third_user.child('contribution').set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
+        fourth_user ? fourth_user.set(fourth_snapshot_val + increment < 300000 ? fourth_snapshot_val + increment : 300000) : null;
+        first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
+        second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
+        third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
         break;
       default:
         break;
@@ -518,10 +520,10 @@ function init() {
               clearInterval(timer_2_id);
               timer_2_id = null;
             }
-            first_user.child('contribution').set(initial_contribution);
-            second_user.child('contribution').set(initial_contribution);
-            third_user.child('contribution').set(initial_contribution);
-            fourth_user.child('contribution').set(initial_contribution);
+            first_user ? first_user.child('contribution').set(initial_contribution) : null;
+            second_user ? second_user.child('contribution').set(initial_contribution) : null;
+            third_user ? third_user.child('contribution').set(initial_contribution) : null;
+            fourth_user ? fourth_user.child('contribution').set(initial_contribution) : null;
 
             $("#start_graph_btn").show();
           }
@@ -647,7 +649,9 @@ function checkSetup(dataSnapshot){
   }
 
   var num_children = dataSnapshot.numChildren();
-  if (num_children == 2) { // change back to 4
+  if (num_children == NUM_USERS) { // change back to 4
+    decrement = Math.floor(100/NUM_USERS);
+    increment = decrement*NUM_USERS;
     set_up_done = true;
     console.log(4 + " children now added!");
     names = [];
