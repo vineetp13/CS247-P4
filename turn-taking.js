@@ -150,7 +150,7 @@ function start_timer(){
   //Push update event for visualization every 3 seconds to reflect changes
   timer_2_id = setInterval(function(){
     fb_update_vis.push('update');
-  }, 1000);
+  }, 3000);
 
 }
 
@@ -595,12 +595,16 @@ function getFBHangout(){
 
       // check if above or below threshold to trigger alerts
       if (percentages[i] < THRESHOLD_LOW) { // too low
+        console.log("Somebody has gone below " + THRESHOLD_LOW + "%.");
         if (participantIDs[i] == cur_userID) {
+          console.log("That person is you. Sending notice...");
           dispNotice("Speak up! You should participate more.");
         } 
       }
       if (percentages[i] > THRESHOLD_HIGH) { // too high
+        console.log("Somebody has gone above " + THRESHOLD_HIGH + "%.");
         if (participantIDs[i] == cur_userID) {
+          console.log("That person is you. Sending notice...");
           dispNotice("Yo calm down brotha. You be talking too much.");
         }
       }

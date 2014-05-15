@@ -14,6 +14,9 @@ var MIN_WIDTH = 300;
 var isTurnReporter = false;
 var lastReportedTurnID = null;
 
+var THINK_PHASE_DURATION = 5000; // edit this to change time in each phase
+var PAIR_PHASE_DURATION = 10000;
+
 var counter;
 var remaining_time_in_phase;
 var thinkTimer;
@@ -176,11 +179,10 @@ function trigger_tps() {
     document.getElementById("phase_label").innerHTML = "Think<br/>On your own, take this time to decide what Disney character you most identify with."
 
     // Start Think Phase
-    var phase_duration = 30000;
-    remaining_time_in_phase = phase_duration/1000;
+    remaining_time_in_phase = THINK_PHASE_DURATION/1000;
     counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
-    thinkTimer = window.setTimeout(initiatePairPhase, phase_duration);
+    thinkTimer = window.setTimeout(initiatePairPhase, THINK_PHASE_DURATION);
     thinkPhaseInitialized = true;
     if (isInstructor == false) {
       hideAllButSelf();
@@ -213,11 +215,10 @@ function startPairPhase() {
 
     document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share what Disney character you decided on and why you identify with that character."
 
-    var phase_duration = 60000;
-    remaining_time_in_phase = phase_duration/1000;
+    remaining_time_in_phase = PAIR_PHASE_DURATION/1000;
     counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
-    var pairTimer = window.setTimeout(initiateSharePhase, phase_duration);
+    var pairTimer = window.setTimeout(initiateSharePhase, PAIR_PHASE_DURATION);
     if (isInstructor == false) {
       hideAllButPair();
     }
