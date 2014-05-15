@@ -4,8 +4,8 @@ var hangout_group_id;
 var participantID;
 
 //VARS
-var THRESHOLD_HIGH = 40;
-var THRESHOLD_LOW = 15;
+var THRESHOLD_HIGH = 50;
+var THRESHOLD_LOW = 10;
 var NUM_USERS = 4;
 
 //MATH
@@ -88,7 +88,6 @@ $(document).ready(function(){
   //connect_to_timer_firebase();
   //setupGauge();
   //setupGraph();
-  //setupButtons();
 });
 
 function percentage_talk(time) {
@@ -114,25 +113,25 @@ function start_timer(){
       case -1: //NO SPEAKER
         break;
       case 0:
-        first_user ? first_user.child('contribution').set(first_snapshot_val + increment < 300000 ? first_snapshot_val + increment : 300000) : null;
+        first_user ? first_user.child('contribution').set(first_snapshot_val + increment < total_talk ? first_snapshot_val + increment : total_talk) : null;
         second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
         third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
         fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 1:
-        second_user ? second_user.child('contribution').set(second_snapshot_val + increment < 300000 ? second_snapshot_val + increment : 300000) : null;
+        second_user ? second_user.child('contribution').set(second_snapshot_val + increment < total_talk ? second_snapshot_val + increment : total_talk) : null;
         first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
         third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
         fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 2:
-        third_user ? third_user.child('contribution').set(third_snapshot_val + increment < 300000 ? third_snapshot_val + increment : 300000) : null;
+        third_user ? third_user.child('contribution').set(third_snapshot_val + increment < total_talk ? third_snapshot_val + increment : total_talk) : null;
         first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
         second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
         fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 3:
-        fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val + increment < 300000 ? fourth_snapshot_val + increment : 300000) : null;
+        fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val + increment < total_talk ? fourth_snapshot_val + increment : total_talk) : null;
         first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
         second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
         third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
@@ -141,7 +140,7 @@ function start_timer(){
         break;
     }
 
-  }, 100);
+  }, 1000);
   
   //Push update event for visualization every 3 seconds to reflect changes
   timer_2_id = setInterval(function(){
@@ -389,41 +388,6 @@ function setupGraph(names) {
   });
 }
 
-// function setupButtons() {
-//   document.body.onkeydown = function(event) {
-//     event = event || window.event;
-//     var keycode = event.charCode || event.keyCode;
-//     switch (keycode) {
-//       case 49: // '1'
-//         fb_increment_index.set(1);
-//         break;
-//       case 50: // '2'
-//         fb_increment_index.set(2);
-//         break;
-//       case 51: // '3'
-//         fb_increment_index.set(3);
-//         break;
-//       case 52: // '4'
-//         fb_increment_index.set(4);
-//         break;
-//       default:
-//         fb_increment_index.set(0);
-//         break;
-//     }
-//     graphChart.series
-//   }
-//   if(timer != null){
-//     if(timer != 1){
-//       //start_timer();
-//     }else{
-//       console.log("Timer has already been started");
-//     }
-//   }else{
-//     //start_timer();
-//   }
-// }
-
-
 // TURN-TAKING STARTS HERE
 
 // Wait for gadget to load.
@@ -483,7 +447,6 @@ function init() {
         function(eventObj) {
           if (eventObj.participants.length == NUM_USERS) { // change this back to 4?
             // MAKE SURE TO UN_COMMENT THIS!!
-            $('#start_graph_btn').toggleClass("disabled");
             $('#start_graph_btn').on('click', function() {
               startGraphing();
             });
@@ -572,6 +535,7 @@ function getFBHangout(){
     var percentage_4 = (NUM_USERS >= 4) ? percentage_talk(fourth_snapshot_val) : 0;
 
     var percentages = [percentage_1, percentage_2, percentage_3, percentage_4];
+    console.log(percentages);
 
   
     for (var i = 0; i < NUM_USERS; i++) {
@@ -599,31 +563,6 @@ function getFBHangout(){
 
     }
 
-    // //Update user 1 percentage
-    // var data = graphChart.series[0].data;
-    // data[0].y = percentage_1;
-    // graphChart.series[0].setData(data,true);
-
-    // //... user 2 percentage
-    // var data = graphChart.series[1].data;
-    // data[0].y = percentage_2;
-    // graphChart.series[1].setData(data,true);
-
-    // //... user 3 percentage
-    // var data = graphChart.series[2].data;
-    // data[0].y = percentage_3;
-    // graphChart.series[2].setData(data,true);
-
-    // //... user 4 percentage
-    // var data = graphChart.series[3].data;
-    // data[0].y = percentage_4;
-    // graphChart.series[3].setData(data,true);
-
-    //console.log(percentage_1);
-    //console.log(percentage_2);
-    //console.log(percentage_3);
-    //console.log(percentage_4);
-
   }, null, this);
 
 }
@@ -644,6 +583,8 @@ function checkSetup(dataSnapshot){
   if (num_children == NUM_USERS) { // change back to 4
     decrement = Math.floor(100/NUM_USERS);
     increment = decrement*NUM_USERS;
+    console.log("Increment Val: " + increment);
+    console.log("Decrement Val: " + decrement);
     set_up_done = true;
     console.log(4 + " children now added!");
     names = [];
@@ -666,7 +607,6 @@ function checkSetup(dataSnapshot){
     console.log(snapshots);
 
     setupGraph(names);
-    //setupButtons();
   }
 }
 
