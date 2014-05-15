@@ -49,8 +49,8 @@
   <div id="show_panel">
     <span id="show_panel_label" style="font-size: 10pt;">Show Think-Pair-Share&#9660;</span>
   </div>
-  <div id="panel_container_wrapper">
-    <div id="panel_container" style="overflow:scroll; position:relative;">
+  <div id="panel_container_wrapper" style="overflow:scroll; position:relative;">
+    <div id="panel_container">
       <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
       <div id="visualization_container">
         <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
