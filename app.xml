@@ -49,26 +49,27 @@
   <div id="show_panel">
     <span id="show_panel_label" style="font-size: 10pt;">Show Think-Pair-Share&#9660;</span>
   </div>
-  <div id="panel_container" style="overflow:scroll; position:relative;">
-    <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
-    <div id="visualization_container">
-      <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
-      <!-- Only display this if the individual is an admin (Kyle, Julia, Will) -->
-      <div id="tps_buttons"></div>
-      <br/><br/>
-      <h4>Current Phase:</h4>
-      <p class="lead" id="phase_label">Waiting to begin</p>
-      <div id="timer_wrapper">
-        <h4>Remaining time in this phase:</h4>
-        <p class="lead" id="timer_label">Waiting to begin</p>
-      </div>
-      <hr/>
-      <div id="graph_buttons"></div>
-      <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right"></div>
+  <div id="panel_container_wrapper">
+    <div id="panel_container" style="overflow:scroll; position:relative;">
+      <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
+      <div id="visualization_container">
+        <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
+        <!-- Only display this if the individual is an admin (Kyle, Julia, Will) -->
+        <div id="tps_buttons"></div>
+        <br/><br/>
+        <h4>Current Phase:</h4>
+        <p class="lead" id="phase_label">Waiting to begin</p>
+        <div id="timer_wrapper">
+          <h4>Remaining time in this phase:</h4>
+          <p class="lead" id="timer_label">Waiting to begin</p>
+        </div>
+        <hr/>
+        <div id="graph_buttons"></div>
+        <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right"></div>
 
+      </div>
     </div>
   </div>
-
   
 
 </div>
