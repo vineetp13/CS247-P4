@@ -160,8 +160,8 @@ function phase_timer(){
 function trigger_tps() {
   if (thinkPhaseInitialized == false) {
     // Control the button display for all participants
-    $("#start_discussion_btn").hide();
-    $("#restart_discussion_btn").hide();
+    $("#start_tps_button").hide();
+    $("#restart_tps_button").hide();
     $("#pending_participants").hide();
 
     var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
@@ -230,7 +230,7 @@ function startSharePhase() {
     window.clearInterval(counter);
 
     if (isInstructor == true) {
-      $("#restart_discussion_btn").show();
+      $("#restart_tps_btn").show();
       $("#graph_buttons").show();
     }
     $('#panel_container').css( "height", "+=300px" );
@@ -273,7 +273,7 @@ function hideAllButPair() {
   for (var index in participants) {
     var participantId = participants[index].id;
     // Include all participants EXCEPT the instructor accounts.
-    if (!(participantId == "111880716844037207882" || participantId == "wjkchid@gmail.com" || participantId == "kdumovic@gmail.com")) {
+    if (participantId != "111880716844037207882") {
       participantIDs.push(participants[index].id);
     }
   }
