@@ -4,10 +4,9 @@ var hangout_group_id;
 var participantID;
 
 //VARS
-var THRESHOLD_HIGH = 30;
-var THRESHOLD_LOW = 20;
-
-var NUM_USERS = 2;
+var THRESHOLD_HIGH = 40;
+var THRESHOLD_LOW = 15;
+var NUM_USERS = 4;
 
 //MATH
 var subtract;
@@ -349,7 +348,7 @@ function setupGraph(names) {
       },
       plotBands: [
         {
-          color: '#DDDF0D',
+          color: '#DF5353',
           from: 0,
           to: THRESHOLD_LOW
         },

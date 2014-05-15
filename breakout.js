@@ -14,8 +14,8 @@ var MIN_WIDTH = 300;
 var isTurnReporter = false;
 var lastReportedTurnID = null;
 
-var THINK_PHASE_DURATION = 5000; // edit this to change time in each phase
-var PAIR_PHASE_DURATION = 10000;
+var THINK_PHASE_DURATION = 30000; // edit this to change time in each phase
+var PAIR_PHASE_DURATION = 60000;
 
 var counter;
 var remaining_time_in_phase;
@@ -176,7 +176,7 @@ function trigger_tps() {
     console.log("Current time is: " + Date.now());
 
     $("#timer_wrapper").show();
-    document.getElementById("phase_label").innerHTML = "Think<br/>On your own, take this time to decide what Disney character you most identify with."
+    document.getElementById("phase_label").innerHTML = "Think<br/>On your own, think about your favorite class at Stanford. Why was it your favorite class?"
 
     // Start Think Phase
     remaining_time_in_phase = THINK_PHASE_DURATION/1000;
@@ -213,7 +213,7 @@ function startPairPhase() {
     console.log("I'm in the pair phase!");
     console.log("Current time is: " + Date.now());
 
-    document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share what Disney character you decided on and why you identify with that character."
+    document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share which class you picked and why. What did you learn?"
 
     remaining_time_in_phase = PAIR_PHASE_DURATION/1000;
     counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
@@ -236,7 +236,7 @@ function startSharePhase() {
     }
     $('#panel_container').css( "height", "+=300px" );
 
-    document.getElementById("phase_label").innerHTML = "Share<br/>Now that we're all back, take turns going around and sharing what you discussed. Introduce what Disney character your partner chose to the rest of the group."
+    document.getElementById("phase_label").innerHTML = "Share<br/>Now that we're all back, take turns going around and sharing what you discussed. Talk about your favorite classes."
     document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
 
     console.log("I'm in the share phase!");
