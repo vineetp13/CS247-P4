@@ -755,6 +755,8 @@ function startGraphing() {
   $("#end_discussion_btn").show();
   start_timer();
   gapi.hangout.data.setValue("graphing","true");
+  $("#panel_container_wrapper").height(CANVAS_HEIGHT);
+
 };
 
 function endGraphing() {
