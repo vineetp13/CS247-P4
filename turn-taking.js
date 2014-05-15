@@ -594,14 +594,14 @@ function getFBHangout(){
 
       // check if above or below threshold to trigger alerts
       if (percentages[i] < THRESHOLD_LOW) { // too low
-        console.log("Somebody has gone below " + THRESHOLD_LOW + "%.");
+        console.log("Somebody has gone below " + THRESHOLD_LOW + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
           dispNotice("Speak up! You should participate more.");
         } 
       }
       if (percentages[i] > THRESHOLD_HIGH) { // too high
-        console.log("Somebody has gone above " + THRESHOLD_HIGH + "%.");
+        console.log("Somebody has gone above " + THRESHOLD_HIGH + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
           dispNotice("Yo calm down brotha. You be talking too much.");
