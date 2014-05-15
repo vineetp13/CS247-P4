@@ -146,7 +146,7 @@ function restartTPS() {
   console.log("restarting discussion");
 };
 
-function timer(){
+function phase_timer(){
   remaining_time_in_phase=remaining_time_in_phase-1;
   if (remaining_time_in_phase <= 0)
   {
@@ -178,7 +178,7 @@ function trigger_tps() {
     // Start Think Phase
     var phase_duration = 30000;
     remaining_time_in_phase = phase_duration/1000;
-    counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+    counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
     thinkTimer = window.setTimeout(initiatePairPhase, phase_duration);
     thinkPhaseInitialized = true;
@@ -215,7 +215,7 @@ function startPairPhase() {
 
     var phase_duration = 60000;
     remaining_time_in_phase = phase_duration/1000;
-    counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+    counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
     var pairTimer = window.setTimeout(initiateSharePhase, phase_duration);
     if (isInstructor == false) {
