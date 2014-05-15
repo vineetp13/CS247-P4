@@ -486,12 +486,16 @@ function init() {
       // Update the display for the *other* participants in response to one person clicking the start/stop 
       gapi.hangout.data.onStateChanged.add(
         function(eventObj) {
-          if (eventObj.state.discussing == "true") {
+          if (eventObj.state.phase == "share") {
+            $("#start_graph_btn").show();
+          } else if (eventObj.state.phase == "think") {
             $("#start_graph_btn").hide();
-            $("#end_discussion_btn").show();
-          } else {
-            $("#end_discussion_btn").hide();
-            // $("#start_graph_btn").show();
+            $("#restart_graph_btn").hide();
+          } else if (eventObj.state.graphing == "true") {
+            $("#restart_graph_btn").show();
+          } else if (eventObj.state.graphing == "false") {
+            $("#restart_graph_btn").hide();
+            $("#start_graph_btn").show();
           }
         }
       );
@@ -749,14 +753,14 @@ function showPanel() {
 function startGraphing() {
   $("#start_graph_btn").hide();
   $("#end_discussion_btn").show();
-  gapi.hangout.data.setValue("discussing","true");
   start_timer();
+  gapi.hangout.data.setValue("graphing","true");
 };
 
 function endGraphing() {
   // $("#start_graph_btn").show();
   $("#end_graph_btn").hide();
-  gapi.hangout.data.setValue("discussing","false");
+  gapi.hangout.data.setValue("graphing","false");
 
 };
 
