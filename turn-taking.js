@@ -4,8 +4,8 @@ var hangout_group_id;
 var participantID;
 
 //VARS
-var THRESHOLD_HIGH = 30
-var THRESHOLD_LOW = 20
+var THRESHOLD_HIGH = 30;
+var THRESHOLD_LOW = 20;
 
 var NUM_USERS = 2;
 
@@ -578,10 +578,10 @@ function getFBHangout(){
   //mechanism to receive vis. updates pushed to fb
   fb_update_vis = fb_conversation.child('update');
   fb_update_vis.on('child_added', function(dataSnapshot) {
-    var percentage_1 = percentage_talk(first_snapshot_val);
-    var percentage_2 = percentage_talk(second_snapshot_val);
-    var percentage_3 = percentage_talk(third_snapshot_val);
-    var percentage_4 = percentage_talk(fourth_snapshot_val);
+    var percentage_1 = (NUM_USERS) >= 1) ? percentage_talk(first_snapshot_val) : 0;
+    var percentage_2 = (NUM_USERS) >= 2 ? percentage_talk(second_snapshot_val) : 0;
+    var percentage_3 = (NUM_USERS) >= 3 ? percentage_talk(third_snapshot_val) : 0;
+    var percentage_4 = (NUM_USERS) >= 4 ? percentage_talk(fourth_snapshot_val) : 0;
 
     var percentages = [percentage_1, percentage_3, percentage_2, percentage_4];
 
