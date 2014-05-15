@@ -271,7 +271,7 @@ function hideAllButPair() {
   var participantIDs = [];
   // get all of the ids
   for (var index in participants) {
-    var participantId = participants[index].id;
+    var participantId = participants[index].person.id;
     // Include all participants EXCEPT the instructor accounts.
     if (participantId != "111880716844037207882") {
       participantIDs.push(participants[index].id);
