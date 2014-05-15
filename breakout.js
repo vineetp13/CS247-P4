@@ -232,7 +232,7 @@ function startSharePhase() {
     if (isInstructor == true) {
       $("#restart_discussion_btn").show();
     }
-    $("panel_container").height($("panel_container").height() + 300); 
+    $('#panel_container').css( "height", "+=300px" );
 
     document.getElementById("phase_label").innerHTML = "Share<br/>Now that we're all back, take turns going around and sharing what you discussed. Introduce what Disney character your partner chose to the rest of the group."
     document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
