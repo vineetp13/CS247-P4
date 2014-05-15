@@ -64,8 +64,8 @@
           <p class="lead" id="timer_label">Waiting to begin</p>
         </div>
         <hr/>
-        <div id="graph_buttons"></div>
-        <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right"></div>
+        <div id="graph_buttons" style="display: none;"></div>
+        <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right; display: none;"></div>
 
       </div>
     </div>
