@@ -53,9 +53,6 @@ var increment_index;
 
 var fb_increment_index;
 
-//Keep track of new user index [1, 2, 3, 4]
-var fb_user_index;
-
 var user_index;
 
 var user_designation;
@@ -120,22 +117,22 @@ function start_timer(){
         first_user ? first_user.child('contribution').set(first_snapshot_val + increment < 300000 ? first_snapshot_val + increment : 300000) : null;
         second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
         third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
-        fourth_user ? fourth_user.set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
+        fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 1:
         second_user ? second_user.child('contribution').set(second_snapshot_val + increment < 300000 ? second_snapshot_val + increment : 300000) : null;
         first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
         third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
-        fourth_user ? fourth_user.set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
+        fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 2:
         third_user ? third_user.child('contribution').set(third_snapshot_val + increment < 300000 ? third_snapshot_val + increment : 300000) : null;
         first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
         second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
-        fourth_user ? fourth_user.set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
+        fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val - decrement > 0 ? fourth_snapshot_val - decrement : 0) : null;
         break;
       case 3:
-        fourth_user ? fourth_user.set(fourth_snapshot_val + increment < 300000 ? fourth_snapshot_val + increment : 300000) : null;
+        fourth_user ? fourth_user.child('contribution').set(fourth_snapshot_val + increment < 300000 ? fourth_snapshot_val + increment : 300000) : null;
         first_user ? first_user.child('contribution').set(first_snapshot_val - decrement > 0 ? first_snapshot_val - decrement : 0) : null;
         second_user ? second_user.child('contribution').set(second_snapshot_val - decrement > 0 ? second_snapshot_val - decrement : 0) : null;
         third_user ? third_user.child('contribution').set(third_snapshot_val - decrement > 0 ? third_snapshot_val - decrement : 0) : null;
@@ -566,14 +563,6 @@ function getFBHangout(){
     timer = dataSnapshot.val();
   }, null, this);
 
-  //Keep track of new users
-  fb_user_index = fb_conversation.child('user_index');
-  fb_user_index.on('value', function(dataSnapshot) {
-    user_index = dataSnapshot.val() + 1;
-  }, null, this);
-
-
-
   //mechanism to receive vis. updates pushed to fb
   fb_update_vis = fb_conversation.child('update');
   fb_update_vis.on('child_added', function(dataSnapshot) {
@@ -882,7 +871,7 @@ function recenterCanvas() {
 
 function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
-  var num_needed_participants = 4 - (num_participants);
+  var num_needed_participants = NUM_USERS - (num_participants);
   if (num_needed_participants <= 0) {
     document.getElementById("pending_participants").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
   } else {
