@@ -586,7 +586,7 @@ function getFBHangout(){
     var percentages = [percentage_1, percentage_3, percentage_2, percentage_4];
 
   
-    for (var i = 0; i < percentages.size; i++) {
+    for (var i = 0; i < NUM_USERS; i++) {
 
       // update percentages for user on graphh
       var data = graphChart.series[i].data;
