@@ -351,16 +351,16 @@ function setupGraph(names) {
         {
           color: '#DDDF0D',
           from: 0,
-          to: 20
+          to: THRESHOLD_LOW
         },
         {
           color: '#55BF3B',
-          from: 20,
-          to: 40
+          from: THRESHOLD_LOW,
+          to: THRESHOLD_HIGH
         },
         {
           color: '#DF5353',
-          from: 40,
+          from: THRESHOLD_HIGH,
           to: 60
         }
       ],
@@ -578,10 +578,10 @@ function getFBHangout(){
   //mechanism to receive vis. updates pushed to fb
   fb_update_vis = fb_conversation.child('update');
   fb_update_vis.on('child_added', function(dataSnapshot) {
-    var percentage_1 = (NUM_USERS) >= 1) ? percentage_talk(first_snapshot_val) : 0;
-    var percentage_2 = (NUM_USERS) >= 2 ? percentage_talk(second_snapshot_val) : 0;
-    var percentage_3 = (NUM_USERS) >= 3 ? percentage_talk(third_snapshot_val) : 0;
-    var percentage_4 = (NUM_USERS) >= 4 ? percentage_talk(fourth_snapshot_val) : 0;
+    var percentage_1 = (NUM_USERS >= 1) ? percentage_talk(first_snapshot_val) : 0;
+    var percentage_2 = (NUM_USERS >= 2) ? percentage_talk(second_snapshot_val) : 0;
+    var percentage_3 = (NUM_USERS >= 3) ? percentage_talk(third_snapshot_val) : 0;
+    var percentage_4 = (NUM_USERS >= 4) ? percentage_talk(fourth_snapshot_val) : 0;
 
     var percentages = [percentage_1, percentage_3, percentage_2, percentage_4];
 
