@@ -583,7 +583,7 @@ function getFBHangout(){
     var percentage_3 = (NUM_USERS >= 3) ? percentage_talk(third_snapshot_val) : 0;
     var percentage_4 = (NUM_USERS >= 4) ? percentage_talk(fourth_snapshot_val) : 0;
 
-    var percentages = [percentage_1, percentage_3, percentage_2, percentage_4];
+    var percentages = [percentage_1, percentage_2, percentage_3, percentage_4];
 
   
     for (var i = 0; i < NUM_USERS; i++) {
