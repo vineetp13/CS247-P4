@@ -583,7 +583,7 @@ function checkSetup(dataSnapshot){
 
   var num_children = dataSnapshot.numChildren();
   if (num_children == NUM_USERS) { // change back to 4
-    decrement = Math.floor(100/NUM_USERS);
+    decrement = Math.floor(TIMER_UPDATE_INTERVAL/NUM_USERS);
     increment = decrement*NUM_USERS;
     console.log("Increment Val: " + increment);
     console.log("Decrement Val: " + decrement);
