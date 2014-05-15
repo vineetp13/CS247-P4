@@ -528,7 +528,9 @@ function getFBHangout(){
 
   fb_conversation.on('value', checkSetup, null, self);
 
-  fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
+  if((reporter_google_id + "") != "111880716844037207882") {
+    fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
+  }
 
   //Establish link so that all instances recieve changes in increment index
   fb_increment_index = fb_conversation.child('increment_index');
