@@ -15,11 +15,14 @@ var graphChart;
 var fb_instance;
 var fb_conversation;
 var fb_conversations;
+var fb_reset;
 
 //Indicator variable to keep track of whether timer has been started on any instance
 var timer;
+var discussing = false;
 
 var fb_timer;
+var timer_id;
 
 //User fb objects
 var users;
@@ -101,7 +104,7 @@ function start_timer(){
 
   //Adds time to the user currently talking and removes and equal amount of time from the users not talking
   //Maintains a constant 5 minute window to calculate talking percentages
-  setInterval(function(){
+  timer_id = setInterval(function(){
     
     switch (increment_index){
       case -1: //NO SPEAKER
@@ -469,15 +472,15 @@ function init() {
 
       gapi.hangout.onParticipantsChanged.add(
         function(eventObj) {
-          if (eventObj.participants.length == 4) {
+          if (eventObj.participants.length == 3) {
             // MAKE SURE TO UN_COMMENT THIS!!
-            // $('#start_graph_btn').toggleClass("disabled");
-            // $('#start_graph_btn').click(function() {
-            //   startGraphing();
-            // });
-            // $('#end_discussion_btn').click(function() {
-            //   endGraphing();
-            // });
+            $('#start_graph_btn').toggleClass("disabled");
+            $('#start_graph_btn').on('click', function() {
+              startGraphing();
+            });
+            $('#end_discussion_btn').on('click', function() {
+              endGraphing();
+            });
           }
           setNumParticipantsNeeded();
         }
@@ -495,6 +498,16 @@ function init() {
             $("#restart_graph_btn").show();
           } else if (eventObj.state.graphing == "false") {
             $("#restart_graph_btn").hide();
+            discussing = false;
+            if(timer_id){
+              clearInterval(timer_id);
+              timer_id = null;
+            }
+            first_user.child('contribution').set(initial_contribution);
+            second_user.child('contribution').set(initial_contribution);
+            third_user.child('contribution').set(initial_contribution);
+            // fourth_user.child('contribution').set(initial_contribution);
+
             $("#start_graph_btn").show();
           }
         }
@@ -760,7 +773,7 @@ function startGraphing() {
 };
 
 function endGraphing() {
-  // $("#start_graph_btn").show();
+  $("#start_graph_btn").show();
   $("#end_graph_btn").hide();
   gapi.hangout.data.setValue("graphing","false");
 
