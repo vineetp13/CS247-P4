@@ -7,16 +7,39 @@
 
   <h3 class="page-header">Introduction</h3>
   <p class="lead">We have decided to combine the features of fully functional prototypes 1 and 2 in order to create a "suite" of teaching tools for use in MOOCs (Mass Open Online Courses). This suite will initially include two major features: (1) conversational cues to balance discussion and (2) break-out groups in line with the pedagogical technique of Think-Pair-Share. Our theoretical usage case is in a professor or teaching assistant holding "office hours" over Google Hangouts or in students getting together for an informal study session.</p>
-  <p>To prepare for this user study, we have adjusted our second prototype, hiding the graph by default and adding in popover alert-style cues to notify users if they have gone above or beyond a verbal contribution threshold. We envision this new layout and notification system to be less visually districating and cause less psychogically stress--two common complaints during testing. Break-out groups will stay as is, but we wll add some additional features to allow instructors to control the size of these groups and the delay time between Think and Pair.</p>
-  <p>When running this study we plan to gauge whether our features are useful, whether the interface is intuitive, whether the graph is dechipherable (we may run AB testing with an alternative type of graph), if the trasition from Pair to Share is too abrupt, whether the contribution cues are too noticeable, and vice versa. This will allow us to adjust our prototype in preparation for Functional Prototype II.</p>
+  <p>To prepare for this user study, we have adjusted our second prototype, hiding the graph by default and adding in popover alert-style cues to notify users if they have gone above or beyond a verbal contribution threshold. We envision this new layout and notification system to be less visually districating and stresful--two common complaints during our previous testing. Break-out groups will stay as is.</p>
+  <p>When running this study we plan to gauge whether our features are useful, whether the interface is intuitive, if the trasition from Pair to Share is too abrupt, whether the contribution cues are noticeable and frequent enough, etc. This will allow us to adjust our prototype between user trials and in preparation for Functional Prototype II.</p>
 
   <h3 class="page-header">Methods</h3>
   <dl>
     <b>Study design</b>
-    <p>We will run four users through a mock office hours environment, with one of us (a fifth user) acting as instructor. The users will be Stanford students recruited through Piazza or mutual friends. Stanford students are well representative of our target audience as all Stanford students are, naturally, students and many have already pariticipated in MOOCs.</p>
+    <p>We will run four users--two random Stanford students, two confederates (ourselves) through a Google Hangout with one of us (a fifth user) acting as instructor. Users will be recruited through Piazza or through mutual friends. We plan to run four sessions, each with two users who have never before seen our app.</p>
     <b>Study setup</b>
-    <p>A question will be posed to be discussed during these "mock" office hours. The instructor (one of us) will initially pose this question and then enable the group to initiate Think-Pair-Share. After an allotted period of time, students will return to the group and present their findings/solutions. We will use a question where there is no "right" answer so that the contribution of both pairs is critical. During the Share phase, oral balancing monitoring will be enabled for all users except the instructor. The instructor will default to viewing the graph but all users will have it hidden. When users go above or beyond the verbal thresholds, they will be alerted. We will set these thresholds low such that this case occurs regularly. Afterwards we will ask users to fill out a survey and answer questions based on their experience (the interface, the usability, the usefulness, etc.). We will briefly interview some of these users. Studies will be video-recorded.</p>
-  </dl>
+    <p>Users will be invited to join the group Hangout, remotely, and asking to load our app. Then they will listen to a brief, scripted 30 second introduction from the "instructor" on what they will be doing during the discussion. The instructor will then press a button visible to only her and all users except the instructor will enter the Think phase of Think-Pair-Share. For 30 seconds users will see only themselves and reflect individually on a text prompt with a discussion question displayed within the Hangout app. Immediately after this time has exhausted, each user will be randomly Paired up with another user (hence why we needed four users--an even number with two pairs). For 60 seconds they will only see/hear the video/audio feed of their partner. Pairs will be instructed by another text prompt to together discuss the proposed question. During this time, all users (and their paired conversations) will be visible to the instructor. Afterwards all users will return to the group to Share their solutions. Before participants are asked to begin sharing, the instructor will trigger the discussion-balancing mechanism. Only the instructor will have access to the graph with each users' verbal contributions. However, users will individually and discreetly be notified by alert-style popovers if they speak above or below a conversational threshold. We will set these thresholds to be relatively minor such that they are commonly triggered by users and we can then measure user feedback. After 3 minutes or so and the conversation has died down, the instructor will end the Google Hangout. Each of the two users will be interviewed individually by a confederate and asked the following series of scripted questions--</p>
+
+    <b>Survey Questions</b>
+    <ol>
+      <li>When the discussion began, what did you expect to happen when the instructor said you would be breaking into groups? How well did this process of separation match with what you expected?</li>
+      <li>Please describe interaction with your partner during the “Pair” phase of the discussion? Did you immediately address the question, spend some time introducing yourselves, etc.?</li>
+      <li>On a scale from 1 to 10, please rank how appropriate you felt the length of each phase of the conversation was, where 1 = way too short and 10 = way too long:
+        <ol>
+          <li>Think phase</li>
+          <li>Pair phase</li>
+          <li>Share phase</li>
+        </ol></li>
+      </ol>
+      <p>If you received a notification during the discussion for high or low participation:</p>
+      <ol>
+        <li>When the notification appeared, what did you think was going on?</li>
+        <li>When the notification appeared, how did it affect your participation for the rest of the discussion? Did the notification confuse you? Was it immediately visible?</li>
+        <li>In the moments leading up to when the notification appeared, where you conscious of your participation level relative to everyone else’s? If so, how would you describe your own level of participation in that moment?</li>
+      </ol>
+      <p>Additional questions:</p>
+        <ol>
+          <li>1. What do you think could use the most improvement?</li>
+          <li>2. What did you like the most about this experience?</li>
+        </ol>
+    </dl>
 
 </div>
 
