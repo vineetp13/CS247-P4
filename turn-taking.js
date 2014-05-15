@@ -483,7 +483,7 @@ function init() {
 
       gapi.hangout.onParticipantsChanged.add(
         function(eventObj) {
-          if (eventObj.participants.length == 4) {
+          if (eventObj.participants.length == 2) { // change this back to 4?
             // MAKE SURE TO UN_COMMENT THIS!!
             $('#start_graph_btn').toggleClass("disabled");
             $('#start_graph_btn').on('click', function() {
