@@ -23,6 +23,7 @@ var discussing = false;
 
 var fb_timer;
 var timer_id;
+var timer_2_id;
 
 //User fb objects
 var users;
@@ -110,28 +111,28 @@ function start_timer(){
       case -1: //NO SPEAKER
         break;
       case 0:
-        first_user.child('contribution').set(first_snapshot_val + 100 < 300000 ? first_snapshot_val + 100 : 300000);
-        second_user.child('contribution').set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
-        third_user.child('contribution').set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
-        //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        first_user.child('contribution').set(first_snapshot_val + 99 < 300000 ? first_snapshot_val + 99 : 300000);
+        second_user.child('contribution').set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
+        third_user.child('contribution').set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
+        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 1:
-        second_user.child('contribution').set(second_snapshot_val + 100 < 300000 ? second_snapshot_val + 100 : 300000);
-        first_user.child('contribution').set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
-        third_user.child('contribution').set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
-        //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        second_user.child('contribution').set(second_snapshot_val + 99 < 300000 ? second_snapshot_val + 99 : 300000);
+        first_user.child('contribution').set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
+        third_user.child('contribution').set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
+        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 2:
-        third_user.child('contribution').set(third_snapshot_val + 100 < 300000 ? third_snapshot_val + 100 : 300000);
-        first_user.child('contribution').set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
-        second_user.child('contribution').set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
-        //fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
+        third_user.child('contribution').set(third_snapshot_val + 99 < 300000 ? third_snapshot_val + 99 : 300000);
+        first_user.child('contribution').set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
+        second_user.child('contribution').set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
+        fourth_user.set(fourth_snapshot_val - 33 > 0 ? fourth_snapshot_val - 33 : 0);
         break;
       case 3:
-        //fourth_user.set(fourth_snapshot_val + 99 < 300000 ? fourth_snapshot_val + 99 : 300000);
-        first_user.child('contribution').set(first_snapshot_val - 50 > 0 ? first_snapshot_val - 50 : 0);
-        second_user.child('contribution').set(second_snapshot_val - 50 > 0 ? second_snapshot_val - 50 : 0);
-        third_user.child('contribution').set(third_snapshot_val - 50 > 0 ? third_snapshot_val - 50 : 0);
+        fourth_user.set(fourth_snapshot_val + 99 < 300000 ? fourth_snapshot_val + 99 : 300000);
+        first_user.child('contribution').set(first_snapshot_val - 33 > 0 ? first_snapshot_val - 33 : 0);
+        second_user.child('contribution').set(second_snapshot_val - 33 > 0 ? second_snapshot_val - 33 : 0);
+        third_user.child('contribution').set(third_snapshot_val - 33 > 0 ? third_snapshot_val - 33 : 0);
         break;
       default:
         break;
@@ -140,7 +141,7 @@ function start_timer(){
   }, 100);
   
   //Push update event for visualization every 3 seconds to reflect changes
-  setInterval(function(){
+  timer_2_id = setInterval(function(){
     fb_update_vis.push('update');
   }, 1000);
 
@@ -372,11 +373,11 @@ function setupGraph(names) {
         name: names[2],
         data: [25]
 
-    }/*, {
+    }, {
         name: names[3],
         data: [25]
 
-    }*/]
+    }]
   });
 }
 
@@ -472,7 +473,7 @@ function init() {
 
       gapi.hangout.onParticipantsChanged.add(
         function(eventObj) {
-          if (eventObj.participants.length == 3) {
+          if (eventObj.participants.length == 4) {
             // MAKE SURE TO UN_COMMENT THIS!!
             $('#start_graph_btn').toggleClass("disabled");
             $('#start_graph_btn').on('click', function() {
@@ -503,10 +504,14 @@ function init() {
               clearInterval(timer_id);
               timer_id = null;
             }
+            if(timer_2_id){
+              clearInterval(timer_2_id);
+              timer_2_id = null;
+            }
             first_user.child('contribution').set(initial_contribution);
             second_user.child('contribution').set(initial_contribution);
             third_user.child('contribution').set(initial_contribution);
-            // fourth_user.child('contribution').set(initial_contribution);
+            fourth_user.child('contribution').set(initial_contribution);
 
             $("#start_graph_btn").show();
           }
@@ -559,7 +564,7 @@ function getFBHangout(){
     var percentage_1 = percentage_talk(first_snapshot_val);
     var percentage_2 = percentage_talk(second_snapshot_val);
     var percentage_3 = percentage_talk(third_snapshot_val);
-    //var percentage_4 = percentage_talk(fourth_snapshot_val);
+    var percentage_4 = percentage_talk(fourth_snapshot_val);
 
     //Update user 1 percentage
     var data = graphChart.series[0].data;
@@ -577,9 +582,9 @@ function getFBHangout(){
     graphChart.series[2].setData(data,true);
 
     //... user 4 percentage
-   // var data = graphChart.series[3].data;
-    //data[0].y = percentage_4;
-    //graphChart.series[3].setData(data,true);
+    var data = graphChart.series[3].data;
+    data[0].y = percentage_4;
+    graphChart.series[3].setData(data,true);
 
     //console.log(percentage_1);
     //console.log(percentage_2);
@@ -602,9 +607,9 @@ function checkSetup(dataSnapshot){
   }
 
   var num_children = dataSnapshot.numChildren();
-  if(num_children == 3){
+  if(num_children == 4){
     set_up_done = true;
-    console.log(3 + " children now added!");
+    console.log(4 + " children now added!");
     names = [];
     users = [];
     snapshots = [];
@@ -829,7 +834,7 @@ function recenterCanvas() {
 
 function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
-  var num_needed_participants = 3 - (num_participants);
+  var num_needed_participants = 4 - (num_participants);
   if (num_needed_participants <= 0) {
     document.getElementById("pending_participants").innerHTML = "You're all set for your discussion! Whenever everyone is ready, have someone click the \"Start Discussion\" button to initiate the discussion.";
   } else {
