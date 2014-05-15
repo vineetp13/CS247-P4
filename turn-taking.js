@@ -775,7 +775,6 @@ function startGraphing() {
   $("#end_discussion_btn").show();
   start_timer();
   gapi.hangout.data.setValue("graphing","true");
-  $("#graph_buttons").show();
   $("#graph_container").show();
   $("#panel_container_wrapper").height(CANVAS_HEIGHT);
 

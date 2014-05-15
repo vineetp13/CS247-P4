@@ -231,6 +231,7 @@ function startSharePhase() {
 
     if (isInstructor == true) {
       $("#restart_discussion_btn").show();
+      $("#graph_buttons").show();
     }
     $('#panel_container').css( "height", "+=300px" );
 
