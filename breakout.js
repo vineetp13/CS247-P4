@@ -135,6 +135,7 @@ function showPanel() {
 
 // This is called ONLY by a local participant who initiates the discussion
 function startTPS() {
+  $("#start_tps_btn").hide();
   gapi.hangout.data.setValue("discussing","true");
   gapi.hangout.data.setValue("phase", "think");
 };
