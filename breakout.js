@@ -365,6 +365,7 @@ function setNumParticipantsNeeded() {
   var num_needed_participants = 5 - (num_participants);
   if (num_needed_participants <= 0) {
     document.getElementById("pending_participants").innerHTML = "Looks like we're just about ready to go! Your discussion will begin momentarily.";
+    $("#instructions").hide();
   } else {
     document.getElementById("num_participants_needed").innerHTML = num_needed_participants;
   }

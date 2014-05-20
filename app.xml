@@ -53,15 +53,19 @@
     <div id="panel_container">
       <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
       <div id="visualization_container">
-        <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!<br/><br/>In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
+        <p id="instructions">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
         <!-- Only display this if the individual is an admin (Kyle, Julia, Will) -->
         <div id="tps_buttons"></div>
         <br/><br/>
         <h4>Current Phase:</h4>
-        <p class="lead" id="phase_label">Waiting to begin</p>
-        <div id="timer_wrapper">
+        <p class="lead" id="phase_label">
+          <span id="pending_participants">
+            Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!
+          </span>
+        </p>
+        <div id="timer_wrapper" style="display:none;">
           <h4>Remaining time in this phase:</h4>
-          <p class="lead" id="timer_label">Waiting to begin</p>
+          <p class="lead" id="timer_label"></p>
         </div>
         <div class="alert alert-warning alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
