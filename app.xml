@@ -72,6 +72,12 @@
           <strong>Heads up!</strong> Your instructor will be able to monitor your audio/video feeds at all times, including when they appear hidden to you during the Think and Pair phases, so don't do anything too embarrassing!
         </div>
         <hr/>
+        <div id="pair_wrapper" >
+          <strong>Pair groups</strong>
+          <ul id="pairs" class="list-unstyled">
+            <li><button id="listen_all" type="button" class="btn btn-default btn-success btn-xs" onclick="listenToAll();">Listen to all pairs</button></li>
+          </ul>
+        </div>
         <div id="graph_buttons" style="display: none;"></div>
         <div id="graph_container" style="min-width: 300px; width: 400px; max-width: 500px; height: 380px; margin: 0 auto; position: relative; float: right; display: none;"></div>
 

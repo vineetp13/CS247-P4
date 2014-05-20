@@ -304,6 +304,33 @@ function hideAllButPair() {
   gapi.hangout.av.clearAvatar(partner_id);
 };
 
+function enableEavesdropping() {
+  var participants = gapi.hangout.getParticipants();
+  var participantIDs = [];
+  // get all of the ids
+  for (var index in participants) {
+    var participantId = participants[index].person.id;
+    // Include all participants EXCEPT the instructor accounts.
+    if (participantId != "111880716844037207882") {
+      participantIDs.push(participants[index].id);
+    }
+  }
+  //then sort them in ascending order
+  participantIDs.sort();
+
+  $("#pairs_wrapper").show();
+
+  
+  gapi.hangout.av.setParticipantVisible(partner_id, true);
+  gapi.hangout.av.setParticipantAudible(partner_id, true);
+  gapi.hangout.av.clearAvatar(partner_id);
+};
+
+function listenToAll() {
+  $("#listen_all").toggleClass("btn-success");
+  showAllParticipants();
+}
+
 function showAllParticipants() {
   var participants = gapi.hangout.getParticipants();
   for (var index in participants) {
