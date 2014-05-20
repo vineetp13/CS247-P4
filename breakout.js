@@ -15,7 +15,7 @@ var isTurnReporter = false;
 var lastReportedTurnID = null;
 
 var THINK_PHASE_DURATION = 30000; // edit this to change time in each phase
-var PAIR_PHASE_DURATION = 1200000;
+var PAIR_PHASE_DURATION = 120000;
 
 var counter;
 var remaining_time_in_phase;
