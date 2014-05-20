@@ -100,6 +100,13 @@ function init() {
           } else if (eventObj.state.phase == "share") {
             startSharePhase();
           }
+
+          if (eventObj.state.intercom_in_use == "true") {
+            turn_on_intercom();
+          } else if (eventObj.state.intercom_in_use == "false") {
+            turn_off_intercom();
+          }
+
         }
       );
 
@@ -136,6 +143,7 @@ function showPanel() {
 // This is called ONLY by a local participant who initiates the discussion
 function startTPS() {
   $("#start_tps_btn").hide();
+  $("#enable_intercom_btn").show();
   gapi.hangout.data.setValue("discussing","true");
   gapi.hangout.data.setValue("phase", "think");
 };
@@ -234,6 +242,8 @@ function startSharePhase() {
     if (isInstructor == true) {
       $("#restart_tps_btn").show();
       $("#graph_buttons").show();
+      $("#enable_intercom_btn").hide();
+      $("#disable_intercom_btn").hide();
     }
     $('#panel_container').css( "height", "+=300px" );
 
@@ -249,10 +259,32 @@ function startSharePhase() {
   }
 };
 
-
 function end_tps() {
   // Control the button display for all participants
   $("#end_discussion_btn").hide();
+};
+
+function activateIntercom() {
+  $("#enable_intercom_btn").hide();
+  $("#disable_intercom_btn").show();
+  gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipantId());
+  gapi.hangout.data.setValue("intercom_in_use", "true");
+};
+
+function disableIntercom() {
+  $("#enable_intercom_btn").show();
+  $("#disable_intercom_btn").hide();
+  gapi.hangout.data.setValue("intercom_in_use", "false");
+};
+
+function turn_on_intercom() {
+  var moderator_id = gapi.hangout.data.getValue("moderator");
+  gapi.hangout.av.setParticipantAudible(moderator_id, true);
+};
+
+function turn_off_intercom() {
+  var moderator_id = gapi.hangout.data.getValue("moderator");
+  gapi.hangout.av.setParticipantAudible(moderator_id, false);
 };
 
 function hideAllButSelf() {
