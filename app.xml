@@ -53,7 +53,7 @@
     <div id="panel_container">
       <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
       <div id="visualization_container">
-        <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!</p>
+        <p id="pending_participants" style="text-align: center;">Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!<br/><br/>In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
         <!-- Only display this if the individual is an admin (Kyle, Julia, Will) -->
         <div id="tps_buttons"></div>
         <br/><br/>
@@ -62,6 +62,10 @@
         <div id="timer_wrapper">
           <h4>Remaining time in this phase:</h4>
           <p class="lead" id="timer_label">Waiting to begin</p>
+        </div>
+        <div class="alert alert-warning alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong>Heads up!</strong> Your instructor will be able to monitor your audio/video feeds at all times, including when they appear hidden to you during the Think and Pair phases, so don't do anything too embarrassing!
         </div>
         <hr/>
         <div id="graph_buttons" style="display: none;"></div>
