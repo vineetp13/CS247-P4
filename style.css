@@ -128,6 +128,13 @@
 
   }
 
+  #timer_label_wrapper.phase_ending {
+    border-radius: 3px;
+    background-color: #d43f3a;
+    padding: 3px;
+    font-weight: 600;
+  }
+
   #show_panel {
     /* Safari */
     -webkit-transform: rotate(-90deg);

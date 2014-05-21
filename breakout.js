@@ -165,6 +165,9 @@ function phase_timer(){
      clearInterval(counter);
      return;
   }
+  if (remaining_time_in_phase <= 10) {
+    $("#timer_label_wrapper").addClass("phase_ending");
+  }
   document.getElementById("timer_label").innerHTML=remaining_time_in_phase + " secs";
 };
 
@@ -175,6 +178,7 @@ function trigger_tps() {
     $("#start_tps_button").hide();
     $("#restart_tps_button").hide();
     $("#pending_participants").hide();
+    $("#timer_label_wrapper").removeClass("phase_ending");
 
     var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
     if (localParticipantId == "111880716844037207882" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
@@ -218,6 +222,7 @@ function startPairPhase() {
   if (pairPhaseInitialized == false) {
     window.clearTimeout(thinkTimer);
     window.clearInterval(counter);
+    $("#timer_label_wrapper").removeClass("phase_ending");
 
     console.log("I'm in the pair phase!");
     console.log("Current time is: " + Date.now());
@@ -238,6 +243,8 @@ function startSharePhase() {
   if (sharePhaseInitialized == false) {
     window.clearTimeout(thinkTimer);
     window.clearInterval(counter);
+    $("#timer_label_wrapper").removeClass("phase_ending");
+
 
     if (isInstructor == true) {
       $("#restart_tps_btn").show();
