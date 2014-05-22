@@ -350,7 +350,7 @@ function getFBHangout(){
 
   //Moderator Message
   fb_moderator_message = fb_conversation.child('moderator_message');
-  fb_moderator_message.on('child_added', function(dataSnapshot) {
+  fb_moderator_message.on('value', function(dataSnapshot) {
     if (dataSnapshot.user_id == cur_userID) {
         console.log("Moderator is sending you a message...");
         dispNotice(dataSnapshot.message);
@@ -387,6 +387,7 @@ function getFBHangout(){
           alertedOver[participantIDs[i]] = 0;
           if(alertedUnder[participantIDs[i]] == 0){
             alertedUnder[participantIDs[i]] = VIZ_REFRESH_INTERVAL_MS;
+            console.log("Sending Message for less");
             fb_moderator_message.push({'user_id': percentages[i], 'message': 'Hangout Moderator System Notice: Speak up! You should participate more.'});
           }else if(alertedUnder[participantIDs[i]] > 15000){
             alertedUnder[participantIDs[i]] = 0;
@@ -402,6 +403,7 @@ function getFBHangout(){
           alertedUnder[participantIDs[i]] = 0;
           if(alertedOver[participantIDs[i]] == 0){
             alertedOver[participantIDs[i]] = VIZ_REFRESH_INTERVAL_MS;
+            console.log("Sending Message for more");
             fb_moderator_message.push({'user_id': percentages[i], 'message': 'Hangout Moderator System Notice:  Seems like you\'ve been talking quite a bit recently! Why not allow some other folks the chance to speak?'});
           }else if(alertedOver[participantIDs[i]] > 15000) {
             alertedOver[participantIDs[i]] = 0;
@@ -455,8 +457,8 @@ function checkSetup(dataSnapshot){
 
   var num_children = dataSnapshot.numChildren();
   if (num_children == NUM_USERS) { // change back to 4
-    decrement = Math.floor(TIMER_UPDATE_INTERVAL/NUM_USERS);
-    increment = decrement*NUM_USERS;
+    decrement = Math.floor(TIMER_UPDATE_INTERVAL/(NUM_USERS - 1));
+    increment = decrement*(NUM_USERS - 1);
     console.log("Increment Val: " + increment);
     console.log("Decrement Val: " + decrement);
     set_up_done = true;
