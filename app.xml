@@ -75,7 +75,7 @@
         <div id="pair_wrapper" style="display: none;">
           <strong>Pair groups</strong>
           <ul id="pairs" class="list-unstyled">
-            <li><button id="listen_all" type="button" class="btn btn-success disabled btn-xs" onclick="listenToAll();">Listen to all pairs</button></li>
+            <li><button id="listen_all" type="button" class="btn btn-success disabled btn-xs pair-btn" onclick="listenToAll();">Listen to all pairs</button></li>
           </ul>
         </div>
         <div id="graph_buttons" style="display: none;"></div>

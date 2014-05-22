@@ -385,7 +385,7 @@ function enableEavesdropping() {
     var second_of_pair = gapi.hangout.getParticipantById(pair[1]);
     console.log("Pair array: ");
     console.log(pair);
-    var new_pair_item = "<li><button type='button' class='btn btn-default btn-xs' onclick='listenToPair(\"" + first_of_pair.id +"\", \"" + second_of_pair.id + "\", this);'>";
+    var new_pair_item = "<li><button type='button' class='btn btn-default btn-xs pair-btn' onclick='listenToPair(\"" + first_of_pair.id +"\", \"" + second_of_pair.id + "\", this);'>";
     new_pair_item += first_of_pair.person.displayName + " & " + second_of_pair.person.displayName;
     new_pair_item += "</button></li>";
     $("#pairs").append(new_pair_item);
@@ -400,7 +400,7 @@ function listenToPair(first_of_pair, second_of_pair, button) {
   hideAllButSelf();
 
   // Redo classes
-  $(button).siblings().removeClass("btn-success disabled").addClass("btn-default");
+  $(".pair-btn").removeClass("btn-success disabled").addClass("btn-default");
   $(button).addClass("btn-success disabled");
 
   // Set visibility

@@ -136,6 +136,10 @@
     color: #ffffff;
   }
 
+  .pair-btn {
+    margin-bottom: 5px;
+  }
+
   #show_panel {
     /* Safari */
     -webkit-transform: rotate(-90deg);
