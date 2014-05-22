@@ -468,17 +468,17 @@ function checkSetup(dataSnapshot){
     snapshots = [];
     participantIDs = [];
 
+    dataSnapshot.forEach( function(childSnapshot) {
+      var id = childSnapshot.name();
+      participantIDs.push(id);
+    });
+
     if(cur_userID == "111880716844037207882"){
       for(var i = 0; i < participantIDs.length; i++){
         alertedOver[participantIDs[i]] = 0;
         alertedUnder[participantIDs[i]] = 0;
       }
     }
-
-    dataSnapshot.forEach( function(childSnapshot) {
-      var id = childSnapshot.name();
-      participantIDs.push(id);
-    });
 
     console.log("IDs: ");
     console.log(participantIDs);
