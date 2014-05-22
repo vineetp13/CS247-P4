@@ -388,7 +388,7 @@ function getFBHangout(){
           if(alertedUnder[participantIDs[i]] == 0){
             alertedUnder[participantIDs[i]] = VIZ_REFRESH_INTERVAL_MS;
             console.log("Sending Message for less");
-            fb_moderator_message.push({'user_id': percentages[i], 'message': 'Hangout Moderator System Notice: Speak up! You should participate more.'});
+            fb_moderator_message.push({'user_id': participantIDs[i], 'message': 'Hangout Moderator System Notice: Speak up! You should participate more.'});
           }else if(alertedUnder[participantIDs[i]] > 15000){
             alertedUnder[participantIDs[i]] = 0;
           }else{
@@ -404,7 +404,7 @@ function getFBHangout(){
           if(alertedOver[participantIDs[i]] == 0){
             alertedOver[participantIDs[i]] = VIZ_REFRESH_INTERVAL_MS;
             console.log("Sending Message for more");
-            fb_moderator_message.push({'user_id': percentages[i], 'message': 'Hangout Moderator System Notice:  Seems like you\'ve been talking quite a bit recently! Why not allow some other folks the chance to speak?'});
+            fb_moderator_message.push({'user_id': participantIDs[i], 'message': 'Hangout Moderator System Notice:  Seems like you\'ve been talking quite a bit recently! Why not allow some other folks the chance to speak?'});
           }else if(alertedOver[participantIDs[i]] > 15000) {
             alertedOver[participantIDs[i]] = 0;
           }else{
