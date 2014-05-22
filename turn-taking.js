@@ -31,6 +31,7 @@ var fb_moderator_message;
 //Indicator variable to keep track of whether timer has been started on any instance
 var timer;
 var discussing = false;
+var notification_OK = true;
 
 var fb_timer;
 var timer_id;
@@ -428,14 +429,26 @@ function getFBHangout(){
         console.log("Somebody has gone below " + THRESHOLD_LOW + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
-          //dispNotice("Speak up! You should participate more.");
+          if (notification_OK) {
+            dispNotice("Speak up! You should participate more.");
+            notification_OK = false;
+            setTimeout({
+              notification_OK = true;
+            }, 30000);
+          }
         } 
       }
       if (percentages[i] > THRESHOLD_HIGH) { // too high
         console.log("Somebody has gone above " + THRESHOLD_HIGH + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
-          //dispNotice("Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
+          if (notification_OK) {
+            dispNotice("Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
+            notification_OK = false;
+            setTimeout({
+              notification_OK = true;
+            }, 30000);
+          }
         }
       }
 
