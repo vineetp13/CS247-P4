@@ -559,7 +559,7 @@ function getFBHangout(){
         console.log("Somebody has gone above " + THRESHOLD_HIGH + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
-          dispNotice("Yo calm down brotha. You be talking too much.");
+          dispNotice("Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
         }
       }
 
