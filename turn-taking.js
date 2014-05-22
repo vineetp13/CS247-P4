@@ -480,7 +480,7 @@ function checkSetup(dataSnapshot){
 
     console.log("IDs: ");
     console.log(participantIDs);
-
+    initial_contribution = Math.floor(total_talk/names.length);
     dataSnapshot.forEach(processUser);
     console.log("Users: ");
     console.log(users);
