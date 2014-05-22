@@ -412,6 +412,7 @@ function listenToPair(first_of_pair, second_of_pair, button) {
 }
 
 function listenToAll() {
+  $(".pair-btn").removeClass("btn-success disabled").addClass("btn-default");
   $("#listen_all").removeClass("btn-default").addClass("btn-success disabled");
   showAllParticipants();
 }
