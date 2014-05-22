@@ -430,9 +430,9 @@ function getFBHangout(){
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
           if (notification_OK) {
-            dispNotice("Speak up! You should participate more.");
+            dispNotice("BACKUP!! Speak up! You should participate more.");
             notification_OK = false;
-            setTimeout({
+            setTimeout(function(){
               notification_OK = true;
             }, 30000);
           }
@@ -443,9 +443,9 @@ function getFBHangout(){
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
           if (notification_OK) {
-            dispNotice("Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
+            dispNotice("BACKUP!!! Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
             notification_OK = false;
-            setTimeout({
+            setTimeout(function(){
               notification_OK = true;
             }, 30000);
           }
