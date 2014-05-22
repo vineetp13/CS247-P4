@@ -36,6 +36,9 @@ var fb_timer;
 var timer_id;
 var timer_2_id;
 
+var alertedOver = {};
+var alertedUnder = {};
+
 //User fb objects
 var users;
 var local_user;
@@ -379,19 +382,56 @@ function getFBHangout(){
       data[0].y = percentages[i];
       graphChart.series[i].setData(data,true);
 
+      if(cur_userID == "111880716844037207882"){
+        if (percentages[i] < THRESHOLD_LOW) { // too low
+          alertedOver[participantIDs[i]] = 0;
+          if(alertedUnder[participantIDs[i]] == 0){
+            alertedUnder[participantIDs[i]] = VIZ_REFRESH_INTERVAL_MS;
+            fb_moderator_message.push({'user_id': percentages[i], 'message': 'Hangout Moderator System Notice: Speak up! You should participate more.'});
+          }else if(alertedUnder[participantIDs[i]] > 15000){
+            alertedUnder[participantIDs[i]] = 0;
+          }else{
+            alertedUnder[participantIDs[i]] = alertedUnder[participantIDs[i]] + VIZ_REFRESH_INTERVAL_MS;
+          }
+          //console.log("Somebody has gone below " + THRESHOLD_LOW + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
+          //if (participantIDs[i] == cur_userID) {
+            //console.log("That person is you. Sending notice...");
+            //dispNotice("Speak up! You should participate more.");
+          //} 
+        }else if (percentages[i] > THRESHOLD_HIGH) { // too high
+          alertedUnder[participantIDs[i]] = 0;
+          if(alertedOver[participantIDs[i]] == 0){
+            alertedOver[participantIDs[i]] = VIZ_REFRESH_INTERVAL_MS;
+            fb_moderator_message.push({'user_id': percentages[i], 'message': 'Hangout Moderator System Notice:  Seems like you\'ve been talking quite a bit recently! Why not allow some other folks the chance to speak?'});
+          }else if(alertedOver[participantIDs[i]] > 15000) {
+            alertedOver[participantIDs[i]] = 0;
+          }else{
+            alertedOver[participantIDs[i]] = alertedOver[participantIDs[i]] + VIZ_REFRESH_INTERVAL_MS;
+          }
+          //console.log("Somebody has gone above " + THRESHOLD_HIGH + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
+          //if (participantIDs[i] == cur_userID) {
+            //console.log("That person is you. Sending notice...");
+            //dispNotice("Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
+          //}
+        }else{
+          alertedOver[participantIDs[i]] = 0;
+          alertedUnder[participantIDs[i]] = 0;
+        }
+      }
+
       // check if above or below threshold to trigger alerts
       if (percentages[i] < THRESHOLD_LOW) { // too low
         console.log("Somebody has gone below " + THRESHOLD_LOW + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
-          dispNotice("Speak up! You should participate more.");
+          //dispNotice("Speak up! You should participate more.");
         } 
       }
       if (percentages[i] > THRESHOLD_HIGH) { // too high
         console.log("Somebody has gone above " + THRESHOLD_HIGH + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
         if (participantIDs[i] == cur_userID) {
           console.log("That person is you. Sending notice...");
-          dispNotice("Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
+          //dispNotice("Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
         }
       }
 
@@ -425,6 +465,13 @@ function checkSetup(dataSnapshot){
     users = [];
     snapshots = [];
     participantIDs = [];
+
+    if(cur_userID == "111880716844037207882"){
+      for(int i = 0; i < participantIDs.length; i++){
+        alertedOver[participantIDs[i]] = 0;
+        alertedUnder[participantIDs[i]] = 0;
+      }
+    }
 
     dataSnapshot.forEach( function(childSnapshot) {
       var id = childSnapshot.name();
