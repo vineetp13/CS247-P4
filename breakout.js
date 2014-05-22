@@ -247,6 +247,7 @@ function startPairPhase() {
       hideAllButPair();
     } else {
       $("#pair_wrapper").show();
+      enableEavesdropping();
     }
   }
 };
