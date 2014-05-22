@@ -14,7 +14,7 @@ var MIN_WIDTH = 300;
 var isTurnReporter = false;
 var lastReportedTurnID = null;
 
-var THINK_PHASE_DURATION = 30000; // edit this to change time in each phase
+var THINK_PHASE_DURATION = 5000; // edit this to change time in each phase
 var PAIR_PHASE_DURATION = 120000;
 
 var counter;
@@ -222,7 +222,7 @@ function initiateSharePhase() {
 
 function notifySwitchSpeaker() {
   if (isModerator == false) {
-    dispNotice("Half of the time in your pair discussion has passed! If you haven't done so already, make sure you switch off so that the other person has a chance to speak.");
+    dispNotice("Half of the time in your pair discussion has passed! If you haven\'t done so already, make sure you switch off so that the other person has a chance to speak.");
   }
 };
 
@@ -247,6 +247,7 @@ function startPairPhase() {
       hideAllButPair();
     } else {
       $("#pair_wrapper").show();
+      enableEavesdropping();
     }
   }
 };
@@ -362,6 +363,7 @@ function hideAllButPair() {
 };
 
 function enableEavesdropping() {
+  console.log("i am here");
   var participants = gapi.hangout.getParticipants();
   var participantIDs = [];
   // get all of the ids
@@ -374,17 +376,23 @@ function enableEavesdropping() {
   }
   //then sort them in ascending order
   participantIDs.sort();
+  console.log("participant IDs: ");
+  console.log(participantIDs);
   // IF SUPPORTING UNEVEN NUM PARTICIPANTS, THIS WILL HAVE TO CHANGE
   while (participantIDs.length > 0) {
     var pair = participantIDs.splice(0, 2);
-    var first_of_pair = gapi.hangout.getParticipantById(participantIDs[0]);
-    var second_of_pair = gapi.hangout.getParticipantById(participantIDs[1]);
-    var new_pair_item = "<li><button type='button' class='btn btn-default btn-xs' onclick='listenToPair(" + first_of_pair +", " + second_of_pair + ", this);'>";
+    var first_of_pair = gapi.hangout.getParticipantById(pair[0]);
+    var second_of_pair = gapi.hangout.getParticipantById(pair[1]);
+    console.log("Pair array: ");
+    console.log(pair);
+    var new_pair_item = "<li><button type='button' class='btn btn-default btn-xs' onclick='listenToPair(\"" + first_of_pair.id +"\", \"" + second_of_pair.id + "\", this);'>";
     new_pair_item += first_of_pair.person.displayName + " & " + second_of_pair.person.displayName;
     new_pair_item += "</button></li>";
     $("#pairs").append(new_pair_item);
+    console.log(new_pair_item);
   }
   $("#pairs_wrapper").show();
+
 };
 
 function listenToPair(first_of_pair, second_of_pair, button) {
@@ -396,13 +404,13 @@ function listenToPair(first_of_pair, second_of_pair, button) {
   $(button).addClass("btn-success disabled");
 
   // Set visibility
-  gapi.hangout.av.setParticipantVisible(first_of_pair.id, true);
-  gapi.hangout.av.setParticipantAudible(first_of_pair.id, true);
-  gapi.hangout.av.clearAvatar(first_of_pair.id);
+  gapi.hangout.av.setParticipantVisible(first_of_pair, true);
+  gapi.hangout.av.setParticipantAudible(first_of_pair, true);
+  gapi.hangout.av.clearAvatar(first_of_pair);
 
-  gapi.hangout.av.setParticipantVisible(second_of_pair.id, true);
-  gapi.hangout.av.setParticipantAudible(second_of_pair.id, true);
-  gapi.hangout.av.clearAvatar(second_of_pair.id);
+  gapi.hangout.av.setParticipantVisible(second_of_pair, true);
+  gapi.hangout.av.setParticipantAudible(second_of_pair, true);
+  gapi.hangout.av.clearAvatar(second_of_pair);
 }
 
 function listenToAll() {
