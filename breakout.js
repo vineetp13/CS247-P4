@@ -14,7 +14,7 @@ var MIN_WIDTH = 300;
 var isTurnReporter = false;
 var lastReportedTurnID = null;
 
-var THINK_PHASE_DURATION = 30000; // edit this to change time in each phase
+var THINK_PHASE_DURATION = 5000; // edit this to change time in each phase
 var PAIR_PHASE_DURATION = 120000;
 
 var counter;
@@ -363,6 +363,7 @@ function hideAllButPair() {
 };
 
 function enableEavesdropping() {
+  console.log("i am here");
   var participants = gapi.hangout.getParticipants();
   var participantIDs = [];
   // get all of the ids
@@ -384,8 +385,10 @@ function enableEavesdropping() {
     new_pair_item += first_of_pair.person.displayName + " & " + second_of_pair.person.displayName;
     new_pair_item += "</button></li>";
     $("#pairs").append(new_pair_item);
+    console.log(new_pair_item);
   }
   $("#pairs_wrapper").show();
+
 };
 
 function listenToPair(first_of_pair, second_of_pair, button) {
