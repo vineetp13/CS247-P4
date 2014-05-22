@@ -26,6 +26,7 @@ var fb_instance;
 var fb_conversation;
 var fb_conversations;
 var fb_reset;
+var fb_moderator_message;
 
 //Indicator variable to keep track of whether timer has been started on any instance
 var timer;
@@ -342,6 +343,15 @@ function getFBHangout(){
   fb_increment_index.on('value', function(dataSnapshot) {
     increment_index = dataSnapshot.val();
     current_participant = increment_index;
+  }, null, this);
+
+  //Moderator Message
+  fb_moderator_message = fb_conversation.child('moderator_message');
+  fb_moderator_message.on('child_added', function(dataSnapshot) {
+    if (dataSnapshot.user_id == cur_userID) {
+        console.log("Moderator is sending you a message...");
+        dispNotice(dataSnapshot.message);
+    } 
   }, null, this);
 
   //Keep track for every instance of whether timer has been started
