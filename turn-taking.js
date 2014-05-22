@@ -385,10 +385,9 @@ function getFBHangout(){
       data[0].y = percentages[i];
       graphChart.series[i].setData(data,true);
 
-      if(cur_userID == INSTRUCTOR_ID){
+      /*if(cur_userID == INSTRUCTOR_ID){
         if (percentages[i] < THRESHOLD_LOW) { // too low
-          alertedOver[participantIDs[i]] = 0;
-          if(alertedUnder[participantIDs[i]] == 0){
+          if(alertedUnder[participantIDs[i]] == false){
             alertedUnder[participantIDs[i]] = VIZ_REFRESH_INTERVAL_MS;
             console.log("Sending Message for less");
             fb_moderator_message.push({'user_id': participantIDs[i], 'message': 'Hangout Moderator System Notice: Speak up! You should participate more.'});
@@ -403,8 +402,7 @@ function getFBHangout(){
             //dispNotice("Speak up! You should participate more.");
           //} 
         }else if (percentages[i] > THRESHOLD_HIGH) { // too high
-          alertedUnder[participantIDs[i]] = 0;
-          if(alertedOver[participantIDs[i]] == 0){
+          if(alertedOver[participantIDs[i]] == false){
             alertedOver[participantIDs[i]] = VIZ_REFRESH_INTERVAL_MS;
             console.log("Sending Message for more");
             fb_moderator_message.push({'user_id': participantIDs[i], 'message': 'Hangout Moderator System Notice:  Seems like you\'ve been talking quite a bit recently! Why not allow some other folks the chance to speak?'});
@@ -422,7 +420,7 @@ function getFBHangout(){
           alertedOver[participantIDs[i]] = 0;
           alertedUnder[participantIDs[i]] = 0;
         }
-      }
+      }*/
 
       // check if above or below threshold to trigger alerts
       if (percentages[i] < THRESHOLD_LOW) { // too low
@@ -490,8 +488,8 @@ function checkSetup(dataSnapshot){
 
     if(cur_userID == INSTRUCTOR_ID){
       for(var i = 0; i < participantIDs.length; i++){
-        alertedOver[participantIDs[i]] = 0;
-        alertedUnder[participantIDs[i]] = 0;
+        alertedOver[participantIDs[i]] = false;
+        alertedUnder[participantIDs[i]] = false;
       }
     }
 
