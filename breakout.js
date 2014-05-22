@@ -222,7 +222,7 @@ function initiateSharePhase() {
 
 function notifySwitchSpeaker() {
   if (isModerator == false) {
-    dispNotice("Half of the time in your pair discussion has passed! If you haven't done so already, make sure you switch off so that the other person has a chance to speak.");
+    dispNotice("Half of the time in your pair discussion has passed! If you haven\'t done so already, make sure you switch off so that the other person has a chance to speak.");
   }
 };
 
@@ -385,7 +385,7 @@ function enableEavesdropping() {
     var second_of_pair = gapi.hangout.getParticipantById(pair[1]);
     console.log("Pair array: ");
     console.log(pair);
-    var new_pair_item = "<li><button type='button' class='btn btn-default btn-xs' onclick='listenToPair(" + first_of_pair +", " + second_of_pair + ", this);'>";
+    var new_pair_item = "<li><button type='button' class='btn btn-default btn-xs' onclick='listenToPair(" + first_of_pair.id +", " + second_of_pair.id + ", this);'>";
     new_pair_item += first_of_pair.person.displayName + " & " + second_of_pair.person.displayName;
     new_pair_item += "</button></li>";
     $("#pairs").append(new_pair_item);
@@ -404,13 +404,13 @@ function listenToPair(first_of_pair, second_of_pair, button) {
   $(button).addClass("btn-success disabled");
 
   // Set visibility
-  gapi.hangout.av.setParticipantVisible(first_of_pair.id, true);
-  gapi.hangout.av.setParticipantAudible(first_of_pair.id, true);
-  gapi.hangout.av.clearAvatar(first_of_pair.id);
+  gapi.hangout.av.setParticipantVisible(first_of_pair, true);
+  gapi.hangout.av.setParticipantAudible(first_of_pair, true);
+  gapi.hangout.av.clearAvatar(first_of_pair);
 
-  gapi.hangout.av.setParticipantVisible(second_of_pair.id, true);
-  gapi.hangout.av.setParticipantAudible(second_of_pair.id, true);
-  gapi.hangout.av.clearAvatar(second_of_pair.id);
+  gapi.hangout.av.setParticipantVisible(second_of_pair, true);
+  gapi.hangout.av.setParticipantAudible(second_of_pair, true);
+  gapi.hangout.av.clearAvatar(second_of_pair);
 }
 
 function listenToAll() {
