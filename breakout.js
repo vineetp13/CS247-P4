@@ -144,6 +144,7 @@ function showPanel() {
 function startTPS() {
   $("#start_tps_btn").hide();
   $("#enable_intercom_btn").show();
+  $("#intercom_explanation").show();
   gapi.hangout.data.setValue("discussing","true");
   gapi.hangout.data.setValue("phase", "think");
 };
@@ -252,6 +253,7 @@ function startSharePhase() {
     if (isInstructor == true) {
       $("#restart_tps_btn").show();
       // $("#graph_buttons").show();
+      $("#intercom_explanation").hide();
       $("#enable_intercom_btn").hide();
       $("#disable_intercom_btn").hide();
       $("#pair_wrapper").hide();
@@ -278,6 +280,7 @@ function end_tps() {
 
 function activateIntercom() {
   $("#enable_intercom_btn").hide();
+  $("#intercom_explanation").hide();
   $("#disable_intercom_btn").show();
   gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipantId());
   gapi.hangout.data.setValue("intercom_in_use", "true");
@@ -285,6 +288,7 @@ function activateIntercom() {
 
 function disableIntercom() {
   $("#enable_intercom_btn").show();
+  $("#intercom_explanation").show();
   $("#disable_intercom_btn").hide();
   gapi.hangout.data.setValue("intercom_in_use", "false");
 };
