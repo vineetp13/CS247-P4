@@ -376,11 +376,15 @@ function enableEavesdropping() {
   }
   //then sort them in ascending order
   participantIDs.sort();
+  console.log("participant IDs: ");
+  console.log(participantIDs);
   // IF SUPPORTING UNEVEN NUM PARTICIPANTS, THIS WILL HAVE TO CHANGE
   while (participantIDs.length > 0) {
     var pair = participantIDs.splice(0, 2);
-    var first_of_pair = gapi.hangout.getParticipantById(participantIDs[0]);
-    var second_of_pair = gapi.hangout.getParticipantById(participantIDs[1]);
+    var first_of_pair = gapi.hangout.getParticipantById(pair[0]);
+    var second_of_pair = gapi.hangout.getParticipantById(pair[1]);
+    console.log("Pair array: ");
+    console.log(pair);
     var new_pair_item = "<li><button type='button' class='btn btn-default btn-xs' onclick='listenToPair(" + first_of_pair +", " + second_of_pair + ", this);'>";
     new_pair_item += first_of_pair.person.displayName + " & " + second_of_pair.person.displayName;
     new_pair_item += "</button></li>";
