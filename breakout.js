@@ -251,10 +251,11 @@ function startSharePhase() {
 
     if (isInstructor == true) {
       $("#restart_tps_btn").show();
-      $("#graph_buttons").show();
+      // $("#graph_buttons").show();
       $("#enable_intercom_btn").hide();
       $("#disable_intercom_btn").hide();
       $("#pair_wrapper").hide();
+      startGraphing();
     }
     $('#panel_container').css( "height", "+=300px" );
 
