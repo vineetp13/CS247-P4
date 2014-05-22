@@ -116,7 +116,7 @@
         restartTPS();
       });
 
-      $('#activate_intercom_btn').click(function() {
+      $('#enable_intercom_btn').click(function() {
         activateIntercom();
       });
       $('#disable_intercom_btn').click(function() {
