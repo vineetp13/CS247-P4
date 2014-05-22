@@ -221,7 +221,7 @@ function initiateSharePhase() {
 
 function notifySwitchSpeaker() {
   if (isModerator == false) {
-    dispNotice("Half of the time in your pair discussion has passed! If you haven\'t done so already, make sure you switch off so that the other person has a chance to speak.");
+    dispNotice("Half of the time in your pair discussion has passed! If you haven&#39;t done so already, make sure you switch off so that the other person has a chance to speak.");
   }
 };
 
@@ -269,7 +269,7 @@ function startSharePhase() {
     }
     $('#panel_container').css( "height", "+=300px" );
 
-    document.getElementById("phase_label").innerHTML = "Share<br/>Now that we're all back, take turns going around and sharing what you discussed. Talk about your favorite classes."
+    document.getElementById("phase_label").innerHTML = "Share<br/>Now that we&#39;re all back, take turns going around and sharing what you discussed. Talk about your favorite classes."
     document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
 
     console.log("I'm in the share phase!");
@@ -476,7 +476,7 @@ function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
   var num_needed_participants = 5 - (num_participants);
   if (num_needed_participants <= 0) {
-    document.getElementById("pending_participants").innerHTML = "Looks like we're just about ready to go! Your discussion will begin momentarily.";
+    document.getElementById("pending_participants").innerHTML = "Looks like we&#39;re just about ready to go! Your discussion will begin momentarily.";
     $("#instructions").hide();
   } else {
     document.getElementById("num_participants_needed").innerHTML = num_needed_participants;
