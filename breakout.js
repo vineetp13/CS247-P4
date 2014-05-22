@@ -178,6 +178,7 @@ function trigger_tps() {
     $("#start_tps_button").hide();
     $("#restart_tps_button").hide();
     $("#pending_participants").hide();
+    $("#instructions").hide();
     $("#timer_label").removeClass("phase_ending");
 
     var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
