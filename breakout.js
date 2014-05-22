@@ -220,6 +220,12 @@ function initiateSharePhase() {
   }
 };
 
+function notifySwitchSpeaker() {
+  if (isInstructor == false) {
+    dispNotice("Half of the time in your pair discussion has passed! If you haven't done so already, make sure you switch off so that the other person has a chance to speak.");
+  }
+};
+
 function startPairPhase() {
   if (pairPhaseInitialized == false) {
     window.clearTimeout(thinkTimer);
@@ -235,6 +241,8 @@ function startPairPhase() {
     counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
     var pairTimer = window.setTimeout(initiateSharePhase, PAIR_PHASE_DURATION);
+    var halftimePairTimer = window.setTimeout(notifySwitchSpeaker, PAIR_PHASE_DURATION/2);
+    
     if (isInstructor == false) {
       hideAllButPair();
     } else {
