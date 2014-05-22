@@ -382,7 +382,7 @@ function getFBHangout(){
       data[0].y = percentages[i];
       graphChart.series[i].setData(data,true);
 
-      if(cur_userID == "111880716844037207882"){
+      if(cur_userID == INSTRUCTOR_ID){
         if (percentages[i] < THRESHOLD_LOW) { // too low
           alertedOver[participantIDs[i]] = 0;
           if(alertedUnder[participantIDs[i]] == 0){
@@ -473,7 +473,7 @@ function checkSetup(dataSnapshot){
       participantIDs.push(id);
     });
 
-    if(cur_userID == "111880716844037207882"){
+    if(cur_userID == INSTRUCTOR_ID){
       for(var i = 0; i < participantIDs.length; i++){
         alertedOver[participantIDs[i]] = 0;
         alertedUnder[participantIDs[i]] = 0;
