@@ -221,7 +221,7 @@ function initiateSharePhase() {
 
 function notifySwitchSpeaker() {
   if (isModerator == false) {
-    dispNotice("Half of the time in your pair discussion has passed! If you have not yet done so already, make sure you switch off so that the other person has a chance to speak.");
+    dispNotice("Half of the time in your pair discussion has passed! If you have not done so already, make sure you switch off so that the other person has a chance to speak.");
   }
 };
 
