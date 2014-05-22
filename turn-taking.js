@@ -363,16 +363,16 @@ function getFBHangout(){
   //mechanism to receive vis. updates pushed to fb
   fb_update_vis = fb_conversation.child('update');
   fb_update_vis.on('child_added', function(dataSnapshot) {
-    var percentage_1 = (NUM_USERS >= 1) ? percentage_talk(first_snapshot_val) : 0;
-    var percentage_2 = (NUM_USERS >= 2) ? percentage_talk(second_snapshot_val) : 0;
-    var percentage_3 = (NUM_USERS >= 3) ? percentage_talk(third_snapshot_val) : 0;
-    var percentage_4 = (NUM_USERS >= 4) ? percentage_talk(fourth_snapshot_val) : 0;
+    var percentage_1 = (names.length >= 1) ? percentage_talk(first_snapshot_val) : 0;
+    var percentage_2 = (names.length >= 2) ? percentage_talk(second_snapshot_val) : 0;
+    var percentage_3 = (names.length >= 3) ? percentage_talk(third_snapshot_val) : 0;
+    var percentage_4 = (names.length >= 4) ? percentage_talk(fourth_snapshot_val) : 0;
 
     var percentages = [percentage_1, percentage_2, percentage_3, percentage_4];
     console.log(percentages);
 
   
-    for (var i = 0; i < NUM_USERS; i++) {
+    for (var i = 0; i < names.length; i++) {
 
       // update percentages for user on graphh
       var data = graphChart.series[i].data;
