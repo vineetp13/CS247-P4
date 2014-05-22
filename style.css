@@ -128,11 +128,12 @@
 
   }
 
-  #timer_label_wrapper.phase_ending {
+  #timer_label.phase_ending {
     border-radius: 3px;
     background-color: #d43f3a;
     padding: 3px;
-    font-weight: 600;
+    font-weight: 700;
+    color: #ffffff;
   }
 
   #show_panel {

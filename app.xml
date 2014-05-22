@@ -65,7 +65,7 @@
         </p>
         <div id="timer_wrapper" style="display:none;">
           <h4>Remaining time in this phase:</h4>
-          <div id="timer_label_wrapper"><p class="lead" id="timer_label"></p></div>
+          <span class="lead" id="timer_label"></span><br/>
         </div>
         <div class="alert alert-warning alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
