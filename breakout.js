@@ -236,6 +236,8 @@ function startPairPhase() {
     var pairTimer = window.setTimeout(initiateSharePhase, PAIR_PHASE_DURATION);
     if (isInstructor == false) {
       hideAllButPair();
+    } else {
+      $("#pair_wrapper").show();
     }
   }
 };
@@ -252,6 +254,7 @@ function startSharePhase() {
       $("#graph_buttons").show();
       $("#enable_intercom_btn").hide();
       $("#disable_intercom_btn").hide();
+      $("#pair_wrapper").hide();
     }
     $('#panel_container').css( "height", "+=300px" );
 
