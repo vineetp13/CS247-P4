@@ -7,6 +7,11 @@ var participantID;
 var NUM_USERS = 2;
 var VIZ_REFRESH_INTERVAL_MS = 7000;
 var TIMER_UPDATE_INTERVAL = 1000;
+var THRESHOLD_LOW;
+var THRESHOLD_HIGH;
+
+//SETTINGS
+var INSTRUCTOR_ID = "111880716844037207882"; // Julia Cambre
 
 //MATH
 var subtract;
@@ -327,7 +332,7 @@ function getFBHangout(){
 
   fb_conversation.on('value', checkSetup, null, self);
 
-  if((reporter_google_id + "") != "111880716844037207882") {
+  if((reporter_google_id + "") != INSTRUCTOR_ID) {
     fb_conversation.child(reporter_google_id).child('name').set(gapi.hangout.getLocalParticipant().person.displayName.split(" ")[0]);
   }
 
@@ -425,8 +430,8 @@ function checkSetup(dataSnapshot){
     console.log(snapshots);
 
     var YAXIS_MAX = Math.ceil((100 / names.length)/10) * 20;
-    var THRESHOLD_LOW = (100 / names.length) - ((100 / names.length) * .5);
-    var THRESHOLD_HIGH = (100 / names.length) + Math.floor((100 / names.length) * .5);
+    THRESHOLD_LOW = (100 / names.length) - ((100 / names.length) * .5);
+    THRESHOLD_HIGH = (100 / names.length) + Math.floor((100 / names.length) * .5);
     graphChart = buildBarGraph('graph_container', names, {
         title_text: 'Average Talk Time',
         subtitle_text: 'As a percentage of the conversation',
