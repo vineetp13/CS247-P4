@@ -25,7 +25,7 @@ var shareTimer;
 var thinkPhaseInitialized = false;
 var pairPhaseInitialized = false;
 var sharePhaseInitialized = false;
-var isInstructor = false;
+var isModerator = false;
 
 // TURN-TAKING STARTS HERE
 
@@ -184,7 +184,7 @@ function trigger_tps() {
 
     var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
     if (localParticipantId == "111880716844037207882" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
-      isInstructor = true;
+      isModerator = true;
     }
 
     console.log("I'm in the think phase!");
@@ -199,7 +199,7 @@ function trigger_tps() {
     // var totalTime;
     thinkTimer = window.setTimeout(initiatePairPhase, THINK_PHASE_DURATION);
     thinkPhaseInitialized = true;
-    if (isInstructor == false) {
+    if (isModerator == false) {
       hideAllButSelf();
     }
   }  
@@ -220,6 +220,12 @@ function initiateSharePhase() {
   }
 };
 
+function notifySwitchSpeaker() {
+  if (isModerator == false) {
+    dispNotice("Half of the time in your pair discussion has passed! If you haven't done so already, make sure you switch off so that the other person has a chance to speak.");
+  }
+};
+
 function startPairPhase() {
   if (pairPhaseInitialized == false) {
     window.clearTimeout(thinkTimer);
@@ -235,7 +241,9 @@ function startPairPhase() {
     counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
     // var totalTime;
     var pairTimer = window.setTimeout(initiateSharePhase, PAIR_PHASE_DURATION);
-    if (isInstructor == false) {
+    var halftimePairTimer = window.setTimeout(notifySwitchSpeaker, PAIR_PHASE_DURATION/2);
+    
+    if (isModerator == false) {
       hideAllButPair();
     } else {
       $("#pair_wrapper").show();
@@ -250,7 +258,7 @@ function startSharePhase() {
     $("#timer_label").removeClass("phase_ending");
 
 
-    if (isInstructor == true) {
+    if (isModerator == true) {
       $("#restart_tps_btn").show();
       // $("#graph_buttons").show();
       $("#intercom_explanation").hide();
@@ -267,7 +275,7 @@ function startSharePhase() {
     console.log("I'm in the share phase!");
     console.log("Current time is: " + Date.now());
     // Untimed!
-    if (isInstructor == false) {
+    if (isModerator == false) {
       showAllParticipants();
     }
   }
