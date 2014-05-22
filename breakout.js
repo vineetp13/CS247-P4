@@ -2,7 +2,8 @@ var username;
 var names;
 var participantIDs;
 
-var INSTRUCTOR_ID = "111880716844037207882"; // get rid of redundancy
+var INSTRUCTOR_ID = "112817507031505914726"; // William 
+// Julia: "111880716844037207882"
 
 //TURN VARIABLES
 var CANVAS_WIDTH;
@@ -13,7 +14,7 @@ var isTurnReporter = false;
 var lastReportedTurnID = null;
 
 var THINK_PHASE_DURATION = 5000; // edit this to change time in each phase
-var PAIR_PHASE_DURATION = 120000;
+var PAIR_PHASE_DURATION = 5000;
 
 var counter;
 var remaining_time_in_phase;
