@@ -151,6 +151,74 @@ function start_timer(){
 
 }
 
+/* Usage: 
+  buildBarGraph('graph_container', names_arr, {
+    title_text: 'Average Talk Time',
+    subtitle_text: 'As a percentage of the conversation',
+    yAxis_max: 60,
+    yAxis_title_text: '% Talking',
+    yAxis_plotBands: [{color: '#DF5353', from: 0, to: THRESHOLD_LOW},
+                      {color: '#55BF3B', from: THRESHOLD_LOW, to: THRESHOLD_HIGH},
+                      {color: '#DF5353', from: THRESHOLD_HIGH, to: 60}],
+
+  });
+*/
+function buildBarGraph(containerID, names, style) {
+
+  style = typeof style !== 'undefined' ? style : {};
+  $(container).empty(); // to address leaks
+
+  var graph = new Highcharts.Chart({
+    chart: {
+      renderTo: containerID,
+      type: 'column'
+    },
+    title: {
+      text: style.title_text || null
+    },
+    subtitle: {
+      text: style.subtitle_text || null
+    },
+    xAxis: {
+      labels: {
+        enabled: false
+      }
+    },
+    yAxis: {
+      min: 0,
+      max: style.yAxis_max || 100,
+      title: {
+        text: yAxis_title_text || null
+      },
+      plotBands: style.yAxis_plotBands || null
+    },
+    tooltip: {
+      enabled: false
+    },
+    plotOptions: {
+      column: {
+      pointPadding: 0.2,
+        borderWidth: 0
+      }
+    },
+    series: [{
+        name: names[0],
+        data: [25]
+    }, {
+        name: names[1],
+        data: [25]
+    }, {
+        name: names[2],
+        data: [25]
+
+    }, {
+        name: names[3],
+        data: [25]
+    }]
+  });
+  return graph;
+}
+
 function setupGraph(names) {
   graphChart = new Highcharts.Chart({
     chart: {
