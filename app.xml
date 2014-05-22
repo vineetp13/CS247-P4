@@ -108,7 +108,7 @@
 
         document.getElementById("privacy-notice").innerHTML = "<strong>Heads up!</strong>  As the instructor, you will be able to monitor your audio/video feeds of all students at all times, even when they are only able to see themselves and their discussion partner.";
 
-        "<strong>Welcome to Hangout Moderator"
+        document.getElementById("instructions").innerHTML ="<strong>Welcome to Hangout Moderator</strong> As the instructor, you will be responsible for beginning the discussion once everyone arrives. First, students will be asked to <b>think</b> individually about a short prompt . Then, they will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners. Throughout the process, you will be able to listen in and intervene in the conversation as necessary to provide guidance to students on how to go about their discussion."
       }
 
       $('#intercom_explanation').tooltip();
