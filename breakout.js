@@ -276,9 +276,7 @@ function startSharePhase() {
     console.log("I'm in the share phase!");
     console.log("Current time is: " + Date.now());
     // Untimed!
-    if (isModerator == false) {
-      showAllParticipants();
-    }
+    showAllParticipants();
   }
 };
 
