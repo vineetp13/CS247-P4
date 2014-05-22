@@ -22,7 +22,28 @@
       </li>
       <li>
         <strong>Change: </strong>Extend time for the pair phase (now set to 120 seconds by default, which is twice what it was before)<br/>
-        <strong>Rationale: </strong>In our user studies, we found that participants were consistently unsatisfied with the length of time provided for the “Pair” phase of the discussion, in which each participant speaks with one other person within the discussion. Previously, the pair phase was set at 60 seconds, but participants had a difficult time introducing themselves and switching off in sharing their perspectives in a balanced way during the allotted time. To give students more time in discussing the prompt in pairs, we doubled the default amount of time dedicated to the “Pair” discussion activity
+        <strong>Rationale: </strong>In our user studies, we found that participants were consistently unsatisfied with the length of time provided for the “Pair” phase of the discussion, in which each participant speaks with one other person within the discussion. Previously, the pair phase was set at 60 seconds, but participants had a difficult time introducing themselves and switching off in sharing their perspectives in a balanced way during the allotted time. To give students more time in discussing the prompt in pairs, we doubled the default amount of time dedicated to the “Pair” discussion activity.
+      </li>
+      <li>
+        <strong>Change: </strong>
+        Instructor's graph now supports an arbitrary number of students
+        <br/>
+        <strong>Rationale: </strong>
+        Originally this was a pre-set number and our graph was statically generated. Now the Highcharts API call is inside a wrapper function that allows us to set style attributes and the number of users dynamically. This is half of the functionality needed to support arbitrary numbers of students in a group discussion (last week we could only support four).
+      </li>
+      <li>
+        <strong>Change: </strong>
+        Dynamic rather than pre-defined thresholds to trigger alerts
+        <br/>
+        <strong>Rationale: </strong>
+        Thresholds for high or low participation are now dependent on the number of users in the Hangout, and adjusted thresholds are reflected in the instructor's graph and in the logic that triggers a notification.
+      </li>
+      <li>
+        <strong>Change: </strong>
+        Notifications only triggered once every 30 seconds and are under instructor control
+        <br/>
+        <strong>Rationale: </strong>
+        User testing indicated that users disliked receiving constant notifications and desired spacing between these alerts. We have also routed all notifications to come from the instructor rather than the app itself, meaning that while not yet implemented, instructors will soon be able to approve/deny notificaitons sent to particular users and initiate new ones. Further user testing we will examine how best to address this interface.
       </li>
 
   </ol>
