@@ -353,10 +353,10 @@ function getFBHangout(){
   fb_moderator_message = fb_conversation.child('moderator_message');
   fb_moderator_message.on('child_added', function(dataSnapshot) {
     console.log(dataSnapshot);
-    console.log(dataSnapshot.user_id);
-    if (dataSnapshot.user_id == cur_userID) {
+    console.log(dataSnapshot.child('user_id').val());
+    if (dataSnapshot.child('user_id').val() == cur_userID) {
         console.log("Moderator is sending you a message...");
-        dispNotice(dataSnapshot.message);
+        dispNotice(dataSnapshot.child('message').val());
     } 
   }, null, this);
 
