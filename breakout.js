@@ -474,7 +474,7 @@ function recenterCanvas() {
 
 function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
-  var num_needed_participants = 5 - (num_participants);
+  var num_needed_participants = 3 - (num_participants); //Change back to 5
   if (num_needed_participants <= 0) {
     document.getElementById("pending_participants").innerHTML = "Looks like we are just about ready to go! Your discussion will begin momentarily.";
     $("#instructions").hide();
