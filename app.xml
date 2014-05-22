@@ -67,7 +67,7 @@
           <h4>Remaining time in this phase:</h4>
           <span class="lead" id="timer_label"></span><br/><br/>
         </div>
-        <div class="alert alert-warning alert-dismissable">
+        <div id="privacy-notice" class="alert alert-warning alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <strong>Heads up!</strong> Your instructor will be able to monitor your audio/video feeds at all times, including when he or she appears hidden to you during the Think and Pair phases, so don't do anything too embarrassing!
         </div>
@@ -105,6 +105,10 @@
       if (localParticipantId == "111880716844037207882" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
         document.getElementById("tps_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>';
         document.getElementById("graph_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_graph_btn">Start Graphing</button><button type="button" class="btn btn-primary" id="end_graph_btn" style="display:none;">End Graphing</button></center>';
+
+        document.getElementById("privacy-notice").innerHTML = "<strong>Heads up!</strong>  As the instructor, you will be able to monitor your audio/video feeds of all students at all times, even when they are only able to see themselves and their discussion partner.";
+
+        "<strong>Welcome to Hangout Moderator"
       }
 
       $('#intercom_explanation').tooltip();
