@@ -4,9 +4,7 @@ var hangout_group_id;
 var participantID;
 
 //VARS
-var THRESHOLD_HIGH = 50;
-var THRESHOLD_LOW = 10;
-var NUM_USERS = 4;
+var NUM_USERS = 2;
 var VIZ_REFRESH_INTERVAL_MS = 7000;
 var TIMER_UPDATE_INTERVAL = 1000;
 
@@ -15,7 +13,6 @@ var subtract;
 var increment;
 var divide_by;
 
-var gaugeChart;
 var graphChart;
 
 //fb instance variable and conversation variable for ease of access
@@ -81,16 +78,6 @@ var MIN_WIDTH = 300;
 
 var isTurnReporter = false;
 var lastReportedTurnID = null;
-
-
-
-//FIREBASE STARTS HERE
-
-$(document).ready(function(){
-  //connect_to_timer_firebase();
-  //setupGauge();
-  //setupGraph();
-});
 
 function percentage_talk(time) {
   return Math.floor((time/total_talk)*100);
@@ -159,14 +146,24 @@ function start_timer(){
     yAxis_title_text: '% Talking',
     yAxis_plotBands: [{color: '#DF5353', from: 0, to: THRESHOLD_LOW},
                       {color: '#55BF3B', from: THRESHOLD_LOW, to: THRESHOLD_HIGH},
-                      {color: '#DF5353', from: THRESHOLD_HIGH, to: 60}],
-
+                      {color: '#DF5353', from: THRESHOLD_HIGH, to: 60}]
   });
 */
 function buildBarGraph(containerID, names, style) {
 
-  style = typeof style !== 'undefined' ? style : {};
-  $(container).empty(); // to address leaks
+  if (typeof style == 'undefined') style = {};
+  if (typeof containerID == 'undefined') return null;
+  $(containerID).empty(); // to address leaks
+
+  var series = [];
+  if (typeof names !== 'undefined') {
+    for (i in names) {
+      series.push({
+        name: names[i],
+        data: [100 / names.length]
+      });
+    }
+  }
 
   var graph = new Highcharts.Chart({
     chart: {
@@ -187,8 +184,10 @@ function buildBarGraph(containerID, names, style) {
     yAxis: {
       min: 0,
       max: style.yAxis_max || 100,
+      tickInterval: style.yAxis_tickInterval || null,
+      gridLineColor: 'transparent',
       title: {
-        text: yAxis_title_text || null
+        text: style.yAxis_title_text || null
       },
       plotBands: style.yAxis_plotBands || null
     },
@@ -201,91 +200,10 @@ function buildBarGraph(containerID, names, style) {
         borderWidth: 0
       }
     },
-    series: [{
-        name: names[0],
-        data: [25]
-    }, {
-        name: names[1],
-        data: [25]
-    }, {
-        name: names[2],
-        data: [25]
-
-    }, {
-        name: names[3],
-        data: [25]
-    }]
+    series: series
   });
+
   return graph;
-}
-
-function setupGraph(names) {
-  graphChart = new Highcharts.Chart({
-    chart: {
-      renderTo: 'graph_container',
-      type: 'column'
-    },
-    title: {
-      text: 'Average Talk Time'
-    },
-    subtitle: {
-      text: 'As a percentage of the conversation'
-    },
-    xAxis: {
-      labels: {
-        enabled: false
-      }
-    },
-    yAxis: {
-      min: 0,
-      max: 60,
-      title: {
-        text: '% Talking'
-      },
-      plotBands: [
-        {
-          color: '#DF5353',
-          from: 0,
-          to: THRESHOLD_LOW
-        },
-        {
-          color: '#55BF3B',
-          from: THRESHOLD_LOW,
-          to: THRESHOLD_HIGH
-        },
-        {
-          color: '#DF5353',
-          from: THRESHOLD_HIGH,
-          to: 60
-        }
-      ],
-    },
-    tooltip: {
-      enabled: false
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: names[0],
-        data: [25]
-
-    }, {
-        name: names[1],
-        data: [25]
-    }, {
-        name: names[2],
-        data: [25]
-
-    }, {
-        name: names[3],
-        data: [25]
-
-    }]
-  });
 }
 
 // TURN-TAKING STARTS HERE
@@ -506,7 +424,20 @@ function checkSetup(dataSnapshot){
     console.log(names);
     console.log(snapshots);
 
-    setupGraph(names);
+    var YAXIS_MAX = Math.ceil((100 / names.length)/10) * 20;
+    var THRESHOLD_LOW = (100 / names.length) - ((100 / names.length) * .5);
+    var THRESHOLD_HIGH = (100 / names.length) + Math.floor((100 / names.length) * .5);
+    graphChart = buildBarGraph('graph_container', names, {
+        title_text: 'Average Talk Time',
+        subtitle_text: 'As a percentage of the conversation',
+        yAxis_max: YAXIS_MAX,
+        yAxis_tickInterval: 10,
+        yAxis_title_text: '% Talking',
+        yAxis_plotBands: [{color: '#DF5353', from: 0, to: THRESHOLD_LOW},
+                          {color: '#55BF3B', from: THRESHOLD_LOW, to: THRESHOLD_HIGH},
+                          {color: '#DF5353', from: THRESHOLD_HIGH, to: YAXIS_MAX}]
+      });
+    //setupGraph(names);
   }
 }
 
