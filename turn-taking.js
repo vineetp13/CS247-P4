@@ -382,7 +382,7 @@ function getFBHangout(){
       data[0].y = percentages[i];
       graphChart.series[i].setData(data,true);
 
-      if(cur_userID == "111880716844037207882"){
+     /* if(cur_userID == "111880716844037207882"){
         if (percentages[i] < THRESHOLD_LOW) { // too low
           alertedOver[participantIDs[i]] = 0;
           if(alertedUnder[participantIDs[i]] == 0){
@@ -417,7 +417,7 @@ function getFBHangout(){
           alertedOver[participantIDs[i]] = 0;
           alertedUnder[participantIDs[i]] = 0;
         }
-      }
+      }*/
 
       // check if above or below threshold to trigger alerts
       if (percentages[i] < THRESHOLD_LOW) { // too low
