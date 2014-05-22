@@ -114,7 +114,7 @@ function init() {
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
       console.log("My local participant ID is: " + localParticipantId);
-      if (localParticipantId == "111880716844037207882" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
+      if (localParticipantId == "111880716844037207883" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
         $("#start_tps_btn").show();
       }
     }
@@ -183,7 +183,7 @@ function trigger_tps() {
     $("#timer_label").removeClass("phase_ending");
 
     var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
-    if (localParticipantId == "111880716844037207882" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
+    if (localParticipantId == "111880716844037207883" || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
       isModerator = true;
     }
 
@@ -331,7 +331,7 @@ function hideAllButPair() {
   for (var index in participants) {
     var participantId = participants[index].person.id;
     // Include all participants EXCEPT the instructor accounts.
-    if (participantId != "111880716844037207882") {
+    if (participantId != "111880716844037207883") {
       participantIDs.push(participants[index].id);
     }
   }
@@ -368,7 +368,7 @@ function enableEavesdropping() {
   for (var index in participants) {
     var participantId = participants[index].person.id;
     // Include all participants EXCEPT the instructor accounts.
-    if (participantId != "111880716844037207882") {
+    if (participantId != "111880716844037207883") {
       participantIDs.push(participants[index].id);
     }
   }
