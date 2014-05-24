@@ -227,6 +227,7 @@ function notifySwitchSpeaker() {
 
 function startPairPhase() {
   if (pairPhaseInitialized == false) {
+    pairPhaseInitialized = true;
     window.clearTimeout(thinkTimer);
     window.clearInterval(counter);
     $("#timer_label").removeClass("phase_ending");
@@ -253,6 +254,7 @@ function startPairPhase() {
 
 function startSharePhase() {
   if (sharePhaseInitialized == false) {
+    sharePhaseInitialized = true;
     window.clearTimeout(thinkTimer);
     window.clearInterval(counter);
     $("#timer_label").removeClass("phase_ending");
