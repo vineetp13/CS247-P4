@@ -147,7 +147,7 @@ function showPanel() {
 
 // Determine who the moderator is
 function determineModerator() {
-  var num_participants = gapi.hangout.getParticipants();.length;
+  var num_participants = gapi.hangout.getParticipants().length;
   // If I am the only participant remaining, set me as the moderator
   if (num_participants == 1) {
     gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipant().person.id);
