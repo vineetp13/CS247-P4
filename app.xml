@@ -92,7 +92,7 @@
 <script>
   gapi.hangout.onApiReady.add(
     function(eventObj) {
-      determineInstructor();
+      determineModerator();
 
       $('#hide_panel').click(function() {
         hidePanel();
@@ -103,8 +103,7 @@
 
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
-      console.log("My local participant ID is: " + localParticipantId);
-      if (localParticipantId == INSTRUCTOR_ID || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
+      if (localParticipantId == INSTRUCTOR_ID) {
         document.getElementById("tps_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>';
         document.getElementById("graph_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_graph_btn">Start Graphing</button><button type="button" class="btn btn-primary" id="end_graph_btn" style="display:none;">End Graphing</button></center>';
 
