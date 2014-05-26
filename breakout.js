@@ -2,7 +2,7 @@ var username;
 var names;
 var participantIDs;
 
-var INSTRUCTOR_ID = "112817507031505914726"; // William 
+var INSTRUCTOR_ID = "112817507031505914726"; // William by default
 // Julia: "111880716844037207882"
 
 //TURN VARIABLES
@@ -59,6 +59,7 @@ function init() {
       //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
       gapi.hangout.onEnabledParticipantsChanged.add(
         function(eventObj) {
+          determineModerator();
         }
       );
 
@@ -114,7 +115,7 @@ function init() {
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
       console.log("My local participant ID is: " + localParticipantId);
-      if (localParticipantId == INSTRUCTOR_ID || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
+      if (localParticipantId == INSTRUCTOR_ID) {
         $("#start_tps_btn").show();
       }
     }
@@ -139,6 +140,24 @@ function showPanel() {
   $("#show_panel").hide();
   recenterCanvas();
 };
+
+
+////////////////////////////////////
+///   ALL TPS LOGIC GOES BELOW   ///
+////////////////////////////////////
+
+// Determine who the moderator is
+function determineModerator() {
+  var participants = gapi.hangout.getParticipants();
+  var num_participants = participants.length;
+  // If I am the only participant remaining, set me as the moderator
+  if (num_participants == 1) {
+    gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipant().person.id);
+  } else {
+    INSTRUCTOR_ID = gapi.hangout.data.getValue("moderator");
+  }
+}
+
 
 // This is called ONLY by a local participant who initiates the discussion
 function startTPS() {
@@ -183,7 +202,7 @@ function trigger_tps() {
     $("#timer_label").removeClass("phase_ending");
 
     var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
-    if (localParticipantId == INSTRUCTOR_ID || localParticipantId == "wjkchid@gmail.com" || localParticipantId == "kdumovic@gmail.com") {
+    if (localParticipantId == INSTRUCTOR_ID) {
       isModerator = true;
     }
 

@@ -92,9 +92,7 @@
 <script>
   gapi.hangout.onApiReady.add(
     function(eventObj) {
-    
-      var INSTRUCTOR_ID = "112817507031505914726"; // William 
-      // Julia: "111880716844037207882"
+      determineInstructor();
 
       $('#hide_panel').click(function() {
         hidePanel();
