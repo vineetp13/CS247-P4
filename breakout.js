@@ -107,7 +107,6 @@ function init() {
           } else if (eventObj.state.intercom_in_use == "false") {
             turn_off_intercom();
           }
-
         }
       );
 
@@ -148,14 +147,12 @@ function showPanel() {
 
 // Determine who the moderator is
 function determineModerator() {
-  var participants = gapi.hangout.getParticipants();
-  var num_participants = participants.length;
+  var num_participants = gapi.hangout.getParticipants();.length;
   // If I am the only participant remaining, set me as the moderator
   if (num_participants == 1) {
     gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipant().person.id);
-  } else {
-    INSTRUCTOR_ID = gapi.hangout.data.getValue("moderator");
-  }
+  } 
+  INSTRUCTOR_ID = gapi.hangout.data.getValue("moderator");
 }
 
 
