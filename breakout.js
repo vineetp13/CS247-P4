@@ -24,6 +24,7 @@ var shareTimer;
 var thinkPhaseInitialized = false;
 var pairPhaseInitialized = false;
 var sharePhaseInitialized = false;
+var intercomInUse = false;
 var isModerator = false;
 
 // TURN-TAKING STARTS HERE
