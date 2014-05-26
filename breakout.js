@@ -153,6 +153,7 @@ function determineModerator() {
     gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipant().person.id);
   } 
   INSTRUCTOR_ID = gapi.hangout.data.getValue("moderator");
+  console.log("instructor id is: " + INSTRUCTOR_ID);
 }
 
 
