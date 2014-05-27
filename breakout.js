@@ -156,7 +156,6 @@ function determineModerator() {
 
 // This is called ONLY by a local participant who initiates the discussion
 function startTPS() {
-  $("#tps_instructions").hide();
   $("#start_tps_btn").hide();
   $("#enable_intercom_btn").show();
   $("#intercom_explanation").show();
