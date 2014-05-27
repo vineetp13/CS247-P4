@@ -653,6 +653,7 @@ function showPanel() {
 };
 
 function startGraphing() {
+  $("#graph_instructions").hide();
   $("#start_graph_btn").hide();
   $("#end_discussion_btn").show();
   start_timer();
@@ -664,6 +665,7 @@ function startGraphing() {
 };
 
 function endGraphing() {
+  $("#graph_instructions").show();
   $("#start_graph_btn").show();
   $("#end_graph_btn").hide();
   gapi.hangout.data.setValue("graphing","false");
