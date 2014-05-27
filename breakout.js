@@ -46,12 +46,6 @@ function init() {
           recenterCanvas();
       });
 
-      //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
-      gapi.hangout.onEnabledParticipantsChanged.add(
-        function(eventObj) {
-        }
-      );
-
       $(window).resize(function () {
           recenterCanvas();
       });
@@ -328,8 +322,11 @@ function turn_on_intercom() {
 };
 
 function turn_off_intercom() {
-  var moderator_id = gapi.hangout.data.getValue("moderator");
-  gapi.hangout.av.setParticipantAudible(moderator_id, false);
+  // Only allow the instructor to disable their mic if everyone is still in the think or pair phases.
+  if (sharePhaseInitialized == false) {
+    var moderator_id = gapi.hangout.data.getValue("moderator");
+    gapi.hangout.av.setParticipantAudible(moderator_id, false);
+  }
 };
 
 function hideAllButSelf() {
