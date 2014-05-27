@@ -190,8 +190,6 @@ function phase_timer(){
 function trigger_tps() {
   if (thinkPhaseInitialized == false) {
     // Control the button display for all participants
-    showPanel();
-    $("#tps_content_wrapper").show();
     $("#start_tps_button").hide();
     $("#restart_tps_button").hide();
     $("#pending_participants").hide();
