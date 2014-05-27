@@ -66,7 +66,7 @@
             <h4>Remaining time in this phase:</h4>
             <span class="lead" id="timer_label"></span><br/><br/>
           </div>
-          <div id="privacy-notice" class="alert alert-warning alert-dismissable" style="display:none;">
+          <div id="privacy-notice" class="alert alert-warning alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Heads up!</strong> Your instructor will be able to monitor your audio/video feeds at all times, including when he or she appears hidden to you during the Think and Pair phases, so don't do anything too embarrassing!
           </div>
@@ -111,7 +111,7 @@
 
         document.getElementById("graph_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_graph_btn">Start Graphing</button><button type="button" class="btn btn-primary" id="end_graph_btn" style="display:none;">End Graphing</button></center>';
 
-        $("#panel_container_wrapper").height("100%");
+        $("#panel_container_wrapper").height("460px");
       }
 
       $('#intercom_explanation').tooltip();
