@@ -54,8 +54,8 @@
       <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
       <div id="visualization_container">
         <p id="instructions">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
+        <br/><br/>
         <div id="tps_content_wrapper" style="display: none;">
-          <br/><br/>
           <h4>Current Phase:</h4>
           <p class="lead" id="phase_label">
             <span id="pending_participants">
@@ -66,7 +66,7 @@
             <h4>Remaining time in this phase:</h4>
             <span class="lead" id="timer_label"></span><br/><br/>
           </div>
-          <div id="privacy-notice" class="alert alert-warning alert-dismissable" style="display:none;">
+          <div id="privacy-notice" class="alert alert-warning alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Heads up!</strong> Your instructor will be able to monitor your audio/video feeds at all times, including when he or she appears hidden to you during the Think and Pair phases, so don't do anything too embarrassing!
           </div>
@@ -105,13 +105,15 @@
       if (localParticipantId == INSTRUCTOR_ID) {
         document.getElementById("privacy-notice").innerHTML = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong>Heads up!</strong>   You will be able to monitor the audio and video feeds of all students at all times, even when they are only able to see themselves and/or their discussion partner.";
 
-        document.getElementById("instructions").innerHTML ="<strong>Welcome to Hangout Moderator!</strong> As the instructor, you will be responsible for leading the discussion once everyone arrives. You have two tools at your disposal to help moderate the discussion.<br/><br/><strong><u>1. Think, Pair, Share: </u></strong>First, students will be asked to <b>think</b> individually about a short prompt . Then, they will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners. Throughout the process, you will be able to listen in and intervene in the conversation as necessary to provide guidance to students on how to go about their discussion.<br/><div id='tps_buttons'></div><br/><br/><strong><u>2. Discussion Analytics: </u></strong>This mode will provide you with real-time analytics data about the participation balance between all members of the discussion (excluding yourself). You will see a graph displaying each student's relative contributions, and will be able to send them private notifications to provide feedback about high or low feedback discretely.<br/><div id='graph_buttons'></div>";
 
-        document.getElementById("tps_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>';
+
+        document.getElementById("instructions").innerHTML ="<strong>Welcome to Hangout Moderator!</strong> As the instructor, you will be responsible for leading the discussion once everyone arrives. You have two tools at your disposal to help moderate the discussion.<br/><br/><strong><u>1. Think, Pair, Share: </u></strong><br/><div id='tps_buttons'></div><br/><br/><strong><u>2. Discussion Analytics: </u></strong>This mode will provide you with real-time analytics data about the participation balance between all members of the discussion (excluding yourself). You will see a graph displaying each student's relative contributions, and will be able to send them private notifications to provide feedback about high or low feedback discretely.<br/><div id='graph_buttons'></div>";
+
+        document.getElementById("tps_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="First, students will be asked to <b>think</b> individually about a short prompt . Then, they will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners. Throughout the process, you will be able to listen in and intervene in the conversation as necessary to provide guidance to students on how to go about their discussion."><span class="glyphicon glyphicon-question-sign"></span></button><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>';
 
         document.getElementById("graph_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_graph_btn">Start Graphing</button><button type="button" class="btn btn-primary" id="end_graph_btn" style="display:none;">End Graphing</button></center>';
 
-        $("#panel_container_wrapper").height("100%");
+        $("#panel_container_wrapper").height("460px");
       }
 
       $('#intercom_explanation').tooltip();
