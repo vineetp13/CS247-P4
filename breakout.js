@@ -174,13 +174,13 @@ function startTPS() {
 };
 
 function restartTPS() {
-  // $("#start_discussion_btn").show();
+  $("#start_discussion_btn").show();
   thinkPhaseInitialized = false;
   pairPhaseInitialized = false;
   sharePhaseInitialized = false;
-  gapi.hangout.data.setValue("discussing","true");
-  gapi.hangout.data.setValue("phase","think");
-  console.log("restarting discussion");
+  gapi.hangout.data.setValue("discussing","false");
+  gapi.hangout.data.setValue("phase", "none");
+  console.log("restarted discussion");
 };
 
 function phase_timer(){
