@@ -61,26 +61,26 @@
           </p>
           <div id='tps_buttons'>
             <div id="timing-selectors">
-              <p>Please select the length of the Think phase:
+              <p>Please select the length in time of the Think phase:
                 <select name="think" form="timing-form">
                   <option value='0'>None</option>
                   <option value='15'>15 seconds</option>
-                  <option value='30'>30 seconds</option>
+                  <option value='30' selected='selected'>30 seconds</option>
                   <option value='45'>45 seconds</option>
                   <option value='60'>1 minute</option>
                 </select>
               </p>
-              <p>Please select the length of the Pair phase:
+              <p>Please select the length in time of the Pair phase:
                 <select name="pair" form="timing-form">
                   <option value='0'>None</option>
                   <option value='30'>30 seconds</option>
                   <option value='60'>1 minute</option>
-                  <option value='90'>1.5 minutes</option>
+                  <option value='90' selected='selected'>1.5 minutes</option>
                   <option value='120'>2 minutes</option>
                 </select>
               </p>
               <form action="javascript:overrideTimings()" id="timing-form">
-                <input type="submit">
+                <input class="btn btn-success" type="submit" value="Start TPS">
               </form>
             </div>
             <center><button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>
