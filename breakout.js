@@ -13,9 +13,6 @@ var MIN_WIDTH = 300;
 var isTurnReporter = false;
 var lastReportedTurnID = null;
 
-var THINK_PHASE_DURATION = 30000; // edit this to change time in each phase
-var PAIR_PHASE_DURATION = 90000;
-
 var counter;
 var remaining_time_in_phase;
 var thinkTimer;
@@ -153,9 +150,21 @@ function determineModerator() {
   console.log("instructor id is: " + INSTRUCTOR_ID);
 }
 
-
 // This is called ONLY by a local participant who initiates the discussion
 function startTPS() {
+
+  //get timings and store to state
+  var think_selects = document.getElementById("think_select");
+  var think_time_in_s = think_selects.options[think_selects.selectedIndex].value;
+  console.log("Think time will be: " + think_time_in_s);
+
+  var pair_selects = document.getElementById("pair_select");
+  var pair_time_in_s = pair_selects.options[pair_selects.selectedIndex].value;
+  console.log("Pair time will be: " + pair_time_in_s);
+
+  gapi.hangout.data.setValue("think-time",think_time_in_s.toString());
+  gapi.hangout.data.setValue("pair-time",pair_time_in_s.toString());
+
   $("#start_tps_btn").hide();
   $("#enable_intercom_btn").show();
   $("#intercom_explanation").show();
@@ -209,10 +218,10 @@ function trigger_tps() {
     document.getElementById("phase_label").innerHTML = "Think<br/>On your own, think about your favorite class at Stanford. Why was it your favorite class?"
 
     // Start Think Phase
-    remaining_time_in_phase = THINK_PHASE_DURATION/1000;
-    counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
-    // var totalTime;
-    thinkTimer = window.setTimeout(initiatePairPhase, THINK_PHASE_DURATION);
+    var think_time_in_s = parseInt(gapi.hangout.data.getValue("think-time"));
+    remaining_time_in_phase = think_time_in_s;
+    counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
+    thinkTimer = window.setTimeout(initiatePairPhase, think_time_in_ms*1000);
     thinkPhaseInitialized = true;
     if (isModerator == false) {
       hideAllButSelf();
@@ -253,11 +262,12 @@ function startPairPhase() {
 
     document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share which class you picked and why. What did you learn?"
 
-    remaining_time_in_phase = PAIR_PHASE_DURATION/1000;
-    counter=setInterval(phase_timer, 1000); //1000 will  run it every 1 second
-    // var totalTime;
-    var pairTimer = window.setTimeout(initiateSharePhase, PAIR_PHASE_DURATION);
-    var halftimePairTimer = window.setTimeout(notifySwitchSpeaker, PAIR_PHASE_DURATION/2);
+    // Start Pair Phase
+    var think_time_in_s = parseInt(gapi.hangout.data.getValue("pair-time"));
+    remaining_time_in_phase = pair_time_in_s;
+    counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
+    var pairTimer = window.setTimeout(initiateSharePhase, pair_time_in_s*1000);
+    var halftimePairTimer = window.setTimeout(notifySwitchSpeaker, (pair_time_in_s*1000)/2);
     
     if (isModerator == false) {
       hideAllButPair();
