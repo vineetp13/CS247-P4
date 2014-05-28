@@ -46,12 +46,12 @@
 
 
 
-  <div id="show_panel">
+<!--   <div id="show_panel">
     <span id="show_panel_label" style="font-size: 10pt;">Show Think-Pair-Share&#9660;</span>
-  </div>
+  </div> -->
   <div id="panel_container_wrapper" style="overflow:scroll; position:relative;">
     <div id="panel_container">
-      <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
+      <!-- <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a> -->
       <div id="visualization_container">
         <p id="instructions">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
 
