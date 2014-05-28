@@ -189,6 +189,7 @@ function phase_timer(){
 // Called by EVERY participant running the app to establish each person's timers/displays
 function trigger_tps() {
   if (thinkPhaseInitialized == false) {
+    showPanel();
     // Control the button display for all participants
     $("#start_tps_button").hide();
     $("#restart_tps_button").hide();

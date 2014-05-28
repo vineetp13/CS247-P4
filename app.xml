@@ -137,6 +137,8 @@
         document.getElementById("graph_buttons").innerHTML = '<center><button type="button" class="btn btn-success" id="start_graph_btn">Start Graphing</button><button type="button" class="btn btn-primary" id="end_graph_btn" style="display:none;">End Graphing</button></center>';
 
         $("#panel_container_wrapper").height("460px");
+      } else {
+        hidePanel();
       }
 
       $('#intercom_explanation').tooltip();
