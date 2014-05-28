@@ -297,7 +297,7 @@ function startSharePhase() {
       $("#pair_wrapper").hide();
       startGraphing();
     }
-    $('#panel_container').css( "height", "+=300px" );
+    $('#panel_container').css( "height", "+=500px" );
 
     document.getElementById("phase_label").innerHTML = "Share<br/>Now that we are all back, take turns going around and sharing what you discussed. Talk about your favorite classes."
     document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
