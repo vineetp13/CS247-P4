@@ -378,18 +378,60 @@ function hideAllButPair() {
   console.log(participants);
   console.log(participantIDs);
 
-  if (local_participant_index % 2 == 0) {
-    // Their index is EVEN, so partner is index + 1
-    partner_id = participantIDs[local_participant_index + 1];
-  } else {
-    // Their index is ODD, so partner is index - 1
-    partner_id = participantIDs[local_participant_index - 1];
+  if(participantIDs.length > 1){
+    if(participantIDs.length % 2 == 0){
+      if (local_participant_index % 2 == 0) {
+        // Their index is EVEN, so partner is index + 1
+        partner_id = participantIDs[local_participant_index + 1];
+      } else{
+        // Their index is ODD, so partner is index - 1
+        partner_id = participantIDs[local_participant_index - 1];
+      }
+      console.log("Partner ID:");
+      console.log(partner_id);
+      gapi.hangout.av.setParticipantVisible(partner_id, true);
+      gapi.hangout.av.setParticipantAudible(partner_id, true);
+      gapi.hangout.av.clearAvatar(partner_id);
+    }else{
+      if(local_participant_index == participantIDs.length - 3){
+        partner_id = participantIDs[local_participant_index + 1];
+        gapi.hangout.av.setParticipantVisible(partner_id, true);
+        gapi.hangout.av.setParticipantAudible(partner_id, true);
+        partner_id = participantIDs[local_participant_index + 2];
+        gapi.hangout.av.setParticipantVisible(partner_id, true);
+        gapi.hangout.av.setParticipantAudible(partner_id, true);
+      }else if(local_participant_index == participantIDs.length - 2){ 
+        partner_id = participantIDs[local_participant_index + 1];
+        gapi.hangout.av.setParticipantVisible(partner_id, true);
+        gapi.hangout.av.setParticipantAudible(partner_id, true);
+        partner_id = participantIDs[local_participant_index - 1];
+        gapi.hangout.av.setParticipantVisible(partner_id, true);
+        gapi.hangout.av.setParticipantAudible(partner_id, true);
+      }else if(local_participant_index == participantIDs.length - 1){
+        partner_id = participantIDs[local_participant_index - 1];
+        gapi.hangout.av.setParticipantVisible(partner_id, true);
+        gapi.hangout.av.setParticipantAudible(partner_id, true);
+        partner_id = participantIDs[local_participant_index - 2];
+        gapi.hangout.av.setParticipantVisible(partner_id, true);
+        gapi.hangout.av.setParticipantAudible(partner_id, true);
+      }else{
+        if (local_participant_index % 2 == 0) {
+        // Their index is EVEN, so partner is index + 1
+        partner_id = participantIDs[local_participant_index + 1];
+        } else{
+          // Their index is ODD, so partner is index - 1
+          partner_id = participantIDs[local_participant_index - 1];
+        }
+        console.log("Partner ID:");
+        console.log(partner_id);
+        gapi.hangout.av.setParticipantVisible(partner_id, true);
+        gapi.hangout.av.setParticipantAudible(partner_id, true);
+        gapi.hangout.av.clearAvatar(partner_id);
+      }
+    }
+  }else{
+    console.log("less than 2!");
   }
-  console.log("Partner ID:");
-  console.log(partner_id);
-  gapi.hangout.av.setParticipantVisible(partner_id, true);
-  gapi.hangout.av.setParticipantAudible(partner_id, true);
-  gapi.hangout.av.clearAvatar(partner_id);
 };
 
 function enableEavesdropping() {

@@ -397,11 +397,7 @@ function getFBHangout(){
             console.log("Sending Message for less");
             fb_moderator_message.push({'user_id': participantIDs[i], 'message': 'Hangout Moderator System Notice: Speak up! You should participate more.'});
           }
-          //console.log("Somebody has gone below " + THRESHOLD_LOW + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
-          //if (participantIDs[i] == cur_userID) {
-            //console.log("That person is you. Sending notice...");
-            //dispNotice("Speak up! You should participate more.");
-          //} 
+
         }else if (percentages[i] > THRESHOLD_HIGH) { // too high
           if(alertedOver[participantIDs[i]] == false){
             alertedOver[participantIDs[i]] = true;
@@ -411,11 +407,7 @@ function getFBHangout(){
             console.log("Sending Message for more");
             fb_moderator_message.push({'user_id': participantIDs[i], 'message': 'Hangout Moderator System Notice:  Seems like you\'ve been talking quite a bit recently! Why not allow some other folks the chance to speak?'});
           }
-          //console.log("Somebody has gone above " + THRESHOLD_HIGH + "%. His or her % is: " + percentages[i] + "%. This is user id: " + i + ".");
-          //if (participantIDs[i] == cur_userID) {
-            //console.log("That person is you. Sending notice...");
-            //dispNotice("Hangout Moderator System Notice:  Seems like you've been talking quite a bit recently! Why not allow some other folks the chance to speak?");
-          //}
+
         }else{
           alertedOver[participantIDs[i]] = false;
           alertedUnder[participantIDs[i]] = false;
