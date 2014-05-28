@@ -221,7 +221,7 @@ function trigger_tps() {
     var think_time_in_s = parseInt(gapi.hangout.data.getValue("think-time"));
     remaining_time_in_phase = think_time_in_s;
     counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
-    thinkTimer = window.setTimeout(initiatePairPhase, think_time_in_ms*1000);
+    thinkTimer = window.setTimeout(initiatePairPhase, think_time_in_s*1000);
     thinkPhaseInitialized = true;
     if (isModerator == false) {
       hideAllButSelf();
