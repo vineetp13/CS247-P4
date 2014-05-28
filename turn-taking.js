@@ -276,9 +276,11 @@ function init() {
         function(eventObj) {
           if (eventObj.participants.length == NUM_USERS) { // change this back to 4?
             // MAKE SURE TO UN_COMMENT THIS!!
+            $('#start_graph_btn').unbind('click');
             $('#start_graph_btn').on('click', function() {
               startGraphing();
             });
+            $('#end_discussion_btn').unbind('click');
             $('#end_discussion_btn').on('click', function() {
               endGraphing();
             });
@@ -668,7 +670,6 @@ function endGraphing() {
   $("#start_graph_btn").show();
   $("#end_graph_btn").hide();
   gapi.hangout.data.setValue("graphing","false");
-
 };
 
 //LAYOUT AND VIDEO FEED CONTROLS:
