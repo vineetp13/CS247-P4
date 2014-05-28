@@ -54,6 +54,31 @@
       <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a>
       <div id="visualization_container">
         <p id="instructions">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
+
+        <div id="timing-selectors">
+          <p>Please select the length of the Think phase:
+            <select name="think" form="timing-form">
+              <option value='0'>None</option>
+              <option value='15'>15 seconds</option>
+              <option value='30'>30 seconds</option>
+              <option value='45'>45 seconds</option>
+              <option value='60'>1 minute</option>
+            </select>
+          </p>
+          <p>Please select the length of the Pair phase:
+            <select name="pair" form="timing-form">
+              <option value='0'>None</option>
+              <option value='30'>30 seconds</option>
+              <option value='60'>1 minute</option>
+              <option value='90'>1.5 minutes</option>
+              <option value='120'>2 minutes</option>
+            </select>
+          </p>
+          <form action="javascript:overrideTimings()" id="timing-form">
+            <input type="submit">
+          </form>
+        </div>
+
         <div id="tps_content_wrapper" style="display: none;">
           <br/><br/>
           <h4>Current Phase:</h4>
