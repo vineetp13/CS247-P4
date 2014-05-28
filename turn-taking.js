@@ -324,7 +324,7 @@ function init() {
 };
 
 function dispNotice(msg) {
-  gapi.hangout.layout.displayNotice(msg,true);
+  gapi.hangout.layout.displayNotice(msg,false);
 }
 
 function getFBHangout(){

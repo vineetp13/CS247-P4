@@ -265,7 +265,7 @@ function startPairPhase() {
     document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share which class you picked and why. What did you learn?"
 
     // Start Pair Phase
-    var think_time_in_s = parseInt(gapi.hangout.data.getValue("pair-time"));
+    var pair_time_in_s = parseInt(gapi.hangout.data.getValue("pair-time"));
     remaining_time_in_phase = pair_time_in_s;
     counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
     var pairTimer = window.setTimeout(initiateSharePhase, pair_time_in_s*1000);
