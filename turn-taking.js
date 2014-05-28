@@ -655,6 +655,7 @@ function showPanel() {
 function startGraphing() {
   $("#start_graph_btn").hide();
   $("#end_discussion_btn").show();
+  $(".initial_instructions").hide();
   start_timer();
   gapi.hangout.data.setValue("graphing","true");
   $("#graph_buttons").show();

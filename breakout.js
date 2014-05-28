@@ -166,6 +166,7 @@ function startTPS() {
   gapi.hangout.data.setValue("pair-time",pair_time_in_s.toString());
 
   $("#start_tps_btn").hide();
+  $(".initial_instructions").hide();
   $("#enable_intercom_btn").show();
   $("#intercom_explanation").show();
   gapi.hangout.data.setValue("discussing","true");
