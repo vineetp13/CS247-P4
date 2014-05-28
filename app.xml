@@ -118,12 +118,12 @@
     function(eventObj) {
       determineModerator();
 
-      $('#hide_panel').click(function() {
-        hidePanel();
-      });
-      $('#show_panel').click(function() {
-        showPanel();
-      });
+      //$('#hide_panel').click(function() {
+      //  hidePanel();
+      //});
+      //$('#show_panel').click(function() {
+      //  showPanel();
+      //});
 
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
