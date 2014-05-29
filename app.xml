@@ -163,7 +163,7 @@
 
       $('#intercom_explanation').tooltip();
 
-      $('#start_tps_btn').click(function() {
+      $('#start_tps_btn').on('click', function() {
         startTPS();
       });
       $('#restart_tps_btn').click(function() {

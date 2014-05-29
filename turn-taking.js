@@ -149,6 +149,11 @@ function start_timer(){
 
 }
 
+function end_timer(){
+  clearInterval(timer_id);
+  clearInterval(timer_2_id);
+}
+
 /* Usage: 
   buildBarGraph('graph_container', names_arr, {
     title_text: 'Average Talk Time',
@@ -300,7 +305,6 @@ function init() {
           } else if (eventObj.state.graphing == "true") {
             $("#restart_graph_btn").show();
           } else if (eventObj.state.graphing == "false") {
-            $("#restart_graph_btn").hide();
             discussing = false;
             if(timer_id){
               clearInterval(timer_id);
@@ -314,8 +318,6 @@ function init() {
             second_user ? second_user.child('contribution').set(initial_contribution) : null;
             third_user ? third_user.child('contribution').set(initial_contribution) : null;
             fourth_user ? fourth_user.child('contribution').set(initial_contribution) : null;
-
-            $("#start_graph_btn").show();
           }
         }
       );
@@ -659,8 +661,7 @@ function startGraphing() {
 };
 
 function endGraphing() {
-  $("#start_graph_btn").show();
-  $("#end_graph_btn").hide();
+  //end_timer();
   gapi.hangout.data.setValue("graphing","false");
 };
 
