@@ -227,6 +227,8 @@ function trigger_tps() {
     thinkPhaseInitialized = true;
     if (isModerator == false) {
       hideAllButSelf();
+      // Display privacy notice upon entering think pair share
+      gapi.hangout.layout.displayNotice("Heads up! Your instructor will be able to monitor your audio/video feeds at all times throughout this activity, including when he or she appears hidden to you during the Think and Pair phases, so don't do anything too embarrassing!",false);
     }
   }  
 };
