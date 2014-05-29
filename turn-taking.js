@@ -12,7 +12,7 @@ var THRESHOLD_HIGH;
 
 //SETTINGS
 // var INSTRUCTOR_ID = "111880716844037207882"; // Julia Cambre
-var INSTRUCTOR_ID = '112817507031505914726'; // WC
+var INSTRUCTOR_ID = ''; // WC
 
 //MATH
 var subtract;
@@ -318,6 +318,7 @@ function init() {
             second_user ? second_user.child('contribution').set(initial_contribution) : null;
             third_user ? third_user.child('contribution').set(initial_contribution) : null;
             fourth_user ? fourth_user.child('contribution').set(initial_contribution) : null;
+            console.log("RESET SUCCESSFUL");
           }
         }
       );
@@ -662,6 +663,7 @@ function startGraphing() {
 
 function endGraphing() {
   //end_timer();
+  console.log("ending graphing");
   gapi.hangout.data.setValue("graphing","false");
 };
 
