@@ -62,34 +62,46 @@
       <!-- <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a> -->
       <div id="visualization_container" style="padding-top: 70px;">
 
-        <p id="instructions">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
+        <p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
         <div id="instructor_instructions" style="display:none;">
           <div class="initial_instructions">
             <h4>DISCUSSION SETUP</h4>
             <div id='tps_buttons'>
               <div id="timing-selectors">
-                <p class="lead">1. Pick a prompt</p>
+                
+                <form role="form">
+                  <p class="lead" style="border-bottom: 1px solid #eeeeee;">1. Pick a prompt</p>
+                  <span>What would you like students to discuss?</span>
+                  <div class="form-group">
+                    <textarea class="form-control" cols="50" id="question_input" maxlength="140" placeholder="e.g. What has been your favorite class at Stanford and why?" rows="3"></textarea>
+                  </div>
 
-                <textarea id="question_input" class="form-control" cols="50" rows="3" maxlength="140" placeholder="e.g. What has been your favorite class at Stanford and why?"></textarea>
+                  <p class="lead" style="border-bottom: 1px solid #eeeeee;">2. Set Timings</p>
+                  <span>How long would you like students to think individually?</span>
+                  <div class="form-group">
+                    <select id="think_select" class="form-control">
+                      <option value='0'>None</option>
+                      <option value='15'>15 seconds</option>
+                      <option value='30'>30 seconds</option>
+                      <option value='45'>45 seconds</option>
+                      <option value='60'>1 minute</option>
+                    </select>
+                  </div>
+                  <span>How long would you like students to discuss in pairs?</span>
+                  <div class="form-group">
+                    <select id="pair_select" class="form-control">
+                      <option value='0'>None</option>
+                      <option value='30'>30 seconds</option>
+                      <option value='60'>1 minute</option>
+                      <option value='90'>1.5 minutes</option>
+                      <option value='120'>2 minutes</option>
+                    </select>
+                  </div>
 
-                <p>Please select the length in time of the Think phase:
-                  <select id="think_select">
-                    <option value='0'>None</option>
-                    <option value='15'>15 seconds</option>
-                    <option value='30'>30 seconds</option>
-                    <option value='45'>45 seconds</option>
-                    <option value='60'>1 minute</option>
-                  </select>
-                </p>
-                <p>Please select the length in time of the Pair phase:
-                  <select id="pair_select">
-                    <option value='0'>None</option>
-                    <option value='30'>30 seconds</option>
-                    <option value='60'>1 minute</option>
-                    <option value='90'>1.5 minutes</option>
-                    <option value='120'>2 minutes</option>
-                  </select>
-                </p>
+                  <p class="lead" style="border-bottom: 1px solid #eeeeee;">3. Start Discussion</p>
+                  <button type="button" class="btn btn-success" id="start_tps_btn">Begin Think-Pair-Share Activity</button>
+                </form>
+
                 <!--
                   <form action="javascript:overrideTimings()" id="timing-form">
                     <input class="btn btn-success" type="submit" value="Start TPS">
@@ -98,7 +110,7 @@
               </div>
             </div>
           </div>
-            <center><button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>
+          <center><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>
           
           <div class="initial_instructions" style="display: none;">
             <p>
