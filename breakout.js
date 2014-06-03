@@ -345,7 +345,7 @@ function startSharePhase() {
     $('#panel_container').css( "height", "+=500px" );
 
     document.getElementById("phase_label").innerHTML = "Share";
-    document.getElementById("phase_label_subhead").innerHTML = "Now that we are all back, take turns going around and sharing what you discussed.";
+    document.getElementById("phase_label_subhead").innerHTML = "<br/>Now that we are all back, take turns going around and sharing what you discussed.";
     
     $("#timer_wrapper").hide();
 
