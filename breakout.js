@@ -346,8 +346,7 @@ function startSharePhase() {
     document.getElementById("phase_label").innerHTML = "Share";
     document.getElementById("phase_label_subhead").innerHTML = "Now that we are all back, take turns going around and sharing what you discussed.";
     
-    $("#timer_label_heading").hide();
-    $("#timer_label").hide();
+    $("#timer_wrapper").hide();
 
     console.log("I'm in the share phase!");
     console.log("Current time is: " + Date.now());
