@@ -80,9 +80,11 @@ e<?xml version="1.0" encoding="UTF-8" ?>
                     <option value='120'>2 minutes</option>
                   </select>
                 </p>
-                <p>Please enter a question/prompt to discuss:
-                  <input id="question_input" type="text" size="25" value="e.g. What has been your favorite class at Stanford and why?">
-                </p>
+                <!-- 
+                  <p>Please enter a question/prompt to discuss:
+                    <input id="question_input" type="text" size="25" value="e.g. What has been your favorite class at Stanford and why?">
+                  </p>
+                -->
                 <!--
                   <form action="javascript:overrideTimings()" id="timing-form">
                     <input class="btn btn-success" type="submit" value="Start TPS">
