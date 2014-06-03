@@ -97,8 +97,7 @@ function init() {
             turn_on_intercom();
           } else if (eventObj.state.intercom_in_use == "false") {
             turn_off_intercom();
-          } else {
-            console.log(eventObj.state.intercom_in_use);
+          } else if (typeof eventObj.state.intercom_in_use !== "undefined") {
             enable_intercom_with_pair(eventObj.state.intercom_in_use);
           }
         }
@@ -117,6 +116,8 @@ function init() {
 };
 
 function enable_tps_button() {
+  console.log("length: " + $("#think_select > [selected]").length);
+  console.log($("#think_select"));
   if ($("#question_input").val() !== '' && $("#think_select > [selected]").length > 0 && $("#pair_select > [selected]").length > 0) {
     $("#start_tps_btn").removeClass("disabled");
   } else {
