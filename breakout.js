@@ -158,7 +158,7 @@ function determineModerator() {
   // If I am the only participant remaining, set me as the moderator
   if (num_participants == 1) {
     var participant_id = gapi.hangout.getLocalParticipant().person.id;
-    gapi.hangout.data.setValue("moderator", participant_id);
+    gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipantId()));
     INSTRUCTOR_ID = participant_id;
   } else {
     INSTRUCTOR_ID = gapi.hangout.data.getValue("moderator");
