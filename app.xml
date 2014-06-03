@@ -49,19 +49,29 @@
 <!--   <div id="show_panel">
     <span id="show_panel_label" style="font-size: 10pt;">Show Think-Pair-Share&#9660;</span>
   </div> -->
-  <div id="panel_container_wrapper" style="overflow:scroll; position:relative;">
+  <div id="panel_container_wrapper" style="overflow:scroll; position:relative; border-right: 1px solid #eeeeee;">
     <div id="panel_container">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 380px; margin-bottom: 0px;">
+        <div class="container" style="width: 380px; padding-top:7px;">
+          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator</span></center>
+        </div>
+      </nav>
+      <div id="is_instructor_banner" style="width: 380px; background-color: #5bc0de; position:fixed; top:50px; left:0px; padding: 3px;">
+        <center><span style="color: #ffffff; font-weight: 600;">You are the INSTRUCTOR of this discussion.</span></center>
+      </div>
       <!-- <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a> -->
-      <div id="visualization_container">
+      <div id="visualization_container" style="padding-top: 70px;">
+
         <p id="instructions">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
         <div id="instructor_instructions" style="display:none;">
           <div class="initial_instructions">
-            <p>
-              <strong><u>1. Think, Pair, Share: </u></strong>
-              First, students will be asked to <b>think</b> individually about a short prompt . Then, they will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners. Throughout the process, you will be able to listen in and intervene in the conversation as necessary to provide guidance to students on how to go about their discussion.
-            </p>
+            <h4>DISCUSSION SETUP</h4>
             <div id='tps_buttons'>
               <div id="timing-selectors">
+                <p class="lead">1. Pick a prompt</p>
+
+                <textarea id="question_input" class="form-control" cols="50" rows="3" placeholder="e.g. What has been your favorite class at Stanford and why?"></textarea>
+
                 <p>Please select the length in time of the Think phase:
                   <select id="think_select">
                     <!-- <option value='0'>None</option> -->
@@ -80,9 +90,7 @@
                     <option value='120'>2 minutes</option>
                   </select>
                 </p>
-                <p>Please enter a question/prompt to discuss:
-                  <textarea id="question_input" cols="50" rows="3" placeholder="e.g. What has been your favorite class at Stanford and why?">What has been your favorite class at Stanford and why?</textarea>
-                </p>
+
                 <!--
                   <form action="javascript:overrideTimings()" id="timing-form">
                     <input class="btn btn-success" type="submit" value="Start TPS">
@@ -93,7 +101,7 @@
           </div>
             <center><button type="button" class="btn btn-success" id="start_tps_btn">Start Think-Pair-Share</button><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>
           
-          <div class="initial_instructions">
+          <div class="initial_instructions" style="display: none;">
             <p>
               <strong><u>2. Discussion Analytics: </u></strong>This mode will provide you with real-time analytics data about the participation balance between all members of the discussion (excluding yourself). You will see a graph displaying each student's relative contributions, and will be able to send them private notifications to provide feedback about high or low feedback discretely.
             </p>
@@ -154,8 +162,6 @@
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
       if (localParticipantId == INSTRUCTOR_ID) {
         document.getElementById("privacy-notice").innerHTML = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong>Heads up!</strong>   You will be able to monitor the audio and video feeds of all students at all times, even when they are only able to see themselves and/or their discussion partner.";
-
-        document.getElementById("instructions").innerHTML ="<strong>Welcome to Hangout Moderator!</strong> As the instructor, you will be responsible for leading the discussion once everyone arrives. You have two tools at your disposal to help moderate the discussion.";
 
         $("#instructor_instructions").show();
 
