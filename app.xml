@@ -136,8 +136,10 @@
           <hr/>
           <div id="pair_wrapper" style="display: none;">
             <strong>Pair groups</strong>
-            <ul id="pairs" class="list-unstyled">
+            <ul id="listen_all_container" class="list-unstyled">
               <li><button id="listen_all" type="button" class="btn btn-success disabled btn-xs pair-btn" onclick="listenToAll();">Listen to all pairs</button></li>
+            </ul>
+            <ul id="pairs" class="list-unstyled">
             </ul>
           </div>
         </div>
