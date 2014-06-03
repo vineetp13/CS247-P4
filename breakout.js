@@ -559,6 +559,7 @@ function listenToPair(first_of_pair, second_of_pair, button) {
   // Hide everyone
   hideAllButSelf();
 
+
   // Redo classes
   $(".pair-btn").removeClass("btn-success disabled").addClass("btn-default");
   $(button).addClass("btn-success disabled");
