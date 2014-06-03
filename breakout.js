@@ -116,7 +116,7 @@ function init() {
 };
 
 function enable_tps_button() {
-  if ($("#question_input").val() !== '' && $("#think_select").has('[selected]') && $("#pair_select").has('[selected]')) {
+  if ($("#question_input").val() !== '' && $("#think_select > [selected]").length > 0 && $("#pair_select > [selected]").length > 0) {
     $("#start_tps_btn").removeClass("disabled");
   } else {
     $("#start_tps_btn").addClass("disabled");
