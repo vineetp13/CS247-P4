@@ -171,7 +171,7 @@ function startTPS() {
   gapi.hangout.data.setValue("think-time",think_time_in_s.toString());
   gapi.hangout.data.setValue("pair-time",pair_time_in_s.toString());
   gapi.hangout.data.setValue("question",question);
-  
+
   $("#start_tps_btn").hide();
   $(".initial_instructions").hide();
   $("#enable_intercom_btn").show();
@@ -224,11 +224,15 @@ function trigger_tps() {
     console.log("Current time is: " + Date.now());
 
     $("#timer_wrapper").show();
-    document.getElementById("phase_label").innerHTML = "Think<br/>On your own, think about your favorite class at Stanford. Why was it your favorite class?"
 
     // Start Think Phase
     var think_time_in_s = parseInt(gapi.hangout.data.getValue("think-time"));
     remaining_time_in_phase = think_time_in_s;
+
+    // Update prompt
+    var question_text = gapi.hangout.data.getValue("question");
+    document.getElementById("phase_label").innerHTML = "Think<br/>On your own, think about the following question:<br/>" + question_text;
+
     counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
     thinkTimer = window.setTimeout(initiatePairPhase, think_time_in_s*1000);
     thinkPhaseInitialized = true;
@@ -273,7 +277,7 @@ function startPairPhase() {
     console.log("I'm in the pair phase!");
     console.log("Current time is: " + Date.now());
 
-    document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share which class you picked and why. What did you learn?"
+    document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share your answer to the previous question."
 
     // Start Pair Phase
     var pair_time_in_s = parseInt(gapi.hangout.data.getValue("pair-time"));
@@ -310,7 +314,7 @@ function startSharePhase() {
     }
     $('#panel_container').css( "height", "+=500px" );
 
-    document.getElementById("phase_label").innerHTML = "Share<br/>Now that we are all back, take turns going around and sharing what you discussed. Talk about your favorite classes."
+    document.getElementById("phase_label").innerHTML = "Share<br/>Now that we are all back, take turns going around and sharing what you discussed.";
     document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
 
     console.log("I'm in the share phase!");
