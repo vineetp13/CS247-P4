@@ -56,7 +56,7 @@
           <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator</span></center>
         </div>
       </nav>
-      <div id="is_instructor_banner" style="width: 380px; background-color: #5bc0de; position:fixed; top:50px; left:0px; padding: 3px;">
+      <div id="is_instructor_banner" style="width: 380px; background-color: #5bc0de; position:fixed; top:50px; left:0px; padding: 3px; display:none;">
         <center><span style="color: #ffffff; font-weight: 600;">You are the INSTRUCTOR of this discussion.</span></center>
       </div>
       <!-- <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a> -->
@@ -168,7 +168,7 @@
         document.getElementById("privacy-notice").innerHTML = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong>Heads up!</strong>   You will be able to monitor the audio and video feeds of all students at all times, even when they are only able to see themselves and/or their discussion partner.";
 
         $("#instructor_instructions").show();
-
+        $("#is_instructor_banner").show();
         $("#panel_container_wrapper").height("120%");
       } else {
         hidePanel();

@@ -316,6 +316,7 @@ function startSharePhase() {
     window.clearInterval(counter);
     $("#timer_label").removeClass("phase_ending");
 
+    $("#privacy-notice").hide();
 
     if (isModerator == true) {
       $("#restart_tps_btn").show();
