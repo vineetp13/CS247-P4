@@ -308,6 +308,9 @@ function startSharePhase() {
     if (isModerator == true) {
       $("#restart_tps_btn").show();
       // $("#graph_buttons").show();
+      $("#restart_tps_button").on('click', function(){
+        endGraphing();
+      });
       $("#pair_wrapper").hide();
       startGraphing();
     }
