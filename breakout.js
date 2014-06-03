@@ -187,7 +187,8 @@ function startTPS() {
 };
 
 function restartTPS() {
-  $("#start_discussion_btn").show();
+  $("#start_tps_btn").show();
+  $(".initial_instructions").show();
   $('#restart_tps_button').hide();
   thinkPhaseInitialized = false;
   pairPhaseInitialized = false;
