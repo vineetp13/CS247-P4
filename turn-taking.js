@@ -4,7 +4,7 @@ var hangout_group_id;
 var participantID;
 
 //VARS
-var NUM_USERS = 2;
+var NUM_USERS = 4;
 var VIZ_REFRESH_INTERVAL_MS = 7000;
 var TIMER_UPDATE_INTERVAL = 1000;
 var THRESHOLD_LOW;
@@ -12,7 +12,7 @@ var THRESHOLD_HIGH;
 
 //SETTINGS
 // var INSTRUCTOR_ID = "111880716844037207882"; // Julia Cambre
-var INSTRUCTOR_ID = '112817507031505914726'; // WC
+var INSTRUCTOR_ID = ''; // WC
 
 //MATH
 var subtract;
