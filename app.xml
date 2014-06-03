@@ -81,7 +81,7 @@
                   </select>
                 </p>
                 <p>Please enter a question/prompt to discuss:
-                  <input id="question_input" type="text" size="25" value="e.g. What has been your favorite class at Stanford and why?">
+                  <textarea id="question_input" cols="50" rows="3" placeholder="e.g. What has been your favorite class at Stanford and why?"></textarea>
                 </p>
                 <!--
                   <form action="javascript:overrideTimings()" id="timing-form">
