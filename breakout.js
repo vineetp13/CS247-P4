@@ -98,6 +98,7 @@ function init() {
           } else if (eventObj.state.intercom_in_use == "false") {
             turn_off_intercom();
           } else {
+            console.log(eventObj.state.intercom_in_use);
             enable_intercom_with_pair(eventObj.state.intercom_in_use);
           }
         }
