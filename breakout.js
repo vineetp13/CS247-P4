@@ -231,7 +231,7 @@ function trigger_tps() {
 
     // Update prompt
     var question_text = gapi.hangout.data.getValue("question");
-    document.getElementById("phase_label").innerHTML = "Think<br/>On your own, think about the following question:<br/>" + question_text;
+    document.getElementById("phase_label").innerHTML = "Think<br/>On your own, think about the following question:<br/><i>" + question_text + "</i>";
 
     counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
     thinkTimer = window.setTimeout(initiatePairPhase, think_time_in_s*1000);
