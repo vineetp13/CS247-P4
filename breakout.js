@@ -165,10 +165,13 @@ function startTPS() {
   console.log("Pair time will be: " + pair_time_in_s);
 
   var question_in = document.getElementById("question_input");
+  var question = question_in.value;
+  console.log("The question entered is: " + question);
 
   gapi.hangout.data.setValue("think-time",think_time_in_s.toString());
   gapi.hangout.data.setValue("pair-time",pair_time_in_s.toString());
-
+  gapi.hangout.data.setValue("question",question);
+  
   $("#start_tps_btn").hide();
   $(".initial_instructions").hide();
   $("#enable_intercom_btn").show();
