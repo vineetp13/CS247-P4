@@ -70,27 +70,26 @@
               <div id="timing-selectors">
                 <p class="lead">1. Pick a prompt</p>
 
-                <textarea id="question_input" class="form-control" cols="50" rows="3" placeholder="e.g. What has been your favorite class at Stanford and why?"></textarea>
+                <textarea id="question_input" class="form-control" cols="50" rows="3" maxlength="140" placeholder="e.g. What has been your favorite class at Stanford and why?"></textarea>
 
                 <p>Please select the length in time of the Think phase:
                   <select id="think_select">
-                    <!-- <option value='0'>None</option> -->
+                    <option value='0'>None</option>
                     <option value='15'>15 seconds</option>
-                    <option value='30' selected='selected'>30 seconds</option>
+                    <option value='30'>30 seconds</option>
                     <option value='45'>45 seconds</option>
                     <option value='60'>1 minute</option>
                   </select>
                 </p>
                 <p>Please select the length in time of the Pair phase:
                   <select id="pair_select">
-                    <!-- <option value='0'>None</option> -->
+                    <option value='0'>None</option>
                     <option value='30'>30 seconds</option>
                     <option value='60'>1 minute</option>
-                    <option value='90' selected='selected'>1.5 minutes</option>
+                    <option value='90'>1.5 minutes</option>
                     <option value='120'>2 minutes</option>
                   </select>
                 </p>
-
                 <!--
                   <form action="javascript:overrideTimings()" id="timing-form">
                     <input class="btn btn-success" type="submit" value="Start TPS">
