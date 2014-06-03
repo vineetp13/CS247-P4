@@ -392,19 +392,27 @@ function turn_off_intercom() {
     var moderator_id = gapi.hangout.data.getValue("moderator");
     gapi.hangout.av.setParticipantAudible(moderator_id, false);
     gapi.hangout.av.setParticipantVisible(moderator_id, false);
-    gapi.hangout.av.setAvatar(participant.id, "https://raw.githubusercontent.com/jcambre/CS247-P4/hangouts/images/hidden.png");
+    gapi.hangout.av.setAvatar(moderator_id, "https://raw.githubusercontent.com/jcambre/CS247-P4/hangouts/images/hidden.png");
   }
 };
 
 function enable_intercom_with_pair(pair_ids) {
   if (sharePhaseInitialized == false) {
     var moderator_id = gapi.hangout.data.getValue("moderator");
+    
+    console.log("Pair IDs: " + pair_ids);
+
     var pair_arr = pair_ids.split();
+    console.log("pair arr:");
+    console.log(pair_arr);
     var first_of_pair = pair_arr[0];
     var second_of_pair = pair_arr[1];
     
+    console.log("first: " + first_of_pair);
+    console.log("second: " + second_of_pair);
     var local_participant = gapi.hangout.getLocalParticipantId();
 
+    console.log("local part: " + local_participant);
     // Only for the two relevant people within the pair + the moderator himself should the moderator be audible and visible.
     if (local_participant == first_of_pair || local_participant == second_of_pair || local_participant == moderator_id) {
       gapi.hangout.av.setParticipantAudible(moderator_id, true);
