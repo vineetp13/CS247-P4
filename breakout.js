@@ -193,6 +193,7 @@ function restartTPS() {
   $("#start_tps_btn").show();
   $(".initial_instructions").show();
   $('#restart_tps_btn').hide();
+  document.getElementById("pairs").innerHTML='';
   thinkPhaseInitialized = false;
   pairPhaseInitialized = false;
   sharePhaseInitialized = false;
