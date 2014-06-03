@@ -248,7 +248,8 @@ function trigger_tps() {
 
     // Update prompt
     var question_text = gapi.hangout.data.getValue("question");
-    document.getElementById("phase_label").innerHTML = "Think<br/>On your own, think about the following question:<br/><i>" + question_text + "</i>";
+    document.getElementById("phase_label").innerHTML = "Think";
+    document.getElementById("phase_label_subhead").innerHTML = "<br/>On your own, think about the following question:<br/><i>" + question_text + "</i>";
 
     thinkPhaseInitialized = true;
 
@@ -296,7 +297,8 @@ function startPairPhase() {
     console.log("I'm in the pair phase!");
     console.log("Current time is: " + Date.now());
 
-    document.getElementById("phase_label").innerHTML = "Pair<br/>Now, with your partner, share your answer to the previous question."
+    document.getElementById("phase_label").innerHTML = "Pair"
+    document.getElementById("phase_label_subhead").innerHTML = "<br/>Now, with your partner, share your answer to the same question:<br/><i>" + question_text + "</i>";
 
     // Start Pair Phase
     var pair_time_in_s = parseInt(gapi.hangout.data.getValue("pair-time"));
@@ -339,8 +341,11 @@ function startSharePhase() {
     }
     $('#panel_container').css( "height", "+=500px" );
 
-    document.getElementById("phase_label").innerHTML = "Share<br/>Now that we are all back, take turns going around and sharing what you discussed.";
-    document.getElementById("timer_label").innerHTML= "Untimed"; // watch for spelling
+    document.getElementById("phase_label").innerHTML = "Share";
+    document.getElementById("phase_label_subhead").innerHTML = "Now that we are all back, take turns going around and sharing what you discussed.";
+    
+    $("#timer_label_heading").hide();
+    $("#timer_label").hide();
 
     console.log("I'm in the share phase!");
     console.log("Current time is: " + Date.now());

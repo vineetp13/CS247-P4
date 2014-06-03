@@ -118,14 +118,15 @@
 
         <div id="tps_content_wrapper" style="display: none;">
           <br/><br/>
-          <h4>Current Phase:</h4>
-          <p class="lead" id="phase_label">
+          <h4 style="display: inline-block;">Current Phase:</h4>
+          <p class="lead" id="phase_label" style="display: inline-block;">
             <span id="pending_participants">
               Waiting for <span id="num_participants_needed"></span> more participants to begin the discussion!
             </span>
           </p>
+          <span id="phase_label_subhead"></span>
           <div id="timer_wrapper" style="display:none;">
-            <h4>Remaining time in this phase:</h4>
+            <h4 id="timer_label_heading" style="display: inline-block;">Remaining time in this phase:</h4>
             <span class="lead" id="timer_label"></span><br/><br/>
           </div>
           <div id="privacy-notice" class="alert alert-warning alert-dismissable">
