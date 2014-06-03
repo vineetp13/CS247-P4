@@ -219,6 +219,11 @@ function phase_timer(){
 function trigger_tps() {
   if (thinkPhaseInitialized == false) {
     showPanel();
+    
+    // For good measure
+    window.clearTimeout(thinkTimer);
+    window.clearInterval(counter);
+
     // Control the button display for all participants
     $("#start_tps_button").hide();
     $("#restart_tps_button").hide();
@@ -245,13 +250,16 @@ function trigger_tps() {
     var question_text = gapi.hangout.data.getValue("question");
     document.getElementById("phase_label").innerHTML = "Think<br/>On your own, think about the following question:<br/><i>" + question_text + "</i>";
 
-    counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
-    thinkTimer = window.setTimeout(initiatePairPhase, think_time_in_s*1000);
     thinkPhaseInitialized = true;
-    if (isModerator == false) {
-      hideAllButSelf();
-      // Display privacy notice upon entering think pair share
+
+    if (think_time_in_s != 0) {
+      counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
+      thinkTimer = window.setTimeout(initiatePairPhase, think_time_in_s*1000);
+      if (isModerator == false) {
+        hideAllButSelf();
+      }
     }
+
   }  
 };
 
@@ -291,18 +299,21 @@ function startPairPhase() {
     // Start Pair Phase
     var pair_time_in_s = parseInt(gapi.hangout.data.getValue("pair-time"));
     remaining_time_in_phase = pair_time_in_s;
-    counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
-    var pairTimer = window.setTimeout(initiateSharePhase, pair_time_in_s*1000);
-    var halftimePairTimer = window.setTimeout(notifySwitchSpeaker, (pair_time_in_s*1000)/2);
     
-    if (isModerator == false) {
-      hideAllButPair();
-    } else {
-      $("#intercom_explanation").hide();
-      $("#enable_intercom_btn").hide();
-      $("#disable_intercom_btn").hide();
-      $("#pair_wrapper").show();
-      enableEavesdropping();
+    if (pair_time_in_s != 0) {
+      counter = setInterval(phase_timer, 1000); //1000 will run it every 1 second
+      var pairTimer = window.setTimeout(initiateSharePhase, pair_time_in_s*1000);
+      var halftimePairTimer = window.setTimeout(notifySwitchSpeaker, (pair_time_in_s*1000)/2);
+      
+      if (isModerator == false) {
+        hideAllButPair();
+      } else {
+        $("#intercom_explanation").hide();
+        $("#enable_intercom_btn").hide();
+        $("#disable_intercom_btn").hide();
+        $("#pair_wrapper").show();
+        enableEavesdropping();
+      }
     }
   }
 };
