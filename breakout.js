@@ -250,7 +250,7 @@ function trigger_tps() {
 
     // Update prompt
     var question_text = gapi.hangout.data.getValue("question");
-    document.getElementById("phase_label").innerHTML = "Think";
+    document.getElementById("phase_label").innerHTML = "<span class='glyphicon glyphicon-user' style='font-size: 11pt;'></span>&nbsp;&nbsp;Think";
     document.getElementById("phase_label_subhead").innerHTML = "<br/>On your own, think about the following question:<br/><i>" + question_text + "</i>";
 
     thinkPhaseInitialized = true;
@@ -299,7 +299,7 @@ function startPairPhase() {
     console.log("I'm in the pair phase!");
     console.log("Current time is: " + Date.now());
 
-    document.getElementById("phase_label").innerHTML = "Pair";
+    document.getElementById("phase_label").innerHTML = "<span class='glyphicon glyphicon-user' style='font-size: 11pt;'></span><span class='glyphicon glyphicon-user' style='font-size: 11pt;margin-left: -4px;'></span>&nbsp;&nbsp;Pair";
     var question_text = gapi.hangout.data.getValue("question");
     document.getElementById("phase_label_subhead").innerHTML = "<br/>Now, with your partner, share your answer to the same question:<br/><i>" + question_text + "</i>";
 
@@ -344,7 +344,7 @@ function startSharePhase() {
     }
     $('#panel_container').css( "height", "+=500px" );
 
-    document.getElementById("phase_label").innerHTML = "Share";
+    document.getElementById("phase_label").innerHTML = "<span class='glyphicon glyphicon-user' style='font-size: 11pt;'></span><span class='glyphicon glyphicon-user' style='font-size: 11pt;margin-left: -5px;top: -5px;position: relative;'></span><span class='glyphicon glyphicon-user' style='font-size: 11pt;margin-left: -4px;'></span>&nbsp;&nbsp;Share";
     document.getElementById("phase_label_subhead").innerHTML = "<br/>Now that we are all back, take turns going around and sharing what you discussed.";
     
     $("#timer_wrapper").hide();
