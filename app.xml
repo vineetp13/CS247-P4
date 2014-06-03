@@ -70,13 +70,13 @@
                 
                 <form role="form">
                   <p class="lead" style="border-bottom: 1px solid #eeeeee;">1. Pick a prompt</p>
-                  <span>What would you like students to discuss?</span>
+                  <span style="font-size: 10pt;">What would you like students to discuss?</span>
                   <div class="form-group">
                     <textarea class="form-control" cols="50" id="question_input" maxlength="140" placeholder="e.g. What has been your favorite class at Stanford and why?" rows="3" required></textarea>
                   </div>
 
                   <p class="lead" style="border-bottom: 1px solid #eeeeee;">2. Set Timings</p>
-                  <span>How long would you like students to think individually?</span>
+                  <span style="font-size: 10pt;">How long would you like students to think <b>individually</b>?</span>
                   <div class="form-group">
                     <select id="think_select" class="form-control" required>
                       <option value="-1" disabled selected>Select a duration</option>
@@ -87,7 +87,7 @@
                       <option value='60'>1 minute</option>
                     </select>
                   </div>
-                  <span>How long would you like students to discuss in pairs?</span>
+                  <span style="font-size: 10pt;">How long would you like students to discuss <b>in pairs</b>?</span>
                   <div class="form-group">
                     <select id="pair_select" class="form-control" required>
                       <option value="-1" disabled selected>Select a duration</option>
