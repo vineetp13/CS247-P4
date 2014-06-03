@@ -180,8 +180,8 @@ function startTPS() {
 };
 
 function restartTPS() {
-  $("#start_tps_btn").show;
-  $(".initial_instructions").show;
+  $("#start_tps_btn").show();
+  $(".initial_instructions").show();
   $('#restart_tps_button').hide();
   thinkPhaseInitialized = false;
   pairPhaseInitialized = false;
