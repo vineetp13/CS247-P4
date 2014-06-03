@@ -65,7 +65,6 @@
         <p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
         <div id="instructor_instructions" style="display:none;">
           <div class="initial_instructions">
-            <h4>DISCUSSION SETUP</h4>
             <div id='tps_buttons'>
               <div id="timing-selectors">
                 
@@ -73,13 +72,14 @@
                   <p class="lead" style="border-bottom: 1px solid #eeeeee;">1. Pick a prompt</p>
                   <span>What would you like students to discuss?</span>
                   <div class="form-group">
-                    <textarea class="form-control" cols="50" id="question_input" maxlength="140" placeholder="e.g. What has been your favorite class at Stanford and why?" rows="3"></textarea>
+                    <textarea class="form-control" cols="50" id="question_input" maxlength="140" placeholder="e.g. What has been your favorite class at Stanford and why?" rows="3" required></textarea>
                   </div>
 
                   <p class="lead" style="border-bottom: 1px solid #eeeeee;">2. Set Timings</p>
                   <span>How long would you like students to think individually?</span>
                   <div class="form-group">
-                    <select id="think_select" class="form-control">
+                    <select id="think_select" class="form-control" required>
+                      <option value="" disabled selected>Select a duration</option>
                       <option value='0'>None</option>
                       <option value='15'>15 seconds</option>
                       <option value='30'>30 seconds</option>
@@ -89,7 +89,8 @@
                   </div>
                   <span>How long would you like students to discuss in pairs?</span>
                   <div class="form-group">
-                    <select id="pair_select" class="form-control">
+                    <select id="pair_select" class="form-control" required>
+                      <option value="" disabled selected>Select a duration</option>
                       <option value='0'>None</option>
                       <option value='30'>30 seconds</option>
                       <option value='60'>1 minute</option>
