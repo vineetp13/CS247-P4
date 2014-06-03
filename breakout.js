@@ -181,11 +181,13 @@ function startTPS() {
 
 function restartTPS() {
   $("#start_discussion_btn").show();
+  $('#restart_tps_button').hide();
   thinkPhaseInitialized = false;
   pairPhaseInitialized = false;
   sharePhaseInitialized = false;
   gapi.hangout.data.setValue("discussing","false");
   gapi.hangout.data.setValue("phase", "none");
+  endGraphing();
   console.log("restarted discussion");
 };
 
@@ -308,9 +310,6 @@ function startSharePhase() {
     if (isModerator == true) {
       $("#restart_tps_btn").show();
       // $("#graph_buttons").show();
-      $("#restart_tps_button").on('click', function(){
-        endGraphing();
-      });
       $("#pair_wrapper").hide();
       startGraphing();
     }
