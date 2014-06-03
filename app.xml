@@ -176,7 +176,7 @@
 
         $("#instructor_instructions").show();
 
-        $("#panel_container_wrapper").height("460px");
+        $("#panel_container_wrapper").height("120%");
       } else {
         hidePanel();
       }
