@@ -258,6 +258,8 @@ function trigger_tps() {
       if (isModerator == false) {
         hideAllButSelf();
       }
+    } else {
+      initiatePairPhase();
     }
 
   }  
@@ -314,6 +316,8 @@ function startPairPhase() {
         $("#pair_wrapper").show();
         enableEavesdropping();
       }
+    } else {
+      initiateSharePhase();
     }
   }
 };
