@@ -158,7 +158,7 @@ function determineModerator() {
   // If I am the only participant remaining, set me as the moderator
   if (num_participants == 1) {
     var participant_id = gapi.hangout.getLocalParticipant().person.id;
-    gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipantId());
+    gapi.hangout.data.setValue("moderator", participant_id);
     INSTRUCTOR_ID = participant_id;
   } else {
     INSTRUCTOR_ID = gapi.hangout.data.getValue("moderator");
@@ -574,6 +574,7 @@ function listenToPair(first_of_pair, second_of_pair, button) {
 
   // Set instructor visible and audible for pair
   var pair_ids = first_of_pair + " " + second_of_pair;
+  gapi.hangout.data.setValue("moderator", gapi.hangout.getLocalParticipantId());
   gapi.hangout.data.setValue("intercom_in_use", pair_ids);
 }
 
