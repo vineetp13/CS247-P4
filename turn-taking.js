@@ -4,7 +4,7 @@ var hangout_group_id;
 var participantID;
 
 //VARS
-var NUM_USERS = 0;
+var NUM_USERS = 2;
 var VIZ_REFRESH_INTERVAL_MS = 7000;
 var TIMER_UPDATE_INTERVAL = 1000;
 var THRESHOLD_LOW;
