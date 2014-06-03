@@ -116,8 +116,8 @@ function init() {
 };
 
 function enable_tps_button() {
-  console.log("length: " + $("#think_select").val());
-  console.log($("#think_select"));
+  console.log("length: " + $("#think_select option:selected").val());
+  console.log($("#think_select option:selected"));
   if ($("#question_input").val() !== '' && $("#think_select").val() !== '-1' && $("#pair_select").val() !== '-1') {
     $("#start_tps_btn").removeClass("disabled");
   } else {
