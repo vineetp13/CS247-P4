@@ -87,6 +87,10 @@ function init() {
             trigger_tps();
           }
 
+          if (eventObj.state.phase == "none") {
+            showAllParticipants();
+          }
+
           if (eventObj.state.phase == "pair") {
             startPairPhase();
           } else if (eventObj.state.phase == "share") {
@@ -95,7 +99,7 @@ function init() {
 
           if (eventObj.state.intercom_in_use == "true") {
             turn_on_intercom();
-          } else if (eventObj.state.intercom_in_use == "false") {
+          } else if (eventObj.state.intercom_in_use == "false" && eventObj.state.phase != "none") {
             turn_off_intercom();
           } else if (typeof eventObj.state.intercom_in_use != "undefined") {
             enable_intercom_with_pair(eventObj.state.intercom_in_use);
