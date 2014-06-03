@@ -94,9 +94,11 @@ function init() {
           }
 
           if (eventObj.state.intercom_in_use == "true") {
-            turn_on_intercom();
-          } else if (eventObj.state.intercom_in_use == "false") {
+
+          else if (eventObj.state.intercom_in_use == "false") {
             turn_off_intercom();
+          } else if {
+            enable_intercom_with_pair(eventObj.state.intercom_in_use);
           }
         }
       );
@@ -278,6 +280,9 @@ function startPairPhase() {
     if (isModerator == false) {
       hideAllButPair();
     } else {
+      $("#intercom_explanation").hide();
+      $("#enable_intercom_btn").hide();
+      $("#disable_intercom_btn").hide();
       $("#pair_wrapper").show();
       enableEavesdropping();
     }
@@ -295,9 +300,6 @@ function startSharePhase() {
     if (isModerator == true) {
       $("#restart_tps_btn").show();
       // $("#graph_buttons").show();
-      $("#intercom_explanation").hide();
-      $("#enable_intercom_btn").hide();
-      $("#disable_intercom_btn").hide();
       $("#pair_wrapper").hide();
       startGraphing();
     }
@@ -333,9 +335,14 @@ function disableIntercom() {
   gapi.hangout.data.setValue("intercom_in_use", "false");
 };
 
+// This function broadcasts to ALL participants, and should only be used during the pair phase. 
 function turn_on_intercom() {
-  var moderator_id = gapi.hangout.data.getValue("moderator");
-  gapi.hangout.av.setParticipantAudible(moderator_id, true);
+  if ((thinkPhaseInitialized == true) && (pairPhaseInitialized == false)) {
+    var moderator_id = gapi.hangout.data.getValue("moderator");
+    gapi.hangout.av.setParticipantAudible(moderator_id, true);
+    gapi.hangout.av.setParticipantVisible(moderator_id, true);
+    gapi.hangout.av.clearAvatar(moderator_id);
+  }
 };
 
 function turn_off_intercom() {
@@ -343,8 +350,28 @@ function turn_off_intercom() {
   if (sharePhaseInitialized == false) {
     var moderator_id = gapi.hangout.data.getValue("moderator");
     gapi.hangout.av.setParticipantAudible(moderator_id, false);
+    gapi.hangout.av.setParticipantVisible(moderator_id, false);
+    gapi.hangout.av.setAvatar(participant.id, "https://raw.githubusercontent.com/jcambre/CS247-P4/hangouts/images/hidden.png");
   }
 };
+
+function enable_intercom_with_pair(pair_ids) {
+  if (sharePhaseInitialized == false) {
+    var moderator_id = gapi.hangout.data.getValue("moderator");
+    var pair_arr = pair_ids.split();
+    var first_of_pair = pair_arr[0];
+    var second_of_pair = pair_arr[1];
+    
+    var local_participant = gapi.hangout.getLocalParticipantId();
+
+    // Only for the two relevant people within the pair + the moderator himself should the moderator be audible and visible.
+    if (local_participant == first_of_pair || local_participant == second_of_pair || local_participant == moderator_id) {
+      gapi.hangout.av.setParticipantAudible(moderator_id, true);
+      gapi.hangout.av.setParticipantVisible(moderator_id, true);
+      gapi.hangout.av.clearAvatar(moderator_id);
+    }
+  }
+}
 
 function hideAllButSelf() {
   var participants = gapi.hangout.getParticipants();
@@ -437,7 +464,7 @@ function listenToPair(first_of_pair, second_of_pair, button) {
   $(".pair-btn").removeClass("btn-success disabled").addClass("btn-default");
   $(button).addClass("btn-success disabled");
 
-  // Set visibility
+  // Set visibility for instructor
   gapi.hangout.av.setParticipantVisible(first_of_pair, true);
   gapi.hangout.av.setParticipantAudible(first_of_pair, true);
   gapi.hangout.av.clearAvatar(first_of_pair);
@@ -445,11 +472,16 @@ function listenToPair(first_of_pair, second_of_pair, button) {
   gapi.hangout.av.setParticipantVisible(second_of_pair, true);
   gapi.hangout.av.setParticipantAudible(second_of_pair, true);
   gapi.hangout.av.clearAvatar(second_of_pair);
+
+  // Set instructor visible and audible for pair
+  var pair_ids = first_of_pair + " " + second_of_pair;
+  gapi.hangout.data.setValue("intercom_in_use", pair_ids);
 }
 
 function listenToAll() {
   $(".pair-btn").removeClass("btn-success disabled").addClass("btn-default");
   $("#listen_all").removeClass("btn-default").addClass("btn-success disabled");
+  gapi.hangout.data.setValue("intercom_in_use", "false");
   showAllParticipants();
 }
 
