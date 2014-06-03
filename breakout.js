@@ -275,6 +275,7 @@ function trigger_tps() {
 // Called ONLY BY THE FIRST PERSON whose timer reaches the pair phase!
 function initiatePairPhase() {
   if (gapi.hangout.data.getValue("phase") !== "pair") {
+    gapi.hangout.data.setValue("intercom_in_use", "false");
     gapi.hangout.data.setValue("phase", "pair");
   }
 };
