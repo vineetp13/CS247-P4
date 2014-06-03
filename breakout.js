@@ -118,7 +118,7 @@ function init() {
 function enable_tps_button() {
   console.log("length: " + $("#think_select > [selected]").length);
   console.log($("#think_select"));
-  if ($("#question_input").val() !== '' && $("#think_select > [selected]").length > 0 && $("#pair_select > [selected]").length > 0) {
+  if ($("#question_input").val() !== '' && $("#think_select").val() !== '' && $("#pair_select > [selected]").val() !== '') {
     $("#start_tps_btn").removeClass("disabled");
   } else {
     $("#start_tps_btn").addClass("disabled");
