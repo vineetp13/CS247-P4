@@ -668,9 +668,9 @@ function startGraphing() {
 
 function endGraphing() {
   $("#start_graph_btn").show();
-  $("#end_graph_btn").hide();
+  $("#graph_container").hide();
   end_timer();
-  console.log("ending graphing");
+  console.log("ending graphing function");
   gapi.hangout.data.setValue("graphing","false");
 };
 
