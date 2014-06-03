@@ -164,7 +164,7 @@ function startTPS() {
   var pair_time_in_s = pair_selects.options[pair_selects.selectedIndex].value;
   console.log("Pair time will be: " + pair_time_in_s);
 
-  var question = $("#question_input").val() || $("#question_input").text()
+  var question = $("#question_input").val().trim() == "" ? "What has been your favorite class at Stanford and why?" : $("#question_input").val()
   // var question_in = document.getElementById("question_input");
   // var question = question_in.value;
   console.log("The question entered is: " + question);
