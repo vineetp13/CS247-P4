@@ -189,8 +189,6 @@
       });
       $('#restart_tps_btn').on('click', function() {
         restartTPS();
-        $('#restart_tps_btn').hide();
-        $("#start_tps_btn").show();
       });
 
       $('#enable_intercom_btn').click(function() {
