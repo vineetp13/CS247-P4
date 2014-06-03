@@ -251,9 +251,6 @@ function trigger_tps() {
     if (isModerator == false) {
       hideAllButSelf();
       // Display privacy notice upon entering think pair share
-      gapi.hangout.layout.displayNotice("Heads up! Your instructor will be able to monitor your audio/video feeds at all times throughout this activity, including when he or she appears hidden to you during the Think and Pair phases, so don't do anything too embarrassing!",false);
-    } else {
-      gapi.hangout.layout.displayNotice("FYI: The students are seeing the same prompts that you see throughout the discussion, so no need to repeat them!",false);
     }
   }  
 };
