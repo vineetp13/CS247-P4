@@ -321,6 +321,10 @@ function init() {
             third_user ? third_user.child('contribution').set(initial_contribution) : null;
             fourth_user ? fourth_user.child('contribution').set(initial_contribution) : null;
 
+            thinkPhaseInitialized = false;
+            pairPhaseInitialized = false;
+            sharePhaseInitialized = false;
+
             $("#start_graph_btn").show();
             console.log("RESET SUCCESSFUL");
 
