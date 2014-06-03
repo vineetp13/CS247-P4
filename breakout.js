@@ -390,9 +390,12 @@ function turn_off_intercom() {
   // Only allow the instructor to disable their mic if everyone is still in the think or pair phases.
   if (sharePhaseInitialized == false) {
     var moderator_id = gapi.hangout.data.getValue("moderator");
-    gapi.hangout.av.setParticipantAudible(moderator_id, false);
-    gapi.hangout.av.setParticipantVisible(moderator_id, false);
-    gapi.hangout.av.setAvatar(moderator_id, "https://raw.githubusercontent.com/jcambre/CS247-P4/hangouts/images/hidden.png");
+
+    if (gapi.hangout.getLocalParticipantId() != moderator_id) {
+      gapi.hangout.av.setParticipantAudible(moderator_id, false);
+      gapi.hangout.av.setParticipantVisible(moderator_id, false);
+      gapi.hangout.av.setAvatar(moderator_id, "https://raw.githubusercontent.com/jcambre/CS247-P4/hangouts/images/hidden.png");
+    }
   }
 };
 
