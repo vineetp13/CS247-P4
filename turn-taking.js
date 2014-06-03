@@ -149,6 +149,12 @@ function start_timer(){
 
 }
 
+function end_timer(){
+  clearInterval(timer_id);
+  clearInterval(timer_2_id);
+}
+
+
 /* Usage: 
   buildBarGraph('graph_container', names_arr, {
     title_text: 'Average Talk Time',
@@ -316,6 +322,8 @@ function init() {
             fourth_user ? fourth_user.child('contribution').set(initial_contribution) : null;
 
             $("#start_graph_btn").show();
+            console.log("RESET SUCCESSFUL");
+
           }
         }
       );
@@ -661,6 +669,8 @@ function startGraphing() {
 function endGraphing() {
   $("#start_graph_btn").show();
   $("#end_graph_btn").hide();
+  end_timer();
+  console.log("ending graphing");
   gapi.hangout.data.setValue("graphing","false");
 };
 
