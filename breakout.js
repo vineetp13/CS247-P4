@@ -103,6 +103,7 @@ function init() {
         }
       );
 
+      $(".form-control").change(enable_tps_button);
 
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
@@ -114,7 +115,13 @@ function init() {
   );
 };
 
-
+function enable_tps_button() {
+  if ($("#question_input").val() !== '' && $("#think_select").val() !== '' && $("#pair_select").val() !== '') {
+    $("#start_tps_btn").removeClass("disabled");
+  } else {
+    $("#start_tps_btn").addClass("disabled");
+  }
+};
 
 
 
