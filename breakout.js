@@ -299,7 +299,8 @@ function startPairPhase() {
     console.log("I'm in the pair phase!");
     console.log("Current time is: " + Date.now());
 
-    document.getElementById("phase_label").innerHTML = "Pair"
+    document.getElementById("phase_label").innerHTML = "Pair";
+    var question_text = gapi.hangout.data.getValue("question");
     document.getElementById("phase_label_subhead").innerHTML = "<br/>Now, with your partner, share your answer to the same question:<br/><i>" + question_text + "</i>";
 
     // Start Pair Phase
