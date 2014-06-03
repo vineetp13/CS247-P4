@@ -174,8 +174,9 @@
       $('#start_tps_btn').click(function() {
         startTPS();
       });
-      $('#restart_tps_btn').click(function() {
+      $('#restart_tps_btn').on('click', function() {
         restartTPS();
+        $('#restart_tps_btn').hide();
       });
 
       $('#enable_intercom_btn').click(function() {
