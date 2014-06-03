@@ -97,7 +97,7 @@ function init() {
             turn_on_intercom();
           } else if (eventObj.state.intercom_in_use == "false") {
             turn_off_intercom();
-          } else if (typeof eventObj.state.intercom_in_use !== "undefined") {
+          } else if (typeof eventObj.state.intercom_in_use != "undefined") {
             enable_intercom_with_pair(eventObj.state.intercom_in_use);
           }
         }
@@ -398,8 +398,9 @@ function turn_off_intercom() {
 
 function enable_intercom_with_pair(pair_ids) {
   if (sharePhaseInitialized == false) {
+    console.log("pair ids: " + pair_ids);
     var moderator_id = gapi.hangout.data.getValue("moderator");
-    
+    console.log("moderator: " + moderator_id);
     console.log("Pair IDs: " + pair_ids);
 
     var pair_arr = pair_ids.split(" ");
