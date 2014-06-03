@@ -402,7 +402,7 @@ function enable_intercom_with_pair(pair_ids) {
     
     console.log("Pair IDs: " + pair_ids);
 
-    var pair_arr = pair_ids.split();
+    var pair_arr = pair_ids.split(" ");
     console.log("pair arr:");
     console.log(pair_arr);
     var first_of_pair = pair_arr[0];
