@@ -116,9 +116,9 @@ function init() {
 };
 
 function enable_tps_button() {
-  console.log("length: " + $("#think_select > [selected]").length);
+  console.log("length: " + $("#think_select").val());
   console.log($("#think_select"));
-  if ($("#question_input").val() !== '' && $("#think_select").val() !== '' && $("#pair_select").val() !== '') {
+  if ($("#question_input").val() !== '' && $("#think_select").val() !== '-1' && $("#pair_select").val() !== '-1') {
     $("#start_tps_btn").removeClass("disabled");
   } else {
     $("#start_tps_btn").addClass("disabled");

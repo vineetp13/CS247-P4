@@ -79,7 +79,7 @@
                   <span>How long would you like students to think individually?</span>
                   <div class="form-group">
                     <select id="think_select" class="form-control" required>
-                      <option value="" disabled>Select a duration</option>
+                      <option value="-1" disabled selected>Select a duration</option>
                       <option value='0'>None</option>
                       <option value='15'>15 seconds</option>
                       <option value='30'>30 seconds</option>
@@ -90,7 +90,7 @@
                   <span>How long would you like students to discuss in pairs?</span>
                   <div class="form-group">
                     <select id="pair_select" class="form-control" required>
-                      <option value="" disabled>Select a duration</option>
+                      <option value="-1" disabled selected>Select a duration</option>
                       <option value='0'>None</option>
                       <option value='30'>30 seconds</option>
                       <option value='60'>1 minute</option>
