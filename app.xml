@@ -111,7 +111,7 @@
               </div>
             </div>
           </div>
-          <center><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Use the Intercom</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Turn Off Intercom</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>
+          <center><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Start speaking with participants</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Stop speaking with participants</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>
           
         </div>
 
