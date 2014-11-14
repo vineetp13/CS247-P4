@@ -56,6 +56,9 @@
           <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator</span></center>
         </div>
       </nav>
+      
+      <div id="test"> test btext by vineet </div>
+      
       <div id="is_instructor_banner" style="width: 380px; z-index: 1; background-color: #5bc0de; position:fixed; top:50px; left:0px; padding: 3px; display:none;">
         <center><span style="color: #ffffff; font-weight: 600;">You are the INSTRUCTOR of this discussion.</span></center>
       </div>
