@@ -28,7 +28,7 @@
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src='//rawgit.com/jcambre/CS247-P4/moderator/firebase_setup.js'></script>
-<script src='//rawgit.com/vineetp13/CS247-P4/mod/turn-taking.js'></script>
+<!---- <script src='//rawgit.com/vineetp13/CS247-P4/mod/turn-taking.js'></script> -->
 <script src='//rawgit.com/vineetp13/CS247-P4/mod/breakout.js'></script>
 
 <!-- Latest compiled and minified CSS -->
@@ -53,7 +53,7 @@
     <div id="panel_container">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 380px; margin-bottom: 0px;">
         <div class="container" style="width: 380px; padding-top:7px;">
-          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator9</span></center>
+          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator1</span></center>
         </div>
       </nav>
       
