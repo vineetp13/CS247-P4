@@ -259,7 +259,7 @@ function trigger_tps() {
     // Update prompt
     var question_text = gapi.hangout.data.getValue("question");
     document.getElementById("phase_label").innerHTML = "<span class='glyphicon glyphicon-user' style='font-size: 11pt;'></span>&nbsp;&nbsp;Think";
-    document.getElementById("phase_label_subhead").innerHTML = "<br/>On your own, think of an idea to solve the following challenge:<br/><i>" + question_text + "</i>";
+    document.getElementById("phase_label_subhead").innerHTML = "<br/>On your own, think of many ideas to solve the following challenge:<br/><i>" + question_text + "</i>";
 
     thinkPhaseInitialized = true;
 
@@ -310,7 +310,7 @@ function startPairPhase() {
 
     document.getElementById("phase_label").innerHTML = "<span class='glyphicon glyphicon-user' style='font-size: 11pt;'></span><span class='glyphicon glyphicon-user' style='font-size: 11pt;margin-left: -4px;'></span>&nbsp;&nbsp;Pair";
     var question_text = gapi.hangout.data.getValue("question");
-    document.getElementById("phase_label_subhead").innerHTML = "<br/>Now, with your partner, share your idea and ask for feedback:<br/><i>" + question_text + "</i>";
+    document.getElementById("phase_label_subhead").innerHTML = "<br/>Now, with your partner, share your ideas and ask for feedback:<br/><i>" + question_text + "</i>";
 
     // Start Pair Phase
     var pair_time_in_s = parseInt(gapi.hangout.data.getValue("pair-time"));
@@ -356,7 +356,7 @@ function startSharePhase() {
     
 
     document.getElementById("phase_label").innerHTML = "<span class='glyphicon glyphicon-user' style='font-size: 11pt;'></span><span class='glyphicon glyphicon-user' style='font-size: 11pt;margin-left: -5px;top: -5px;position: relative;'></span><span class='glyphicon glyphicon-user' style='font-size: 11pt;margin-left: -4px;'></span>&nbsp;&nbsp;Share";
-    document.getElementById("phase_label_subhead").innerHTML = "<br/>Now that we are all back, take turns going around and sharing what you discussed.";
+    document.getElementById("phase_label_subhead").innerHTML = "<br/>Now that we are all back, take turns going around and sharing what you discussed. Ask questions to understand the ideas better!";
     
     $("#timer_wrapper").hide();
 
