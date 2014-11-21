@@ -53,7 +53,7 @@
     <div id="panel_container">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 380px; margin-bottom: 0px;">
         <div class="container" style="width: 380px; padding-top:7px;">
-          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator1</span></center>
+          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator2</span></center>
         </div>
       </nav>
       
@@ -66,7 +66,7 @@
 
         <p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short challenge. 
         Then, you will be automatically <b>paired</b> with another student to discuss the same challenge. Finally, the discussion will return to the entire group, and everyone will have 
-        a chance to <b>share</b> what they discussed with their partners. <br>
+        a chance to <b>share</b> what they discussed with their partners. <br> <br>
         
         <b>Challenge question</b>: In your community, how do you make people passionately follow and contribute to causes of their interest? Think about the principles mentioned in the course as well as your unique understanding of your community. 
         </p> 
