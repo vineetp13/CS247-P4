@@ -255,7 +255,7 @@ function trigger_tps() {
     // Update prompt
     var question_text = gapi.hangout.data.getValue("question");
     document.getElementById("phase_label").innerHTML = "<span class='glyphicon glyphicon-user' style='font-size: 11pt;'></span>&nbsp;&nbsp;Think";
-    document.getElementById("phase_label_subhead").innerHTML = "<br/>On your own, think about the following question:<br/><i>" + question_text + "</i>";
+    document.getElementById("phase_label_subhead").innerHTML = "<br/>On your own, think about the following challenge:<br/><i>" + question_text + "</i>";
 
     thinkPhaseInitialized = true;
 
