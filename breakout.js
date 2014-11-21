@@ -2,8 +2,11 @@ var username;
 var names;
 var participantIDs;
 
-var INSTRUCTOR_ID = "112817507031505914726"; // William by default
+//var INSTRUCTOR_ID = "112817507031505914726"; // William by default
 // Julia: "111880716844037207882"
+
+var INSTRUCTOR_ID1 = "116765102893208206899";
+var INSTRUCTOR_ID2 = "113547802764333507620";
 
 //TURN VARIABLES
 var CANVAS_WIDTH;
@@ -34,7 +37,7 @@ function init() {
   gapi.hangout.onApiReady.add(
     function(eventObj) {
       if (eventObj.isApiReady) {
-          gapi.hangout.layout.setChatPaneVisible(false);
+          gapi.hangout.layout.setChatPaneVisible(true);
           setCanvas();
           setNumParticipantsNeeded();
       }
@@ -50,7 +53,7 @@ function init() {
       //Listen for future changes to enabled/disabled participants to see if local participant becomes turn reporter
       gapi.hangout.onEnabledParticipantsChanged.add(
         function(eventObj) {
-          determineModerator();
+          //determineModerator();
         }
       );
 
@@ -112,7 +115,7 @@ function init() {
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
       console.log("My local participant ID is: " + localParticipantId);
-      if (localParticipantId == INSTRUCTOR_ID) {
+      if (localParticipantId == INSTRUCTOR_ID1 || localParticipantId == INSTRUCTOR_ID2) {
         $("#start_tps_btn").show();
       }
     }
@@ -159,11 +162,12 @@ function determineModerator() {
   if (num_participants == 1) {
     var participant_id = gapi.hangout.getLocalParticipant().person.id;
     gapi.hangout.data.setValue("moderator", participant_id);
-    INSTRUCTOR_ID = participant_id;
+    //INSTRUCTOR_ID = participant_id;
+
   } else {
-    INSTRUCTOR_ID = gapi.hangout.data.getValue("moderator");
+    //INSTRUCTOR_ID = gapi.hangout.data.getValue("moderator");
   }
-  console.log("instructor id is: " + INSTRUCTOR_ID);
+  //console.log("instructor id is: " + INSTRUCTOR_ID);
 }
 
 // This is called ONLY by a local participant who initiates the discussion
@@ -239,7 +243,7 @@ function trigger_tps() {
     $("#timer_label").removeClass("phase_ending");
 
     var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
-    if (localParticipantId == INSTRUCTOR_ID) {
+    if (localParticipantId == INSTRUCTOR_ID1 || localParticipantId == INSTRUCTOR_ID2){
       isModerator = true;
     }
 
@@ -451,7 +455,7 @@ function hideAllButPair() {
   for (var index in participants) {
     var participantId = participants[index].person.id;
     // Include all participants EXCEPT the instructor accounts.
-    if (participantId != INSTRUCTOR_ID) {
+    if (participantId != INSTRUCTOR_ID1 || participantId != INSTRUCTOR_ID2) {
       participantIDs.push(participants[index].id);
     }
   }
@@ -531,7 +535,7 @@ function enableEavesdropping() {
   for (var index in participants) {
     var participantId = participants[index].person.id;
     // Include all participants EXCEPT the instructor accounts.
-    if (participantId != INSTRUCTOR_ID) {
+    if (participantId != INSTRUCTOR_ID1 || participantId != INSTRUCTOR_ID2) {
       participantIDs.push(participants[index].id);
     }
   }

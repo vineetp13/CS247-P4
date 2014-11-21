@@ -233,7 +233,7 @@ function init() {
   gapi.hangout.onApiReady.add(
     function(eventObj) {
       if (eventObj.isApiReady) {
-          gapi.hangout.layout.setChatPaneVisible(false);
+          gapi.hangout.layout.setChatPaneVisible(true);
           setCanvas();
           setNumParticipantsNeeded();
       }
