@@ -654,6 +654,7 @@ function setNumParticipantsNeeded() {
     document.getElementById("pending_participants").innerHTML = "Looks like we are just about ready to go! Your discussion will begin momentarily.";
     $("#instructions").hide();
   } else {
-    document.getElementById("num_participants_needed").innerHTML = num_needed_participants;
+  	if (document.getElementById("num_participants_needed")!=null){
+    document.getElementById("num_participants_needed").innerHTML = num_needed_participants;}
   }
 };
