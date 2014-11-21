@@ -64,9 +64,26 @@
       <!-- <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a> -->
       <div id="visualization_container" style="padding-top: 70px;">
 
-        <p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. 
+        <!----><p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. 
         Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have 
-        a chance to <b>share</b> what they discussed with their partners.</p>
+        a chance to <b>share</b> what they discussed with their partners.</p>-->
+        
+        
+        <p id="instructions" style="display: none;"> 
+        	<br> <b>Discussion agenda:</b><br>
+	First, spend 5-10 minutes taking turns introducing yourselves, where you are from, and why you are taking Giving 2.0. <br>
+Next, discuss the following questions:
+<ol>
+<li>What was one of the most valuable or interesting things you’ve learned from the course?
+</li><li>How do you plan on implementing new philanthropic techniques into your life?
+</li><li>How do you plan on becoming, not just a philanthropist, but an effective philanthropist?
+</li><li>Have you had the chance to already to begin you philanthropic ventures?
+philanthropy projects in your own town?
+	</li>
+	</ol>
+		If Yasmine or Vineet are in your discussion, they will facilitate the remainder of the discussion. Otherwise, your final discussion is over! Thank you for using Talkabout! 
+        	
+       </p>
         
         <div id="instructor_instructions" style="display:none;">
           <div class="initial_instructions">
