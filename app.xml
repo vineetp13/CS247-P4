@@ -53,14 +53,13 @@
     <div id="panel_container">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 380px; margin-bottom: 0px;">
         <div class="container" style="width: 380px; padding-top:7px;">
-          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator Admin</span></center>
+          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Mod</span></center>
         </div>
       </nav>
       
-      <div id="test"> test btext by vineet </div>
       
       <div id="is_instructor_banner" style="width: 380px; z-index: 1; background-color: #5bc0de; position:fixed; top:50px; left:0px; padding: 3px; display:none;">
-        <center><span style="color: #ffffff; font-weight: 600;">You are the INSTRUCTOR of this discussion.</span></center>
+        <center><span style="color: #ffffff; font-weight: 600;">You are the only INSTRUCTOR of this discussion.</span></center>
       </div>
       <!-- <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a> -->
       <div id="visualization_container" style="padding-top: 70px;">
