@@ -53,7 +53,7 @@
     <div id="panel_container">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 380px; margin-bottom: 0px;">
         <div class="container" style="width: 380px; padding-top:7px;">
-          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator6</span></center>
+          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator7</span></center>
         </div>
       </nav>
       
@@ -70,7 +70,7 @@
         
         
         
-        <p id="instructions" style="display: none;"> 
+      <!--->  <p id="instructions" style="display: none;"> 
         	<br> <b>Discussion agenda:</b><br>
 	First, spend 5-10 minutes taking turns introducing yourselves, where you are from, and why you are taking Giving 2.0. <br>
 Next, discuss the following questions:
@@ -84,7 +84,7 @@ philanthropy projects in your own town?
 	</ol>
 		If Yasmine or Vineet are in your discussion, they will facilitate the remainder of the discussion. Otherwise, your final discussion is over! Thank you for using Talkabout! 
         	
-       </p>
+  </p>---->
         
         <div id="instructor_instructions" style="display:none;">
           <div class="initial_instructions">
