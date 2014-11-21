@@ -53,7 +53,7 @@
     <div id="panel_container">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 380px; margin-bottom: 0px;">
         <div class="container" style="width: 380px; padding-top:7px;">
-          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator7</span></center>
+          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator8</span></center>
         </div>
       </nav>
       
@@ -162,7 +162,7 @@ philanthropy projects in your own town?
           </div>
           <div id="privacy-notice" class="alert alert-warning alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>Heads up!</strong> Your instructor will be able to monitor your audio/video feeds at all times, including when he or she appears hidden to you during the Think and Pair phases, so don't do anything too embarrassing!
+            <strong>Heads up!</strong> Your instructor will be able to monitor your audio/video feeds at all times, including when he or she appears hidden to you, so don't do anything too embarrassing!
           </div>
           <hr/>
           <div id="pair_wrapper" style="display: none;">
