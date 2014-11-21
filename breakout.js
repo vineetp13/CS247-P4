@@ -455,7 +455,7 @@ function hideAllButPair() {
   for (var index in participants) {
     var participantId = participants[index].person.id;
     // Include all participants EXCEPT the instructor accounts.
-    if (participantId != INSTRUCTOR_ID1 || participantId != INSTRUCTOR_ID2) {
+    if (participantId != INSTRUCTOR_ID1 && participantId != INSTRUCTOR_ID2) {
       participantIDs.push(participants[index].id);
     }
   }
@@ -535,7 +535,7 @@ function enableEavesdropping() {
   for (var index in participants) {
     var participantId = participants[index].person.id;
     // Include all participants EXCEPT the instructor accounts.
-    if (participantId != INSTRUCTOR_ID1 || participantId != INSTRUCTOR_ID2) {
+    if (participantId != INSTRUCTOR_ID1 && participantId != INSTRUCTOR_ID2) {
       participantIDs.push(participants[index].id);
     }
   }
