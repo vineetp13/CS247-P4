@@ -53,7 +53,7 @@
     <div id="panel_container">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 380px; margin-bottom: 0px;">
         <div class="container" style="width: 380px; padding-top:7px;">
-          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator4</span></center>
+          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator5</span></center>
         </div>
       </nav>
       
@@ -64,9 +64,10 @@
       <!-- <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a> -->
       <div id="visualization_container" style="padding-top: 70px;">
 
-        <!----><p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. 
+        <!----<p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. 
         Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have 
-        a chance to <b>share</b> what they discussed with their partners.</p>-->
+        a chance to <b>share</b> what they discussed with their partners.</p> 
+        -->
         
         
         <p id="instructions" style="display: none;"> 
