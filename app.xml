@@ -99,7 +99,7 @@ philanthropy projects in your own town?
                   <span style="font-size: 10pt;">Which challenge would you like students to discuss? <br></span>
                   In your community, how do you make people passionately follow and contribute to causes of their interest? Think about the principles mentioned in the course as well as your unique understanding of your community. 
                   <div class="form-group">
-                    <textarea class="form-control" cols="50" id="question_input" maxlength="140" placeholder="e.g. What has been your favorite class at Stanford and why?" rows="3" required></textarea>
+                    <textarea class="form-control" cols="50" id="question_input" maxlength="300" placeholder="e.g. What has been your favorite class at Stanford and why?" rows="3" required></textarea>
                   </div>
 
                   <p class="lead" style="border-bottom: 1px solid #eeeeee;">2. Set Timings</p>
