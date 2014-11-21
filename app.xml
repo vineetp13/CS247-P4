@@ -53,7 +53,7 @@
     <div id="panel_container">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 380px; margin-bottom: 0px;">
         <div class="container" style="width: 380px; padding-top:7px;">
-          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator</span></center>
+          <center><span style="font-size: 18pt; font-weight: 200;">Hangout Moderator Admin</span></center>
         </div>
       </nav>
       
@@ -65,7 +65,10 @@
       <!-- <a id="hide_panel" style="float:right; font-size:14pt; padding: 5px; text-decoration:none; color:#00000; cursor: pointer;" title="Hide Participation Metrics">&times;</a> -->
       <div id="visualization_container" style="padding-top: 70px;">
 
-        <p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have a chance to <b>share</b> what they discussed with their partners.</p>
+        <p id="instructions" style="display: none;">In a moment, your instructor will begin the discussion. First, you will be asked to <b>think</b> individually about a short prompt. 
+        Then, you will be automatically <b>paired</b> with another student to discuss the same prompt. Finally, the discussion will return to the entire group, and everyone will have 
+        a chance to <b>share</b> what they discussed with their partners.</p>
+        
         <div id="instructor_instructions" style="display:none;">
           <div class="initial_instructions">
             <div id='tps_buttons'>
@@ -114,7 +117,11 @@
               </div>
             </div>
           </div>
-          <center><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Start speaking with participants</button><button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Stop speaking with participants</button><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>
+          <center><button type="button" class="btn btn-success" id="enable_intercom_btn" style="display:none;">Start speaking with participants</button>
+          <button type="button" class="btn btn-danger" id="disable_intercom_btn" style="display:none;">Stop speaking with participants</button>
+          <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" id="intercom_explanation" data-placement="bottom" title="By clicking this button, 
+          	you can override broadcast your voice to all of the participants in this Hangout, which will allow you to say something to all of the ongoing pair groups" 
+          	style="display: none; margin-left: 10px;"></span><button type="button" class="btn btn-primary" id="restart_tps_btn" style="display:none;">Restart Think-Pair-Share</button></center>
           
         </div>
 
@@ -172,7 +179,8 @@
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
       if (localParticipantId == INSTRUCTOR_ID) {
-        document.getElementById("privacy-notice").innerHTML = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong>Heads up!</strong>   You will be able to monitor the audio and video feeds of all students at all times, even when they are only able to see themselves and/or their discussion partner.";
+        document.getElementById("privacy-notice").innerHTML = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong>Heads up!</strong>  
+         You will be able to monitor the audio and video feeds of all students at all times, even when they are only able to see themselves and/or their discussion partner.";
 
         $("#instructor_instructions").show();
         $("#is_instructor_banner").show();
