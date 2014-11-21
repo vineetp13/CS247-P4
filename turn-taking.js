@@ -382,6 +382,8 @@ function getFBHangout(){
 
   //mechanism to receive vis. updates pushed to fb
   fb_update_vis = fb_conversation.child('update');
+  
+   if (typeof names !== 'undefined') {
   fb_update_vis.on('child_added', function(dataSnapshot) {
     var percentage_1 = (names.length >= 1) ? percentage_talk(first_snapshot_val) : 0;
     var percentage_2 = (names.length >= 2) ? percentage_talk(second_snapshot_val) : 0;
@@ -458,7 +460,7 @@ function getFBHangout(){
 
   }, null, this);
 
-}
+}}
 
 function checkSetup(dataSnapshot){
   if(set_up_done){
