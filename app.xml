@@ -177,7 +177,9 @@
 
       // If the current participants are "administrators" (acting as instructors for the purposes of the demo), give them access to the Start/Stop discussion buttons
       var localParticipantId = gapi.hangout.getLocalParticipant().person.id;
-      if (localParticipantId == INSTRUCTOR_ID1 || localParticipantId == INSTRUCTOR_ID2) {
+      var INSTRUCTOR_ID01 = "116765102893208206899";
+      var INSTRUCTOR_ID02 = "113547802764333507620";
+      if (localParticipantId == INSTRUCTOR_ID01 || localParticipantId == INSTRUCTOR_ID02) {
         document.getElementById("privacy-notice").innerHTML = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong>Heads up!</strong> You will be able to monitor the audio and video feeds of all students at all times, even when they are only able to see themselves and/or their discussion partner.";
 
         $("#instructor_instructions").show();
