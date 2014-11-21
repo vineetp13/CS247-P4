@@ -338,6 +338,8 @@ function startPairPhase() {
 
 function startSharePhase() {
   if (sharePhaseInitialized == false) {
+  	$('#panel_container').css( "height", "+=500px" );}
+  	
     sharePhaseInitialized = true;
     window.clearTimeout(thinkTimer);
     window.clearInterval(counter);
@@ -351,7 +353,7 @@ function startSharePhase() {
       $("#pair_wrapper").hide();
       startGraphing();
     }
-    $('#panel_container').css( "height", "+=500px" );
+    
 
     document.getElementById("phase_label").innerHTML = "<span class='glyphicon glyphicon-user' style='font-size: 11pt;'></span><span class='glyphicon glyphicon-user' style='font-size: 11pt;margin-left: -5px;top: -5px;position: relative;'></span><span class='glyphicon glyphicon-user' style='font-size: 11pt;margin-left: -4px;'></span>&nbsp;&nbsp;Share";
     document.getElementById("phase_label_subhead").innerHTML = "<br/>Now that we are all back, take turns going around and sharing what you discussed.";
@@ -362,7 +364,7 @@ function startSharePhase() {
     console.log("Current time is: " + Date.now());
     // Untimed!
     showAllParticipants();
-  }
+  
 };
 
 function end_tps() {
