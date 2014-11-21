@@ -552,11 +552,13 @@ function enableEavesdropping() {
     var second_of_pair = gapi.hangout.getParticipantById(pair[1]);
     console.log("Pair array: ");
     console.log(pair);
+    if(first_of_pair != null && second_of_pair != null){
     var new_pair_item = "<li><button type='button' class='btn btn-default btn-xs pair-btn' onclick='listenToPair(\"" + first_of_pair.id +"\", \"" + second_of_pair.id + "\", this);'>";
     new_pair_item += first_of_pair.person.displayName + " & " + second_of_pair.person.displayName;
     new_pair_item += "</button></li>";
     $("#pairs").append(new_pair_item);
     console.log(new_pair_item);
+    }
   }
   $("#pairs_wrapper").show();
 
@@ -653,8 +655,10 @@ function setNumParticipantsNeeded() {
   var num_participants = gapi.hangout.getParticipants().length;
   var num_needed_participants = 3 - (num_participants); //Change back to 5
   if (num_needed_participants <= 0) {
+  	if (document.getElementById("pending_participants")!=null){
     document.getElementById("pending_participants").innerHTML = "Looks like we are just about ready to go! Your discussion will begin momentarily.";
     $("#instructions").hide();
+   }
   } else {
   	if (document.getElementById("num_participants_needed")!=null){
     document.getElementById("num_participants_needed").innerHTML = num_needed_participants;}

@@ -628,7 +628,7 @@ function determineReporters() {
 // NOTE: This function was derived from Julia Cambre's work on Talkabout 
 //TURN TAKING TRACKING CONTROLS:
 function reportTurnTakingEvent(participantID) {
-	if (typeof participantID !== 'undefined') {
+	if (typeof participantIDs !== 'undefined' && participantIDs != null) {
   var index = participantIDs.indexOf(participantID);
   if(current_participant != index) {
     console.log("Change speaker to: " + participantID);
